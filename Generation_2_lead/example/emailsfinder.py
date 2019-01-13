@@ -83,12 +83,9 @@ class EmailFinderService():
                             apath = driver.find_elements_by_xpath('//h2/a')[li_number]
                             emailSource = apath.get_attribute("href")
                             for email in searchEmails:
+                                emails.append(email)
+                                emailSources.append(emailSource)
                                     # if email not in the emails list
-                                if email not in emails:
-                                        # add email in the emails list: return an object oy type NoneType
-                                    emails.append(email)
-                                    emailSources.append(emailSource)
-
                     li_number =li_number + 1
 
                 except:
@@ -109,11 +106,13 @@ class EmailFinderService():
         for email, source in zip(emails, emailSources):
             AllData.append("{} {}".format(email, source))
 
-
+        emails = []
+        emailSources = []
         newEmails = []
         newEmailSources = []
         newCheck = []
         output = sorted(AllData)
+
         data = []
         for items in output:
             emails.append(items.split(" ")[0])
@@ -135,6 +134,8 @@ class EmailFinderService():
                 newEmailSources.append(emailSources[index:index + count])
                 index += count
 
+        print(emails)
+        print(emailSources)
 
         for emailsCounter in range(len(newEmails)):
             jsonReturn = {
