@@ -1,33 +1,51 @@
-#-------------------------------------------------------------------------------
-# Name:        Email Scraper
-# Purpose:      Create a that find email address by the domain name
-#
-# Author:      Beny-DZIENGUE
-#
-# Created:     03/01/2019
-# Copyright:   (c) Beny-DZIENGUE 2019
-# Licence:     <your licence>
-#-------------------------------------------------------------------------------
 
 #import needed object
 import re
-import sys
-
-import os
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from bs4 import BeautifulSoup
 
 class EmailFinderService():
     # initialise the object emails, which will contains the emails founds
 
-  def getEmail(enterUrl):
+
+
+    def checking(self, email, url):
+        options = Options()
+        # define the option of chrome webdriver,Returns whether or not the headless argument is set
+        options.headless = True
+        # create a webdriver object, return the object driver of type selenium.webdriver.chrome.webdriver.WebDriver
+        driver = webdriver.Chrome(options=options,  executable_path=r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\chrome driver\chromedriver.exe')
+
+        driver.get(url)
+
+        # select the bar search
+        barSearch = driver.find_element_by_name("email")
+        # write the email address in the bar search
+        barSearch.send_keys(email)
+
+        # select the submit button
+        button = driver.find_element_by_class_name("Button")
+        # click the button
+        button.click()
+
+        # create a beautifulsoup object, return an object of type bs4.BeautifulSoup
+        soup = BeautifulSoup(driver.page_source, features="html.parser")
+
+        result = soup.select("td")
+        success = result[-1].text
+        if success == "E-mail address is valid":
+            return True
+        else:
+            return False
+
+
+    def getEmail(self,enterUrl):
 
         emails = []
         emailSources = []
         AllData = []
-        #get the url, return an object of type str
-
 
         #enter = input("Enter the url without 'www' : ")
         # initialise the object pageNumber to 1, return an object of type int
@@ -70,7 +88,6 @@ class EmailFinderService():
                                         # add email in the emails list: return an object oy type NoneType
                                     emails.append(email)
                                     emailSources.append(emailSource)
-                                    print(email)
 
                     li_number =li_number + 1
 
@@ -79,7 +96,6 @@ class EmailFinderService():
             try:
                 # look for the html tag that content a specific str number : return the object link of type str
                 link = driver.find_element_by_link_text(str(pageNumber))
-                #number.append(str(pageNumber))
             # if an error occur
             except :
                 #stop the while loop
@@ -89,10 +105,45 @@ class EmailFinderService():
             #add 1 to the page number to have the number of the next pageL: return the object page_number of type int
             pageNumber += 1
 
-        for i in range(len(emails)):
-            FinalJson = {"email":emails[i], "url":emailSources[i]}
-            AllData.append(FinalJson)
-        return AllData
+
+        for email, source in zip(emails, emailSources):
+            AllData.append("{} {}".format(email, source))
 
 
-        driver.quit()
+        newEmails = []
+        newEmailSources = []
+        newCheck = []
+        output = sorted(AllData)
+        data = []
+        for items in output:
+            emails.append(items.split(" ")[0])
+            emailSources.append(items.split(" ")[1])
+
+        # put the url of the site into the object url of type str
+        url = "http://mailtester.com/testmail.php"
+
+        index = 0
+        for mail in emails:
+            count = emails.count(mail)
+            if mail not in newEmails:
+                checks = self.checking(self, mail, url)
+                if checks == True:
+                    newCheck.append(True)
+                else:
+                    newCheck.append(False)
+                newEmails.append(mail)
+                newEmailSources.append(emailSources[index:index + count])
+                index += count
+
+
+        for emailsCounter in range(len(newEmails)):
+            jsonReturn = {
+                "email": newEmails[emailsCounter],
+                "isValide": newCheck[emailsCounter],
+                "url": newEmailSources[emailsCounter]
+            }
+            data.append(jsonReturn)
+
+        return data
+
+
