@@ -1,3 +1,4 @@
+from django.conf.urls import url
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
 
@@ -9,3 +10,4 @@ urlpatterns = [
     path('share', views.ShareView.as_view()),
     path('testSharing', views.TestSharingView.as_view()),
 ]
+
