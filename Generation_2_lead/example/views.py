@@ -1,16 +1,17 @@
 
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.views import APIView
-from django.utils.decorators import method_decorator
 
 
 from .models import Lead
 from .serializers import LeadSerializer
 from rest_framework import generics
 from rest_framework.response import Response
-from .emailsfinder import EmailFinderService
 
-from .emailsfinder import EmailFinderService
+#from .emailsfinder import EmailFinderService
+from .BingSearch import BingSearch
+from .Email import Email
+from .JsonStructure import JsonStructure
 
 # Create your views here.
 
@@ -26,17 +27,17 @@ class DetailLead(generics.RetrieveUpdateDestroyAPIView):
 class ShareView(APIView):
     permission_classes = []
 
-    def post(self, request):
-        enterUrl = request.data.get('url', None)
-        EmailFinderService.getEmail(enterUrl)
-        Alldata = EmailFinderService.getEmail(enterUrl)
-        Jsonfinal = {"data": Alldata}
-        return Response(Jsonfinal)
 
 class TestSharingView(APIView) :
     def post(self, request):
         enterUrl = request.data.get('url', None)
-        Alldata = EmailFinderService.getEmail(EmailFinderService, enterUrl)
-        Jsonfinal = {"data": Alldata}
+
+        #BingSearch.__init__(BingSearch, enterUrl)
+        #a = BingSearch.search(BingSearch)
+        Email.__init__(Email)
+        b = Email.getEmail(Email, enterUrl)
+        #JsonStructure.__init__(JsonStructure, b)
+        #c = JsonStructure.JsonStructureReturn(JsonStructure)
+        Jsonfinal = {"data": b}
         return Response(Jsonfinal)
 
