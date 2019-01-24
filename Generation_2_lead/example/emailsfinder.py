@@ -59,10 +59,10 @@ class EmailFinderService():
         #define the option of chrome webdriver,Returns whether or not the headless argument is set
         options.headless = True
         #create a webdriver object, return the object driver of type selenium.webdriver.chrome.webdriver.WebDriver
+
         driver = webdriver.Chrome(options=options, executable_path=r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\chrome driver\chromedriver.exe')
         #get the url, return an object of type NoneType
         driver.get(url)
-
 
         pageNumber = 2
         #condition to run the program in infinity
@@ -134,8 +134,8 @@ class EmailFinderService():
                 newEmailSources.append(emailSources[index:index + count])
                 index += count
 
-        print(emails)
-        print(emailSources)
+        #print(emails)
+        #print(emailSources)
 
         for emailsCounter in range(len(newEmails)):
             jsonReturn = {
@@ -146,5 +146,3 @@ class EmailFinderService():
             data.append(jsonReturn)
 
         return data
-
-

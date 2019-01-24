@@ -5,18 +5,16 @@ from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 
 class Source():
-    def __init__(self, driver, li_number):
-        self.driver = driver
-        self.li_number = li_number
+    def __init__(self):
         self.sources = []
 
-    def search(self):
-        apath = self.driver.find_elements_by_xpath('//h2/a')[self.li_number]
-        emailSource = apath.get_attribute("href")
-        self.sources.append(emailSource)
-        print(len(self.sources))
-        return emailSource
+    def search(self, li_number, driver):
+        apath = driver.find_elements_by_xpath('//h2/a')[li_number]
+        source = apath.get_attribute("href")
+
+        return source
 
 
-    def appendSource(self, a):
-        self.sources.append(a)
+    def appendSource(self, source):
+        self.sources.append(source)
+        return self.sources
