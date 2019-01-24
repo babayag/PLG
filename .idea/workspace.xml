@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fa72426a-f53c-493a-bde0-fbf57ada0b08" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generation_2_lead/Generation_2_lead/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generation_2_lead/Generation_2_lead/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generation_2_lead/example/BingSearch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generation_2_lead/example/BingSearch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generation_2_lead/example/Email.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generation_2_lead/example/Email.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generation_2_lead/example/Source.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generation_2_lead/example/Source.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generation_2_lead/example/emailsfinder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generation_2_lead/example/emailsfinder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generation_2_lead/example/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generation_2_lead/example/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generation_2_lead/example/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generation_2_lead/example/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generation_2_lead/example/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generation_2_lead/example/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generation_2_lead/frontend" beforeDir="false" afterPath="$PROJECT_DIR$/Generation_2_lead/frontend" afterDir="false" />
-    </list>
+    <list default="true" id="fa72426a-f53c-493a-bde0-fbf57ada0b08" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,7 +309,7 @@
       <workItem from="1547716412659" duration="47055000" />
       <workItem from="1547902956988" duration="7418000" />
       <workItem from="1547914188573" duration="29186000" />
-      <workItem from="1548319036608" duration="2617000" />
+      <workItem from="1548319036608" duration="3573000" />
     </task>
     <servers />
   </component>
@@ -340,7 +328,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="174450000" />
+    <option name="totallyTimeSpent" value="175406000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -354,7 +342,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4990758" visible="true" weight="0.16944024" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4990758" visible="true" weight="0.16944024" />
       <window_info id="Structure" order="1" sideWeight="0.5009242" side_tool="true" weight="0.16717096" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -367,7 +355,7 @@
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3289689" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3420622" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3420622" />
       <window_info anchor="bottom" id="Python Console" order="11" weight="0.3289689" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
