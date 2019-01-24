@@ -8,11 +8,6 @@ from django.utils.decorators import method_decorator
 
 class JsonStructure():
 
-    def __init__(self):
-        self.data = []
-        self.newEmails = []
-        self.allData = []
-
     def JsonStructureReturn(self, Nemails, Nsources):
         emails = []
         allData = []
@@ -45,15 +40,3 @@ class JsonStructure():
             data.append(jsonReturn)
 
         return data
-
-    """def JsonStructureReturn (self):
-
-        for emailsCounter in range(len(self.newEmails)):
-            jsonReturn = {
-                "email": self.newEmails[emailsCounter],
-                "isValide": self.newCheck[emailsCounter],
-                "url": self.newEmailSources[emailsCounter]
-            }
-            self.data.append(jsonReturn)
-
-        return self.data"""
