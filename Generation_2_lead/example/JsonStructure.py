@@ -1,8 +1,4 @@
-#import needed object
 import re
-
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 from django.utils.decorators import method_decorator
 
@@ -29,6 +25,11 @@ class JsonStructure():
             count = emails.count(mail)
             if mail not in newEmails:
                 newEmails.append(mail)
+                sourceWithoutDbl = []
+                for counter in emailSources[index:index + count]:
+                    if counter not in sourceWithoutDbl: sourceWithoutDbl.append(counter)
+                    newEmailSources.append(sourceWithoutDbl)
+                    index += count
                 newEmailSources.append(emailSources[index:index + count])
                 index += count
 

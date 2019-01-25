@@ -19,7 +19,9 @@ class Email():
         urls = BingSearch.nbrPage(BingSearch, enterUrl)
         Source.__init__(Source)
         with PoolExecutor(max_workers=7) as executor:
+            print(executor.map(BingSearch.initialSearch, urls))
             for _ in executor.map(BingSearch.initialSearch, urls):
+                print(_)
                 soup = BeautifulSoup(_, features="html.parser")
                 lipath = soup.findAll("li", {"class": "b_algo"})
                 li_number = 0
@@ -38,7 +40,6 @@ class Email():
                                     # add email in the emails list: return an object oy type NoneType
                                     self.emails.append(email)
                                     self.sources = Source.appendSource(Source, src)
-                                    print(self.emails)
                         li_number = li_number + 1
                     except:
                         break

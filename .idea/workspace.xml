@@ -6,14 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="fa72426a-f53c-493a-bde0-fbf57ada0b08" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generation_2_lead/Generation_2_lead/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generation_2_lead/Generation_2_lead/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Generation_2_lead/example/BingSearch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generation_2_lead/example/BingSearch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generation_2_lead/example/Email1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Generation_2_lead/example/Email.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generation_2_lead/example/Email.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Generation_2_lead/example/JsonStructure.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generation_2_lead/example/JsonStructure.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generation_2_lead/example/Source.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generation_2_lead/example/Source.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generation_2_lead/example/emailsfinder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generation_2_lead/example/emailsfinder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generation_2_lead/example/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generation_2_lead/example/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Generation_2_lead/example/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generation_2_lead/example/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,8 +65,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/BingSearch.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="31" selection-start-line="31" selection-end-line="32" />
+            <state relative-caret-position="253">
+              <caret line="88" column="35" lean-forward="true" selection-start-line="88" selection-start-column="35" selection-end-line="88" selection-end-column="35" />
+              <folding>
+                <element signature="e#1492#1501#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -79,7 +77,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/emailsfinder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1301">
+            <state relative-caret-position="1055">
               <caret line="109" column="25" lean-forward="true" selection-start-line="109" selection-start-column="7" selection-end-line="109" selection-end-column="25" />
               <folding>
                 <element signature="e#23#32#0" expanded="true" />
@@ -91,7 +89,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../../project IV I/new.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-460">
+            <state relative-caret-position="391">
               <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
               <folding>
                 <element signature="e#409#418#0" expanded="true" />
@@ -100,23 +98,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/JsonStructure.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="41" column="19" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
+            <state relative-caret-position="471">
+              <caret line="42" column="19" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
               <folding>
-                <element signature="e#22#31#0" expanded="true" />
+                <element signature="e#0#9#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/Email.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="46" column="30" lean-forward="true" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
+            <state relative-caret-position="208">
+              <caret line="21" column="62" selection-start-line="21" selection-start-column="62" selection-end-line="21" selection-end-column="62" />
               <folding>
                 <element signature="e#2#11#0" expanded="true" />
               </folding>
@@ -142,7 +140,6 @@
     <findStrings>
       <find>actions</find>
       <find>driver</find>
-      <find>print</find>
       <find>newEmails</find>
       <find>checks</find>
       <find>allData</find>
@@ -155,9 +152,11 @@
       <find>get_page</find>
       <find>nbrPage</find>
       <find>lipath</find>
-      <find>page</find>
       <find>soup</find>
+      <find>page</find>
       <find>AllData</find>
+      <find>len</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -175,11 +174,11 @@
         <option value="$PROJECT_DIR$/Generation_2_lead/example/tests.py" />
         <option value="$PROJECT_DIR$/../../../project IV I/new.py" />
         <option value="$PROJECT_DIR$/Generation_2_lead/example/emailsfinder.py" />
-        <option value="$PROJECT_DIR$/Generation_2_lead/example/BingSearch.py" />
         <option value="$PROJECT_DIR$/Generation_2_lead/example/Source.py" />
         <option value="$PROJECT_DIR$/Generation_2_lead/example/views.py" />
-        <option value="$PROJECT_DIR$/Generation_2_lead/example/JsonStructure.py" />
         <option value="$PROJECT_DIR$/Generation_2_lead/example/Email.py" />
+        <option value="$PROJECT_DIR$/Generation_2_lead/example/BingSearch.py" />
+        <option value="$PROJECT_DIR$/Generation_2_lead/example/JsonStructure.py" />
       </list>
     </option>
   </component>
@@ -358,12 +357,12 @@
       <workItem from="1547895066188" duration="15462000" />
       <workItem from="1547983671327" duration="21989000" />
       <workItem from="1548009013708" duration="2685000" />
-      <workItem from="1548319441558" duration="16449000" />
+      <workItem from="1548319441558" duration="30141000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="159885000" />
+    <option name="totallyTimeSpent" value="173577000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -378,7 +377,7 @@
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18229954" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18154311" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -401,12 +400,12 @@
       <window_info anchor="right" id="SciView" order="4" weight="0.32980332" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25718608" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18229954" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3289689" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32850242" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -414,8 +413,8 @@
       <window_info anchor="bottom" id="Database Changes" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3289689" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.09656301" />
-      <window_info anchor="bottom" id="Python Console" order="11" weight="0.3289689" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.7987118" />
+      <window_info anchor="bottom" id="Python Console" order="11" weight="0.32850242" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -494,33 +493,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../project IV I/new.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-460">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding>
-            <element signature="e#409#418#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/BingSearch.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="31" selection-start-line="31" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/emailsfinder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1301">
-          <caret line="109" column="25" lean-forward="true" selection-start-line="109" selection-start-column="7" selection-end-line="109" selection-end-column="25" />
-          <folding>
-            <element signature="e#23#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/Source.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -541,22 +513,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/JsonStructure.py">
+    <entry file="file://$PROJECT_DIR$/../../../project IV I/new.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="41" column="19" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
+        <state relative-caret-position="391">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
           <folding>
-            <element signature="e#22#31#0" expanded="true" />
+            <element signature="e#409#418#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/emailsfinder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1055">
+          <caret line="109" column="25" lean-forward="true" selection-start-line="109" selection-start-column="7" selection-end-line="109" selection-end-column="25" />
+          <folding>
+            <element signature="e#23#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/Email.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="46" column="30" lean-forward="true" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
+        <state relative-caret-position="208">
+          <caret line="21" column="62" selection-start-line="21" selection-start-column="62" selection-end-line="21" selection-end-column="62" />
           <folding>
             <element signature="e#2#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/BingSearch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="88" column="35" lean-forward="true" selection-start-line="88" selection-start-column="35" selection-end-line="88" selection-end-column="35" />
+          <folding>
+            <element signature="e#1492#1501#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/JsonStructure.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="42" column="19" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
