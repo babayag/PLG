@@ -79,7 +79,6 @@ class BingSearch():
 
         result = self.initialSearch(myUrl)
         soup = BeautifulSoup(result, features="html.parser")
-        print(soup)
         txt = soup.find("span", {"class": "sb_count"}).text
         txt = txt.split(" ")[-2]
         txt = txt.split(",")
