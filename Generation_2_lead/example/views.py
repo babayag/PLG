@@ -7,8 +7,8 @@ from .models import Lead
 from .serializers import LeadSerializer
 from rest_framework import generics
 from rest_framework.response import Response
-
 from .emailsfinder import EmailFinderService
+
 from .BingSearch import BingSearch
 from .Email import Email
 from .JsonStructure import JsonStructure

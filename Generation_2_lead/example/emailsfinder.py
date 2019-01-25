@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 class EmailFinderService():
     # initialise the object emails, which will contains the emails founds
 
+
     def get_page(page):
         try:
             # always set a timeout when you connect to an external server
@@ -38,7 +39,8 @@ class EmailFinderService():
             if dif <= 10:
                 liste.append("/search?q=%40{}&first={}".format(enterUrl, nbr + dif))
         return liste
-
+      
+      
     def getEmail(self,enterUrl):
 
 
@@ -47,7 +49,6 @@ class EmailFinderService():
         emailSource = []
         AllData = []
         urls = self.nbrPage(self, enterUrl)
-
 
         #condition to run the program in infinity
         with PoolExecutor(max_workers=7) as executor:

@@ -1,6 +1,7 @@
 import re
 
 from django.test import TestCase
+
 from .BingSearch import BingSearch
 
 # Create your tests here.

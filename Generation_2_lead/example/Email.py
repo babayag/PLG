@@ -1,6 +1,7 @@
 
 
 import re
+
 from concurrent.futures import ThreadPoolExecutor as PoolExecutor
 from bs4 import BeautifulSoup
 from .BingSearch import BingSearch

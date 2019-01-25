@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 from django.utils.decorators import method_decorator
 
 class JsonStructure():
-
     def JsonStructureReturn(self, Nemails, Nsources):
         emails = []
         allData = []
@@ -25,6 +24,7 @@ class JsonStructure():
             count = emails.count(mail)
             if mail not in newEmails:
                 newEmails.append(mail)
+                
                 sourceWithoutDbl = []
                 for counter in emailSources[index:index + count]:
                     if counter not in sourceWithoutDbl: sourceWithoutDbl.append(counter)
@@ -39,5 +39,5 @@ class JsonStructure():
                 "url": newEmailSources[emailsCounter]
             }
             data.append(jsonReturn)
-
         return data
+
