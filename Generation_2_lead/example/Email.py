@@ -20,9 +20,7 @@ class Email():
         urls = BingSearch.nbrPage(BingSearch, enterUrl)
         Source.__init__(Source)
         with PoolExecutor(max_workers=7) as executor:
-            print(executor.map(BingSearch.initialSearch, urls))
             for _ in executor.map(BingSearch.initialSearch, urls):
-                print(_)
                 soup = BeautifulSoup(_, features="html.parser")
                 lipath = soup.findAll("li", {"class": "b_algo"})
                 li_number = 0
@@ -32,7 +30,7 @@ class Email():
                         # for line in the drivertextclear
                         for line in litext.splitlines():
                             # search all email in each line, return the objet searchNumbers of type list
-                            searchEmails = re.findall(r"\w*[\.\-]?\w*[\.\-]?\w+\.?\w*\@{}".format(enterUrl), line,flags=re.MULTILINE)
+                            searchEmails = re.findall(r"[a-zA-Z]+[\.\-]?\w*[\.\-]?\w+\.?\w*\@{}".format(enterUrl), line,flags=re.MULTILINE)
                             # for email in email_1 list
 
                             if searchEmails:
@@ -44,6 +42,7 @@ class Email():
                         li_number = li_number + 1
                     except:
                         break
-
+        print(self.emails)
+        print(self.sources)
         datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, self.emails, self.sources)
         return datasStructured

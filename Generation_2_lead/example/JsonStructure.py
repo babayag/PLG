@@ -28,9 +28,7 @@ class JsonStructure():
                 sourceWithoutDbl = []
                 for counter in emailSources[index:index + count]:
                     if counter not in sourceWithoutDbl: sourceWithoutDbl.append(counter)
-                    newEmailSources.append(sourceWithoutDbl)
-                    index += count
-                newEmailSources.append(emailSources[index:index + count])
+                newEmailSources.append(sourceWithoutDbl)
                 index += count
 
         for emailsCounter in range(len(newEmails)):
@@ -38,6 +36,8 @@ class JsonStructure():
                 "email": newEmails[emailsCounter],
                 "url": newEmailSources[emailsCounter]
             }
+            print(jsonReturn)
             data.append(jsonReturn)
+           
         return data
 
