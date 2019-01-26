@@ -1,18 +1,8 @@
-#import needed object
 import re
-
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 from django.utils.decorators import method_decorator
 
 class JsonStructure():
-
-    def __init__(self):
-        self.data = []
-        self.newEmails = []
-        self.allData = []
-
     def JsonStructureReturn(self, Nemails, Nsources):
         emails = []
         allData = []
@@ -34,6 +24,12 @@ class JsonStructure():
             count = emails.count(mail)
             if mail not in newEmails:
                 newEmails.append(mail)
+                
+                sourceWithoutDbl = []
+                for counter in emailSources[index:index + count]:
+                    if counter not in sourceWithoutDbl: sourceWithoutDbl.append(counter)
+                    newEmailSources.append(sourceWithoutDbl)
+                    index += count
                 newEmailSources.append(emailSources[index:index + count])
                 index += count
 
@@ -43,17 +39,5 @@ class JsonStructure():
                 "url": newEmailSources[emailsCounter]
             }
             data.append(jsonReturn)
-
         return data
 
-    """def JsonStructureReturn (self):
-
-        for emailsCounter in range(len(self.newEmails)):
-            jsonReturn = {
-                "email": self.newEmails[emailsCounter],
-                "isValide": self.newCheck[emailsCounter],
-                "url": self.newEmailSources[emailsCounter]
-            }
-            self.data.append(jsonReturn)
-
-        return self.data"""

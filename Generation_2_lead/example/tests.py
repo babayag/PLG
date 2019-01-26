@@ -1,23 +1,20 @@
+import re
+
 from django.test import TestCase
 from .Source import Source
+
+from .BingSearch import BingSearch
 
 # Create your tests here.
 
 
-class YourTestClass(TestCase):
-   def test_nosource(self):
-       ago = None
-       Source.__init__(Source)
-       result = Source.appendSource(Source,ago)
-       self.assertEqual(result,'Not')
+class BingSearchTest(TestCase):
+   def test_InvalidUrl(self):
+       url = 'www.example.com'
+       result = BingSearch.search(BingSearch, url)
+       self.assertEqual(result, "No")
 
-   def test_duplicatesource(self):
-
-       ago = 're'
-       before = 're'
-       Source.__init__(Source)
-       result = Source.appendSource(Source,ago)
-       self.assertNotIn(before,result)
-
-
-
+   def test_ValidUrl(self):
+       url = 'http://www.example.com'
+       result = BingSearch.search(BingSearch, url)
+       self.assertEqual(result, "Yes")

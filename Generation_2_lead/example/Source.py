@@ -8,17 +8,13 @@ class Source():
     def __init__(self):
         self.sources = []
 
-    def search(self, li_number, driver):
-        sources = ''
-        apath = driver.find_elements_by_xpath('//h2/a')[li_number]
-        source = apath.get_attribute("href")
+
+    def search(self, li_number, lipath):
+        apath = lipath[li_number].findNext("h2").find("a", href=True)
+        source = apath["href"]
         return source
 
-    def appendSource(self, source):
-        if type(source)!= type('fff'):
-            emppty = 'Not'
-            return emppty
-        else:
-            self.sources.append(source)
-            return self.sources
 
+    def appendSource(self, source):
+        self.sources.append(source)
+        return self.sources
