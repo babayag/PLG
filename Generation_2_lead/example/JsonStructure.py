@@ -1,4 +1,6 @@
 import re
+import os
+import json
 from bs4 import BeautifulSoup
 from django.utils.decorators import method_decorator
 
@@ -38,6 +40,11 @@ class JsonStructure():
             }
             print(jsonReturn)
             data.append(jsonReturn)
-           
+        os.chdir(r'C:\Users\euseb\Desktop\DEV\Projet Django\PLG\Generation_2_lead\example\Nouveau dossier')
+        try:
+            with open("{}.json".format(enterUrl), 'w') as outfile:
+                json.dump(data, outfile)
+        except FileNotFoundError:
+            pass
         return data
 
