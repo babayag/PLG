@@ -8,7 +8,6 @@ from .serializers import LeadSerializer
 from rest_framework import generics
 from rest_framework.response import Response
 
-
 from .Email import Email
 
 # Create your views here.

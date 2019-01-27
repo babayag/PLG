@@ -14,7 +14,6 @@ class Email():
         self.sources = []
         self.AllData = []
 
-
     def getEmail(self,enterUrl):
         urls = BingSearch.nbrPage(BingSearch, enterUrl)
         Source.__init__(Source)
@@ -22,6 +21,7 @@ class Email():
         with PoolExecutor(max_workers=7) as executor:
             page = 1
             for _ in executor.map(BingSearch.initialSearch, urls):
+                print(_)
                 soup = BeautifulSoup(_, features="html.parser")
                 lipath = soup.findAll("li", {"class": "b_algo"})
                 li_number = 0
