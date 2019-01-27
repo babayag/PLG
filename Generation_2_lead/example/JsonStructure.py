@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from django.utils.decorators import method_decorator
 
 class JsonStructure():
-    def JsonStructureReturn(self, Nemails, Nsources):
+    def JsonStructureReturn(self, Nemails, Nsources, enterUrl):
         emails = []
         allData = []
         data = []

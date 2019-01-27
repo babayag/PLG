@@ -48,5 +48,3 @@ class UpdateJsonFile(APIView):
         else:
             response = False
         return Response(response)
-        
-

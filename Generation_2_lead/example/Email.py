@@ -44,5 +44,5 @@ class Email():
                         break
         print(self.emails)
         print(self.sources)
-        datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, self.emails, self.sources)
+        datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, self.emails, self.sources, enterUrl)
         return datasStructured
