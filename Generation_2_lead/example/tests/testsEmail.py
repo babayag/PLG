@@ -1,6 +1,6 @@
 
 from django.test import TestCase
-from .Email import Email
+from ..Email import Email
 # Create your tests here.
 
 class TestGetEmail(TestCase):

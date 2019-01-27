@@ -32,5 +32,16 @@ class TestSharingView(APIView):
         finalData = Email.getEmail(Email, enterUrl)
         Jsonfinal = {"data": finalData}
         return Response(Jsonfinal)
-
-
+    
+class UpdateJsonFile(APIView):
+    def post(self, request):
+        response = False
+        enterUrl = request.data.get('url', None)
+        Email.__init__(Email)
+        finalData = Email.getEmail(Email, enterUrl)
+        Jsonfinal = {"data": finalData}
+        if len(Jsonfinal) != 0:
+            response = True
+        else:
+            response = False
+        return Response(response)

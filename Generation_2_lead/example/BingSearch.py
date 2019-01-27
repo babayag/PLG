@@ -41,4 +41,5 @@ class BingSearch():
             dif = 256 - nbrOfPage
             if dif <= int(txt1):
                 liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage + dif))
+        print(liste)
         return liste

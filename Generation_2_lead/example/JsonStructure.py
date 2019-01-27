@@ -1,8 +1,9 @@
-#import needed object
+
+import os
+import json
 
 class JsonStructure():
-
-    def JsonStructureReturn(self, Nemails, Nsources):
+    def JsonStructureReturn(self, Nemails, Nsources, enterUrl):
         emails = []
         allData = []
         data = []
@@ -27,9 +28,7 @@ class JsonStructure():
                 sourceWithoutDbl = []
                 for counter in emailSources[index:index + count]:
                     if counter not in sourceWithoutDbl: sourceWithoutDbl.append(counter)
-                    newEmailSources.append(sourceWithoutDbl)
-                    index += count
-                newEmailSources.append(emailSources[index:index + count])
+                newEmailSources.append(sourceWithoutDbl)
                 index += count
 
         for emailsCounter in range(len(newEmails)):
@@ -37,5 +36,12 @@ class JsonStructure():
                 "email": newEmails[emailsCounter],
                 "url": newEmailSources[emailsCounter]
             }
+            #print(jsonReturn)
             data.append(jsonReturn)
+        os.chdir(r'C:\Users\Ranyl\Desktop\tets')
+        try:
+            with open("{}.json".format(enterUrl), 'w') as outfile:
+                json.dump(data, outfile)
+        except FileNotFoundError:
+            pass
         return data
