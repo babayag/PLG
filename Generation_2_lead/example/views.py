@@ -8,10 +8,8 @@ from .serializers import LeadSerializer
 from rest_framework import generics
 from rest_framework.response import Response
 
-#from .emailsfinder import EmailFinderService
-from .BingSearch import BingSearch
+
 from .Email import Email
-from .JsonStructure import JsonStructure
 
 # Create your views here.
 
@@ -28,16 +26,12 @@ class ShareView(APIView):
     permission_classes = []
 
 
-class TestSharingView(APIView) :
+class TestSharingView(APIView):
     def post(self, request):
         enterUrl = request.data.get('url', None)
-
-        #BingSearch.__init__(BingSearch, enterUrl)
-        #a = BingSearch.search(BingSearch)
         Email.__init__(Email)
-        b = Email.getEmail(Email, enterUrl)
-        #JsonStructure.__init__(JsonStructure, b)
-        #c = JsonStructure.JsonStructureReturn(JsonStructure)
-        Jsonfinal = {"data": b}
+        finalData = Email.getEmail(Email, enterUrl)
+        Jsonfinal = {"data": finalData}
         return Response(Jsonfinal)
+
 

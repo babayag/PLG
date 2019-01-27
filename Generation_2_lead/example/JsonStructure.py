@@ -1,17 +1,6 @@
 #import needed object
-import re
-
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from bs4 import BeautifulSoup
-from django.utils.decorators import method_decorator
 
 class JsonStructure():
-
-    def __init__(self):
-        self.data = []
-        self.newEmails = []
-        self.allData = []
 
     def JsonStructureReturn(self, Nemails, Nsources):
         emails = []
@@ -43,6 +32,4 @@ class JsonStructure():
                 "url": newEmailSources[emailsCounter]
             }
             data.append(jsonReturn)
-
         return data
-
