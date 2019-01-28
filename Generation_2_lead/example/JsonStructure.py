@@ -38,9 +38,9 @@ class JsonStructure():
                 "email": newEmails[emailsCounter],
                 "url": newEmailSources[emailsCounter]
             }
-            print(jsonReturn)
+            #print(jsonReturn)
             data.append(jsonReturn)
-        os.chdir(r'C:\Users\euseb\Desktop\DEV\Projet Django\PLG\Generation_2_lead\example\Nouveau dossier')
+        os.chdir(r'D:\project\PLG2\Generation_2_lead\example\Nouveau dossier')
         try:
             with open("{}.json".format(enterUrl), 'w') as outfile:
                 json.dump(data, outfile)
