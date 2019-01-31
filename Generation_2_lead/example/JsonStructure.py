@@ -39,6 +39,7 @@ class JsonStructure():
             #print(jsonReturn)
             data.append(jsonReturn)
         os.chdir(r'C:\Users\Ranyl\Desktop\tets')
+
         try:
             with open("{}.json".format(enterUrl), 'w') as outfile:
                 json.dump(data, outfile)
