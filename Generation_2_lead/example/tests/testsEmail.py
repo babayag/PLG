@@ -1,8 +1,8 @@
 
 from django.test import TestCase
 from ..Email import Email
-# Create your tests here.
 
+# Create your tests here.
 class TestGetEmail(TestCase):
 
     def testWentAllIsFound(self):
@@ -29,3 +29,10 @@ class TestGetEmail(TestCase):
         print(TestNullEmail)
         print("Not Emails have not been found on the URL you entered !!")
 
+    '''def testWhenEmailsAreTooMore(self):
+        testMoreEmail = []
+        Email.__init__(Email)
+        email = Email.getEmail(Email, "medievaltimes.com")
+        for i in range(len(email)):
+            testMoreEmail.append(email[i]['email'])
+        self.assertCountEqual(testMoreEmail)'''

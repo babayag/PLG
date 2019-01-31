@@ -5,18 +5,20 @@ import re
 
 class TestBingSearch(TestCase):
 
-    def testUrlValidity(self):
-        url = "itkamer.com"
-        regex = re.compile(
-            r'^https?://'  # http:// or https://
-            r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+[A-Z]{2,6}\.?|'  # domain...
-            r'localhost|'  # localhost...
-            r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'  # ...or ip
-            r'(?::\d+)?'  # optional port
-            r'(?:/?|[/?]\S+)$', re.IGNORECASE)
+    def testUrlIsValid(self):
+        url = BingSearch.UrlValidation(BingSearch,"itkamer.com")
+        self.assertTrue(url)
+        print("URL is correct!!")
 
-        print(re.match(regex, url))
+    def testUrlIsNotValid(self):
+        url = BingSearch.UrlValidation(BingSearch,"https://stackoverflow.com/questions/7160737/python-how-to-validate-a-url-in-python-malformed-or-not")
+        self.assertFalse(url)
+        print("THE URL YOU ENTERED IS INCORRECT!!")
 
+    def testWhenTherIsMorePages(self):
+        numberOfPage = BingSearch.nbrPage(BingSearch,"football.com")
 
+        self.assertEqual(len(numberOfPage),25)
+        print('Good Test')
 
 

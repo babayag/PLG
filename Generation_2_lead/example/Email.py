@@ -15,7 +15,11 @@ class Email():
         self.AllData = []
 
     def getEmail(self,enterUrl):
-        urls = BingSearch.nbrPage(BingSearch, enterUrl)
+
+        if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
+            urls = BingSearch.nbrPage(BingSearch, enterUrl)
+        else:
+            pass
         Source.__init__(Source)
 
         with PoolExecutor(max_workers=7) as executor:

@@ -1,7 +1,7 @@
 
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.views import APIView
-
+from .BingSearch import BingSearch
 
 from .models import Lead
 from .serializers import LeadSerializer
@@ -28,20 +28,28 @@ class ShareView(APIView):
 class TestSharingView(APIView):
     def post(self, request):
         enterUrl = request.data.get('url', None)
-        Email.__init__(Email)
-        finalData = Email.getEmail(Email, enterUrl)
-        Jsonfinal = {"data": finalData}
-        return Response(Jsonfinal)
+        if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
+            Email.__init__(Email)
+            finalData = Email.getEmail(Email, enterUrl)
+            Jsonfinal = {"data": finalData}
+            return Response(Jsonfinal)
+        else:
+            return Response("YOU ENTERED A BAD URL !")
+
     
 class UpdateJsonFile(APIView):
     def post(self, request):
         response = False
         enterUrl = request.data.get('url', None)
-        Email.__init__(Email)
-        finalData = Email.getEmail(Email, enterUrl)
-        Jsonfinal = {"data": finalData}
-        if len(Jsonfinal) != 0:
-            response = True
+        if BingSearch.UrlValidation(BingSearch, enterUrl) == True:
+            Email.__init__(Email)
+            finalData = Email.getEmail(Email, enterUrl)
+            Jsonfinal = {"data": finalData}
+            if len(Jsonfinal) != 0:
+                response = True
+            else:
+                response = False
+            return Response(response)
         else:
-            response = False
-        return Response(response)
+            return Response("YOU ENTERED A BAD URL !")
+

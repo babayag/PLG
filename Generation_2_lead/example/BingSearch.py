@@ -1,9 +1,28 @@
 import http.client
 import socket
+import re
 from bs4 import BeautifulSoup
 
 
 class BingSearch():
+
+
+
+    def UrlValidation(self,myUrl):
+
+        regex = re.compile(
+            r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+[A-Z]{2,6}\.?|'  # domain...
+            r'localhost|'  # localhost...
+            r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'  # ...or ip
+            r'(?::\d+)?'  # optional port
+            r'(?:/?|[/?]\S+)$', re.IGNORECASE)
+
+        if (re.match(regex, myUrl) is not None ):
+
+            return True
+        else:
+           return False
+
 
     def initialSearch(myUrl):
 
@@ -39,7 +58,7 @@ class BingSearch():
         for nbrOfPage in range(1, int(txt1), 10):
             liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage))
             dif = 256 - nbrOfPage
-            if dif <= int(txt1):
+            if dif <= 10:
                 liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage + dif))
         print(liste)
         return liste
