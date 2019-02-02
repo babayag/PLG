@@ -3,6 +3,11 @@ import sys
 import http.client
 import socket
 from bs4 import BeautifulSoup
+import re
+import sys
+import http.client
+import socket
+from bs4 import BeautifulSoup
 
 
 class BingSearch():
