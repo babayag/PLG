@@ -9,10 +9,9 @@ class FileManager():
         os.chdir(r'C:\Users\Ranyl\Desktop\tets')
 
         try:
-            if lastNumber <= 100:
-                with open("{}.json".format(enterUrl), 'w') as outfile:
-                    data.append({"LastpageNbr": LastpageNbr})
-                    json.dump(data, outfile)
+            with open("{}.json".format(enterUrl), 'w') as outfile:
+                data.append({"LastpageNbr": LastpageNbr})
+                json.dump(data, outfile)
         except FileNotFoundError:
             pass
 
