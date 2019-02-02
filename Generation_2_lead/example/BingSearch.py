@@ -1,10 +1,15 @@
 import http.client
 import socket
 import re
+import os
+import json
 from bs4 import BeautifulSoup
 
 
 class BingSearch():
+    '''def __init__(self):
+        self.liste = []
+        self.lastN ='''
 
 
 
@@ -42,23 +47,57 @@ class BingSearch():
             # socket goes into timeout
             pass
 
-    def nbrPage(self, enterUrl):
-        myUrl = "/search?q=%40{}&first=11".format(enterUrl)
-
-        result = self.initialSearch(myUrl)
-        soup = BeautifulSoup(result, features="html.parser")
-        txt = soup.find("span", {"class": "sb_count"}).text
-        txt = txt.split(" ")[-2]
-        txt = txt.split(",")
-        txt1 = ""
-        for i in range(0, len(txt)):
-            txt1 = txt1 + txt[i]
-
+    def nbrPage(self, enterUrl,nbrOfLastPage):
         liste = []
-        for nbrOfPage in range(1, int(txt1), 10):
-            liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage))
-            dif = 256 - nbrOfPage
-            if dif <= 10:
-                liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage + dif))
-        print(liste)
-        return liste
+        lastN = 0
+
+        myUrl = "/search?q=%40{}&first=11".format(enterUrl)
+        result = self.initialSearch(myUrl)
+        try:
+            soup = BeautifulSoup(result, features="html.parser")
+            txt = soup.find("span", {"class": "sb_count"}).text
+            txt = txt.split(" ")[-2]
+
+            try:
+                txt = int(txt)
+            except:
+                txt = txt.split(",")
+                txt1 = ""
+                for i in range(0, len(txt)):
+                    txt1 = txt1 + txt[i]
+                txt = int(txt)
+        except:
+            txt = 101
+
+        if txt < 100:
+            for nbrOfPage in range(1, txt, 10):
+                liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage))
+                dif = txt - nbrOfPage
+                if dif <= 10:
+                    liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage + dif))
+                    lastN = nbrOfPage + dif
+        else:
+
+            if nbrOfLastPage != None:
+
+                for nbrOfPage in range(1+nbrOfLastPage, nbrOfLastPage + 100, 10):
+                    liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage))
+
+                    dif = int(nbrOfLastPage + 100) - nbrOfPage
+                    if dif <= 10:
+                        liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage + dif))
+                        lastN = nbrOfPage + dif
+
+            else:
+
+
+                for nbrOfPage in range(1, 100, 10):
+                    liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage))
+                    dif = 100 - nbrOfPage
+                    if dif <= 10:
+                        liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage + dif))
+                        lastN = nbrOfPage + dif
+
+        data = [liste, lastN]
+        return data
+

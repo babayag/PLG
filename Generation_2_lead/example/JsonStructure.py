@@ -1,9 +1,12 @@
 
 import os
 import json
+from .FileManager import FileManager
 
 class JsonStructure():
-    def JsonStructureReturn(self, Nemails, Nsources, enterUrl):
+
+    def JsonStructureReturn(self, Nemails, Nsources, enterUrl, LastpageNbr):
+        self.LastpageNbr = LastpageNbr
         emails = []
         allData = []
         data = []
@@ -32,17 +35,12 @@ class JsonStructure():
                 index += count
 
         for emailsCounter in range(len(newEmails)):
-            jsonReturn = {
-                "email": newEmails[emailsCounter],
-                "url": newEmailSources[emailsCounter]
-            }
-            #print(jsonReturn)
-            data.append(jsonReturn)
-        os.chdir(r'C:\Users\Ranyl\Desktop\tets')
 
-        try:
-            with open("{}.json".format(enterUrl), 'w') as outfile:
-                json.dump(data, outfile)
-        except FileNotFoundError:
-            pass
+            jsonReturn ={
+                    "email": newEmails[emailsCounter],
+                    "url": newEmailSources[emailsCounter]
+                }
+
+            data.append(jsonReturn)
+        FileManager.WriteInFile(FileManager,data,enterUrl,self.LastpageNbr)
         return data

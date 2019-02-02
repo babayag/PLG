@@ -28,28 +28,23 @@ class ShareView(APIView):
 class TestSharingView(APIView):
     def post(self, request):
         enterUrl = request.data.get('url', None)
-        if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
-            Email.__init__(Email)
-            finalData = Email.getEmail(Email, enterUrl)
-            Jsonfinal = {"data": finalData}
-            return Response(Jsonfinal)
-        else:
-            return Response("YOU ENTERED A BAD URL !")
+        Email.__init__(Email)
+        finalData = Email.main(Email, enterUrl)
+        Jsonfinal = {"data": finalData}
+        return Response(Jsonfinal)
+
 
     
 class UpdateJsonFile(APIView):
     def post(self, request):
         response = False
         enterUrl = request.data.get('url', None)
-        if BingSearch.UrlValidation(BingSearch, enterUrl) == True:
-            Email.__init__(Email)
-            finalData = Email.getEmail(Email, enterUrl)
-            Jsonfinal = {"data": finalData}
-            if len(Jsonfinal) != 0:
-                response = True
-            else:
-                response = False
-            return Response(response)
+        Email.__init__(Email)
+        finalData = Email.main(Email, enterUrl)
+        Jsonfinal = {"data": finalData}
+        if len(Jsonfinal) != 0:
+            response = True
         else:
-            return Response("YOU ENTERED A BAD URL !")
+            response = False
+        return Response(response)
 
