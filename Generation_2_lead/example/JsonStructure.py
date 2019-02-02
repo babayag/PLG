@@ -1,3 +1,4 @@
+
 import re
 from bs4 import BeautifulSoup
 from django.utils.decorators import method_decorator
@@ -10,10 +11,15 @@ class JsonStructure():
         emailSources = []
         newEmails = []
         newEmailSources = []
+
+        #pour chaque email et source dans l'ensemble des emails et source concatener ({email,source})
         for email, source in zip(Nemails, Nsources):
             allData.append("{} {}".format(email, source))
+        print(allData)
 
+        #trie par ordre alphabetique
         output = sorted(allData)
+
 
         for items in output:
             emails.append(items.split(" ")[0])
@@ -40,4 +46,8 @@ class JsonStructure():
             data.append(jsonReturn)
            
         return data
+
+    def sth(self,a):
+        return a
+
 
