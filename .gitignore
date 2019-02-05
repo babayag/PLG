@@ -84,8 +84,10 @@ celerybeat-schedule
 # Environments
 .env
 .venv
+.backend
 env/
 venv/
+backend/
 ENV/
 env.bak/
 venv.bak/
@@ -103,6 +105,12 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+#idea files
+.idea
+*.iws
+*.iml
+*.ipr
+
 # node modules
 node_modules/
 
@@ -113,3 +121,5 @@ webpack-stats.prod.json
 # build files
 build/
 bundles/
+
+#backend escape

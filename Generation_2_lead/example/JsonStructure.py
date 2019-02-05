@@ -1,10 +1,12 @@
 
-import re
-from bs4 import BeautifulSoup
-from django.utils.decorators import method_decorator
+import os
+import json
+from .FileManager import FileManager
 
 class JsonStructure():
-    def JsonStructureReturn(self, Nemails, Nsources):
+
+    def JsonStructureReturn(self, Nemails, Nsources, enterUrl, LastpageNbr):
+        self.LastpageNbr = LastpageNbr
         emails = []
         allData = []
         data = []
@@ -15,7 +17,7 @@ class JsonStructure():
         #pour chaque email et source dans l'ensemble des emails et source concatener ({email,source})
         for email, source in zip(Nemails, Nsources):
             allData.append("{} {}".format(email, source))
-        print(allData)
+        #print(allData)
 
         #trie par ordre alphabetique
         output = sorted(allData)
@@ -38,16 +40,12 @@ class JsonStructure():
                 index += count
 
         for emailsCounter in range(len(newEmails)):
-            jsonReturn = {
-                "email": newEmails[emailsCounter],
-                "url": newEmailSources[emailsCounter]
-            }
-            print(jsonReturn)
+
+            jsonReturn ={
+                    "email": newEmails[emailsCounter],
+                    "url": newEmailSources[emailsCounter]
+                }
+
             data.append(jsonReturn)
-           
+        FileManager.WriteInFile(FileManager,data,enterUrl,self.LastpageNbr)
         return data
-
-    def sth(self,a):
-        return a
-
-

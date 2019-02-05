@@ -2,7 +2,7 @@ import re
 
 from django.test import TestCase
 
-from .JsonStructure import JsonStructure
+from ..JsonStructure import JsonStructure
 
 # Create your tests here.
 
@@ -22,7 +22,7 @@ class Test(TestCase):
        self.assertEquals(result, finalData1)
        print("test1--------------------------------------------------------------------------------------------")
 
-       #no email no source     
+       #no email no source
        email2 = []
        source2 = []
        finalData2 = []
@@ -50,7 +50,7 @@ class Test(TestCase):
        # sames emails
 
        email4 = ["Isidore@itkamer.com", "Isidore@itkamer.com","Isidore@itkamer.com", "Isidore@itkamer.com",]
-       source4 = ["https://docs.google.com","https://docs.google.com",]
+       source4 = ["https://docs.google.com","https://docs.google.com","", ""]
 
        finalData4 = [
            {'email': 'Isidore@itkamer.com', 'url': ['https://docs.google.com']}
