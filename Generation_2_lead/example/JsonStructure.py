@@ -45,7 +45,6 @@ class JsonStructure():
                     "email": newEmails[emailsCounter],
                     "url": newEmailSources[emailsCounter]
                 }
-
             data.append(jsonReturn)
-        FileManager.WriteInFile(FileManager,data,enterUrl,self.LastpageNbr)
+        FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr)
         return data

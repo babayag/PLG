@@ -6,15 +6,21 @@ from .BingSearch import BingSearch
 class FileManager():
 
     def WriteInFile(self,data,enterUrl,LastpageNbr):
-        os.chdir(r'E:\paness IIHT\M2\project\Nouveau dossier\PLG\jsonFile')
-
-        try:
-            with open("{}.json".format(enterUrl), 'w') as outfile:
+        os.chdir(r'C:\Users\Ranyl\Desktop\tets')
+        if self.verifyIfFileExist(self,enterUrl):
+            with open("{}.json".format(enterUrl), 'a+') as outfile:
+                outfile.seek(0, 2)
+                outfile.truncate()
                 data.append({"LastpageNbr": LastpageNbr})
                 json.dump(data, outfile)
-                return True
-        except FileNotFoundError:
-            return False
+
+        else:
+            try:
+                with open("{}.json".format(enterUrl), 'w') as outfile:
+                    data.append({"LastpageNbr": LastpageNbr})
+                    json.dump(data, outfile)
+            except FileNotFoundError:
+                pass
 
 
     def GetLastPageNumber(self, enterUrl):
