@@ -1,8 +1,8 @@
 
 from django.test import TestCase
 from ..Email import Email
-# Create your tests here.
 
+# Create your tests here.
 class TestGetEmail(TestCase):
 
     def testWentAllIsFound(self):
@@ -27,5 +27,13 @@ class TestGetEmail(TestCase):
             TestNullEmail.append(email[i]['email'])
         self.assertEqual(len(TestNullEmail), 0)
         print(TestNullEmail)
-        print("Not Emails have not been found on the URL you entered !!")
+        print(" Emails have not been found on the URL you entered !!")
+
+
+
+
+
+
+
+
 

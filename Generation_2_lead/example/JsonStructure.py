@@ -1,11 +1,12 @@
-import re
+
 import os
 import json
-from bs4 import BeautifulSoup
-from django.utils.decorators import method_decorator
+from .FileManager import FileManager
 
 class JsonStructure():
-    def JsonStructureReturn(self, Nemails, Nsources, enterUrl):
+
+    def JsonStructureReturn(self, Nemails, Nsources, enterUrl, LastpageNbr):
+        self.LastpageNbr = LastpageNbr
         emails = []
         allData = []
         data = []
@@ -34,17 +35,42 @@ class JsonStructure():
                 index += count
 
         for emailsCounter in range(len(newEmails)):
-            jsonReturn = {
-                "email": newEmails[emailsCounter],
-                "url": newEmailSources[emailsCounter]
-            }
-            print(jsonReturn)
-            data.append(jsonReturn)
-        os.chdir(r'C:\Users\euseb\Desktop\DEV\Projet Django\PLG\Generation_2_lead\example\Nouveau dossier')
-        try:
-            with open("{}.json".format(enterUrl), 'w') as outfile:
-                json.dump(data, outfile)
-        except FileNotFoundError:
-            pass
-        return data
 
+            jsonReturn ={
+                    "email": newEmails[emailsCounter],
+                    "url": newEmailSources[emailsCounter]
+                }
+            data.append(jsonReturn)
+        #pagination
+        fiveFirstEmailOfData = data[slice(0,5,1)]
+        fiveFirstEmailOfFile = FileManager.getFiveFirstEmail(FileManager, enterUrl)
+        counter = 100
+        dataReturn = False
+        if len(fiveFirstEmailOfFile) != 0:
+            counter = 0
+            for  x_values, y_values in zip(fiveFirstEmailOfFile, fiveFirstEmailOfData):
+                if sorted(x_values['email']) == sorted(y_values['email']):
+                    counter = counter + 1
+                    print(counter)
+                else:
+                    counter = 0
+        print(counter)
+        if counter != 0:
+
+            if counter == len(fiveFirstEmailOfFile):
+                dataReturn = False
+                print(" == 5")
+            else:
+                if counter == 100:
+                    FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr)
+                    dataReturn = True
+                    print("== 100")
+                else:
+                    dataReturn = False
+                    print("# de 0")
+        else:
+            FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr)
+            dataReturn = True
+            print("eusebiolinho")
+
+        return dataReturn
