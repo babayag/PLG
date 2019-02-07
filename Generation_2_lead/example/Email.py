@@ -15,6 +15,8 @@ class Email():
         self.sources = []
         self.AllData = []
 
+   
+
     def main(self,enterUrl):
         if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
             # if the URL is valid
@@ -28,6 +30,7 @@ class Email():
                 urls = BingSearch.nbrPage(BingSearch, enterUrl, None)
                 Email.getEmail(Email, urls,enterUrl)
 
+            return 'YOU ENTERED A GOOD URL!!'
         else:
             return 'YOU ENTERED A BAD URL!! please entered a url like itkamer.com'
 
@@ -67,3 +70,4 @@ class Email():
         datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, self.emails, self.sources, enterUrl, urls[1])
 
         return datasStructured
+    
