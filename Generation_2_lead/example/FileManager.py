@@ -6,7 +6,7 @@ from .BingSearch import BingSearch
 class FileManager():
 
     def WriteInFile(self,data,enterUrl,LastpageNbr):
-        os.chdir(r'C:\Users\Ranyl\Desktop\tets')
+        os.chdir(r'E:\paness IIHT\M2\project\Nouveau dossier\PLG\jsonFile')
         if self.verifyIfFileExist(self,enterUrl):
             with open("{}.json".format(enterUrl), 'a+') as outfile:
                 outfile.seek(0, 2)

@@ -19,16 +19,19 @@ class Email():
         if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
             # if the URL is valid
 
-            if FileManager.verifyIfFileExist(FileManager, enterUrl):
+            """if FileManager.verifyIfFileExist(FileManager, enterUrl):
                 #In case the file already exist in the directory
                 lastPageNumber = FileManager.GetLastPageNumber(FileManager,enterUrl)
                 urls = BingSearch.nbrPage(BingSearch, enterUrl, lastPageNumber)
                 Email.getEmail(Email, urls,enterUrl)
             else:
                 urls = BingSearch.nbrPage(BingSearch, enterUrl, None)
-                Email.getEmail(Email, urls,enterUrl)
+                Email.getEmail(Email, urls,enterUrl)"""
+
+            return 'YOU ENTERED A GOOD URL'
 
         else:
+
             return 'YOU ENTERED A BAD URL!! please entered a url like itkamer.com'
 
 
@@ -66,5 +69,4 @@ class Email():
 
         datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, self.emails, self.sources, enterUrl, urls[1])
        # print(datasStructured)
-
         return datasStructured
