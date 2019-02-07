@@ -1,11 +1,12 @@
-import re
+
 import os
 import json
-from bs4 import BeautifulSoup
-from django.utils.decorators import method_decorator
+from .FileManager import FileManager
 
 class JsonStructure():
-    def JsonStructureReturn(self, Nemails, Nsources, enterUrl):
+
+    def JsonStructureReturn(self, Nemails, Nsources, enterUrl, LastpageNbr):
+        self.LastpageNbr = LastpageNbr
         emails = []
         allData = []
         data = []
@@ -34,17 +35,11 @@ class JsonStructure():
                 index += count
 
         for emailsCounter in range(len(newEmails)):
-            jsonReturn = {
-                "email": newEmails[emailsCounter],
-                "url": newEmailSources[emailsCounter]
-            }
-            print(jsonReturn)
-            data.append(jsonReturn)
-        os.chdir(r'C:\Users\euseb\Desktop\DEV\Projet Django\PLG\Generation_2_lead\example\Nouveau dossier')
-        try:
-            with open("{}.json".format(enterUrl), 'w') as outfile:
-                json.dump(data, outfile)
-        except FileNotFoundError:
-            pass
-        return data
 
+            jsonReturn ={
+                    "email": newEmails[emailsCounter],
+                    "url": newEmailSources[emailsCounter]
+                }
+            data.append(jsonReturn)
+        FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr)
+        return data

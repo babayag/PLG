@@ -9,7 +9,43 @@ from bs4 import BeautifulSoup
 class EmailFinderService():
     # initialise the object emails, which will contains the emails founds
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 
+
+    def checking(self, email, url):
+        options = Options()
+        # define the option of chrome webdriver,Returns whether or not the headless argument is set
+        options.headless = True
+        # create a webdriver object, return the object driver of type selenium.webdriver.chrome.webdriver.WebDriver
+        driver = webdriver.Chrome(options=options,  executable_path=r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\chrome driver\chromedriver.exe')
+
+        driver.get(url)
+
+        # select the bar search
+        barSearch = driver.find_element_by_name("email")
+        # write the email address in the bar search
+        barSearch.send_keys(email)
+
+        # select the submit button
+        button = driver.find_element_by_class_name("Button")
+        # click the button
+        button.click()
+
+        # create a beautifulsoup object, return an object of type bs4.BeautifulSoup
+        soup = BeautifulSoup(driver.page_source, features="html.parser")
+
+        result = soup.select("td")
+        success = result[-1].text
+        if success == "E-mail address is valid":
+            return True
+        else:
+            return False
+
+=======
+=======
+
+>>>>>>> 8db296185001acbb89e3ee0caeef304832abc708
     def get_page(page):
         try:
             # always set a timeout when you connect to an external server
@@ -39,8 +75,13 @@ class EmailFinderService():
             if dif <= 10:
                 liste.append("/search?q=%40{}&first={}".format(enterUrl, nbr + dif))
         return liste
+<<<<<<< HEAD
+>>>>>>> 7b595ce12aed41b99c9a1bacaf2ec05dd5b8dadb
+
+=======
       
       
+>>>>>>> 8db296185001acbb89e3ee0caeef304832abc708
     def getEmail(self,enterUrl):
 
 
@@ -50,6 +91,18 @@ class EmailFinderService():
         AllData = []
         urls = self.nbrPage(self, enterUrl)
 
+<<<<<<< HEAD
+
+<<<<<<< HEAD
+        driver = webdriver.Chrome(options=options, executable_path=r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\chrome driver\chromedriver.exe')
+        #get the url, return an object of type NoneType
+        driver.get(url)
+
+        pageNumber = 2
+=======
+>>>>>>> 7b595ce12aed41b99c9a1bacaf2ec05dd5b8dadb
+=======
+>>>>>>> 8db296185001acbb89e3ee0caeef304832abc708
         #condition to run the program in infinity
         with PoolExecutor(max_workers=7) as executor:
             for _ in executor.map(self.get_page, urls):
