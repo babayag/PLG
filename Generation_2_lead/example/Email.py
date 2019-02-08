@@ -68,6 +68,5 @@ class Email():
                         break
 
         datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, self.emails, self.sources, enterUrl, urls[1])
-
+        #print(datasStructured)
         return datasStructured
-    

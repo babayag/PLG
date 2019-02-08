@@ -31,6 +31,7 @@ class TestSharingView(APIView):
         Email.__init__(Email)
         finalData = Email.main(Email, enterUrl)
         Jsonfinal = {"data": finalData}
+
         return Response(Jsonfinal)
 
 

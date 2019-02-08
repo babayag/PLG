@@ -58,7 +58,7 @@ class BingSearch():
 
         myUrl = "/search?q=%40{}&first=11".format(enterUrl)
         result = self.initialSearch(myUrl)
-        try:
+        """try:
             soup = BeautifulSoup(result, features="html.parser")
             txt = soup.find("span", {"class": "sb_count"}).text
             txt = txt.split(" ")[-2]
@@ -74,34 +74,33 @@ class BingSearch():
         except:
             txt = 101
 
-        if txt < 100:
+        if nbrOfLastPage < 100:
             for nbrOfPage in range(1, txt, 10):
                 liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage))
                 dif = txt - nbrOfPage
                 if dif <= 10:
                     liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage + dif))
                     lastN = nbrOfPage + dif
+        else:"""
+
+        if nbrOfLastPage != None:
+
+            for nbrOfPage in range(1+nbrOfLastPage, nbrOfLastPage + 50, 10):
+                liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage))
+
+                dif = int(nbrOfLastPage + 50) - nbrOfPage
+                if dif <= 10:
+                    liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage + dif))
+                    lastN = nbrOfPage + dif
+
         else:
 
-            if nbrOfLastPage != None:
-
-                for nbrOfPage in range(1+nbrOfLastPage, nbrOfLastPage + 100, 10):
-                    liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage))
-
-                    dif = int(nbrOfLastPage + 100) - nbrOfPage
-                    if dif <= 10:
-                        liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage + dif))
-                        lastN = nbrOfPage + dif
-
-            else:
-
-
-                for nbrOfPage in range(1, 100, 10):
-                    liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage))
-                    dif = 100 - nbrOfPage
-                    if dif <= 10:
-                        liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage + dif))
-                        lastN = nbrOfPage + dif
+            for nbrOfPage in range(1, 50, 10):
+                liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage))
+                dif = 50 - nbrOfPage
+                if dif <= 10:
+                    liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage + dif))
+                    lastN = nbrOfPage + dif
 
         data = [liste, lastN]
         return data
