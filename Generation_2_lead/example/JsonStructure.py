@@ -46,5 +46,36 @@ class JsonStructure():
                     "url": newEmailSources[emailsCounter]
                 }
             data.append(jsonReturn)
-        FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr)
-        return data
+        #pagination
+        fiveFirstEmailOfData = data[slice(0,5,1)]
+        fiveFirstEmailOfFile = FileManager.getFiveFirstEmail(FileManager, enterUrl)
+        counter = 100
+        dataReturn = False
+        if len(fiveFirstEmailOfFile) != 0:
+            counter = 0
+            for  x_values, y_values in zip(fiveFirstEmailOfFile, fiveFirstEmailOfData):
+                if sorted(x_values['email']) == sorted(y_values['email']):
+                    counter = counter + 1
+                    print(counter)
+                else:
+                    counter = 0
+        print(counter)
+        if counter != 0:
+
+            if counter == len(fiveFirstEmailOfFile):
+                dataReturn = False
+                print(" == 5")
+            else:
+                if counter == 100:
+                    FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr)
+                    dataReturn = True
+                    print("== 100")
+                else:
+                    dataReturn = False
+                    print("# de 0")
+        else:
+            FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr)
+            dataReturn = True
+            print("eusebiolinho")
+
+        return dataReturn

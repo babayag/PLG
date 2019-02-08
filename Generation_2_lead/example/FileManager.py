@@ -8,11 +8,18 @@ class FileManager():
     def WriteInFile(self,data,enterUrl,LastpageNbr):
         os.chdir(r'E:\paness IIHT\M2\project\Nouveau dossier\PLG\Generation_2_lead\example\jsonFile')
         if self.verifyIfFileExist(self,enterUrl):
-            with open("{}.json".format(enterUrl), 'a+') as outfile:
-                outfile.seek(0, 2)
-                outfile.truncate()
-                data.append({"LastpageNbr": LastpageNbr})
-                json.dump(data, outfile)
+            fdata = []
+            try:
+                with open("{}.json".format(enterUrl), 'r') as outfile:
+                    fdata = json.load(outfile)
+                    del fdata[-1]
+
+                with open("{}.json".format(enterUrl), 'w') as outfile:
+                    fdata.append(data)
+                    fdata.append({"LastpageNbr": LastpageNbr})
+                    json.dump(fdata, outfile)
+            except FileNotFoundError:
+                pass
 
         else:
             try:
@@ -33,7 +40,6 @@ class FileManager():
 
         except FileNotFoundError:
             return None
-
         return lastNumber
 
     def verifyIfFileExist(self,enterUrl):
@@ -44,3 +50,4 @@ class FileManager():
         else:
             return False
 
+        return fiveFirstEmail
