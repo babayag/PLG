@@ -26,6 +26,7 @@ class Email():
                 lastPageNumber = FileManager.GetLastPageNumber(FileManager,enterUrl)
                 urls = BingSearch.nbrPage(BingSearch, enterUrl, lastPageNumber)
                 Email.getEmail(Email, urls,enterUrl)
+
             else:
                 urls = BingSearch.nbrPage(BingSearch, enterUrl, None)
                 Email.getEmail(Email, urls,enterUrl)

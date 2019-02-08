@@ -6,7 +6,7 @@ from .BingSearch import BingSearch
 class FileManager():
 
     def WriteInFile(self,data,enterUrl,LastpageNbr):
-        os.chdir(r'C:\Users\euseb\Desktop\DEV\Projet Django\PLG\Generation_2_lead\example\cache')
+        os.chdir(r'C:\Users\nteguem roland\PLG\Generation_2_lead\example\tets')
         if self.verifyIfFileExist(self,enterUrl):
             fdata = []
             try:
@@ -31,7 +31,7 @@ class FileManager():
 
 
     def GetLastPageNumber(self, enterUrl):
-        os.chdir(r'C:\Users\euseb\Desktop\DEV\Projet Django\PLG\Generation_2_lead\example\cache')
+        os.chdir(r'C:\Users\nteguem roland\PLG\Generation_2_lead\example\tets')
         try:
 
             with open("{}.json".format(enterUrl), "r") as printer:
@@ -44,7 +44,7 @@ class FileManager():
 
     def verifyIfFileExist(self,enterUrl):
 
-        os.chdir(r'C:\Users\euseb\Desktop\DEV\Projet Django\PLG\Generation_2_lead\example\cache')
+        os.chdir(r'C:\Users\nteguem roland\PLG\Generation_2_lead\example\tets')
         try:
             if os.path.isfile("{}.json".format(enterUrl)):
                 return True
@@ -55,7 +55,7 @@ class FileManager():
 
     def getFiveFirstEmail(self,enterUrl):
         fiveFirstEmail =[]
-        os.chdir(r'C:\Users\euseb\Desktop\DEV\Projet Django\PLG\Generation_2_lead\example\cache')
+        os.chdir(r'C:\Users\nteguem roland\PLG\Generation_2_lead\example\tets')
         try:
             with open("{}.json".format(enterUrl), "r") as printer:
                 fdata = json.load(printer)
