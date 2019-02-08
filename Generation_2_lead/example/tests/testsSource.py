@@ -8,12 +8,14 @@ from ..Email import Email
 
 class SourceTest(TestCase):
 
+#method test no source
     def test_NoSource(self):
         url = None
         Source.__init__(Source)
         result = Source.appendSource(Source, url)
         self.assertEqual(result, "Not")
         print('no source is returned')
+#method test if have source
 
     def test_HaveSource(self):
         url = 'www.example.com'
@@ -22,11 +24,16 @@ class SourceTest(TestCase):
         self.assertEqual(result, ['www.example.com'])
         print(str(len(result)) + ' source is returned')
 
+#method test if duplicate source
+
     def test_duplicatesource(self):
         url = 'www.example.com'
         Source.__init__(Source)
-        result = Source.appendSource(Source,url)
-        self.assertIn('www.example.com',result)
+        result = Source.appendSource(Source, url)
+        self.assertIn('www.example.com', result)
+        print('duplicate source')
+
+    #method test if all source found
 
     def test_AllSourceFound(self):
         TestSource = []
