@@ -4,6 +4,7 @@ from django.test import TestCase
 
 from ..JsonStructure import JsonStructure
 
+
 # Create your tests here.
 
 
@@ -21,8 +22,7 @@ class Test(TestCase):
        result = JsonStructure.JsonStructureReturn(JsonStructure, email1, source1)
        self.assertEquals(result, finalData1)
        print("test1--------------------------------------------------------------------------------------------")
-
-       #no email no source
+       # no email no source
        email2 = []
        source2 = []
        finalData2 = []
@@ -31,10 +31,11 @@ class Test(TestCase):
        self.assertEquals(result, finalData2)
        print("test2--------------------------------------------------------------------------------------------")
 
-       #many differents emails and sources
+       # many differents emails and sources
 
-       email3 = ["Isidore@itkamer.com","isidore@itkamer.com","sales@itkamer.com","tatiotir@itkamer.com"]
-       source3 = ["https://docs.google.com","https://stackoverflow.com","https://github.com","https://realpython.com"]
+       email3 = ["Isidore@itkamer.com", "isidore@itkamer.com", "sales@itkamer.com", "tatiotir@itkamer.com"]
+       source3 = ["https://docs.google.com", "https://stackoverflow.com", "https://github.com",
+                  "https://realpython.com"]
 
        finalData3 = [
            {'email': 'Isidore@itkamer.com', 'url': ['https://docs.google.com']},
@@ -49,13 +50,13 @@ class Test(TestCase):
 
        # sames emails
 
-       email4 = ["Isidore@itkamer.com", "Isidore@itkamer.com","Isidore@itkamer.com", "Isidore@itkamer.com",]
-       source4 = ["https://docs.google.com","https://docs.google.com","", ""]
+       email4 = ["Isidore@itkamer.com", "Isidore@itkamer.com", "Isidore@itkamer.com", "Isidore@itkamer.com", ]
+       source4 = ["https://docs.google.com", "https://docs.google.com", "", ""]
 
        finalData4 = [
            {'email': 'Isidore@itkamer.com', 'url': ['https://docs.google.com']}
        ]
 
-       result = JsonStructure.JsonStructureReturn(JsonStructure, email4,source4)
-       self.assertEquals(result,finalData4)
+       result = JsonStructure.JsonStructureReturn(JsonStructure, email4, source4)
+       self.assertEquals(result, finalData4)
        print("test4--------------------------------------------------------------------------------------------")

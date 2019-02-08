@@ -4,6 +4,11 @@ import re
 import os
 import json
 from bs4 import BeautifulSoup
+import re
+import sys
+import http.client
+import socket
+from bs4 import BeautifulSoup
 
 
 class BingSearch():
@@ -23,12 +28,10 @@ class BingSearch():
             r'(?:/?|[/?]\S+)$', re.IGNORECASE)
 
         if (re.match(regex, myUrl) is not None ):
-            print("ok")
-            return True
 
+            return True
         else:
-            print("non")
-            return False
+           return False
 
 
     def initialSearch(myUrl):
@@ -101,5 +104,5 @@ class BingSearch():
                         lastN = nbrOfPage + dif
 
         data = [liste, lastN]
+        #print(data)
         return data
-

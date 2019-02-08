@@ -29,7 +29,7 @@ class Test(TestCase):
     """
 
     def test_verifyIfFileExist(self):
-        enterUrl = "cr7.com"
+        enterUrl = "football.com"
         finalData3 = True
 
         result = FileManager.verifyIfFileExist(FileManager, enterUrl)

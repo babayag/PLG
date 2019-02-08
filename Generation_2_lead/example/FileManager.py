@@ -6,7 +6,7 @@ from .BingSearch import BingSearch
 class FileManager():
 
     def WriteInFile(self,data,enterUrl,LastpageNbr):
-        os.chdir(r'E:\paness IIHT\M2\project\Nouveau dossier\PLG\jsonFile')
+        os.chdir(r'E:\paness IIHT\M2\project\Nouveau dossier\PLG\Generation_2_lead\example\jsonFile')
         if self.verifyIfFileExist(self,enterUrl):
             with open("{}.json".format(enterUrl), 'a+') as outfile:
                 outfile.seek(0, 2)
@@ -24,7 +24,7 @@ class FileManager():
 
 
     def GetLastPageNumber(self, enterUrl):
-        os.chdir(r'E:\paness IIHT\M2\project\Nouveau dossier\PLG\jsonFile')
+        os.chdir(r'E:\paness IIHT\M2\project\Nouveau dossier\PLG\Generation_2_lead\example\jsonFile')
         try:
 
             with open("{}.json".format(enterUrl), "r") as printer:
@@ -38,7 +38,7 @@ class FileManager():
 
     def verifyIfFileExist(self,enterUrl):
 
-        os.chdir(r'E:\paness IIHT\M2\project\Nouveau dossier\PLG\jsonFile')
+        os.chdir(r'E:\paness IIHT\M2\project\Nouveau dossier\PLG\Generation_2_lead\example\jsonFile')
         if os.path.isfile("{}.json".format(enterUrl)):
             return True
         else:
