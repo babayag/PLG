@@ -50,4 +50,15 @@ class FileManager():
         else:
             return False
 
+    def getFiveFirstEmail(self, enterUrl):
+        fiveFirstEmail = []
+        os.chdir(r'E:\paness IIHT\M2\project\Nouveau dossier\PLG\Generation_2_lead\example\jsonFile')
+        try:
+            with open("{}.json".format(enterUrl), "r") as printer:
+                fdata = json.load(printer)
+                fiveFirstEmail = fdata[slice(0, 5, 1)]
+
+        except FileNotFoundError:
+            pass
+
         return fiveFirstEmail

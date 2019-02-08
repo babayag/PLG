@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fa72426a-f53c-493a-bde0-fbf57ada0b08" name="Default Changelist" comment="">
 <<<<<<< HEAD
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Generation_2_lead/example/Email.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generation_2_lead/example/Email.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Generation_2_lead/example/JsonStructure.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generation_2_lead/example/JsonStructure.py" afterDir="false" />
@@ -66,6 +67,9 @@
 =======
 >>>>>>> 2f0c18c002bf0dc5fce4e7d81b9afdc36c499c3b
 >>>>>>> ab6bb948508805aad1969a8419a0d54a247fcee6
+=======
+      <change beforePath="$PROJECT_DIR$/Generation_2_lead/example/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Generation_2_lead/example/tests.py" afterDir="false" />
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,9 +78,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+<<<<<<< HEAD
     <SUITE FILE_PATH="coverage/PLG$emails_finder.coverage" NAME="emails finder Coverage Results" MODIFIED="1547368538166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/../Project IV I" />
     <SUITE FILE_PATH="coverage/PLG$emails_finder__1_.coverage" NAME="emails finder (1) Coverage Results" MODIFIED="1547380696953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/../project IV I" />
     <SUITE FILE_PATH="coverage/PLG$BingSearch.coverage" NAME="BingSearch Coverage Results" MODIFIED="1548332041564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Generation_2_lead/example" />
+=======
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
     <SUITE FILE_PATH="coverage/PLG$emailsfinder.coverage" NAME="emailsfinder Coverage Results" MODIFIED="1547380668167" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Generation_2_lead/example" />
 <<<<<<< HEAD
     <SUITE FILE_PATH="coverage/PLG$emails_finder__1_.coverage" NAME="emails finder (1) Coverage Results" MODIFIED="1547380696953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../project IV I" />
@@ -93,6 +100,7 @@
 =======
 
     <SUITE FILE_PATH="coverage/PLG$emails_finder__1_.coverage" NAME="emails finder (1) Coverage Results" MODIFIED="1547380696953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop/project IV I" />
+    <SUITE FILE_PATH="coverage/PLG$emails_finder.coverage" NAME="emails finder Coverage Results" MODIFIED="1547368538166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Desktop/Project IV I" />
     <SUITE FILE_PATH="coverage/PLG$Unittests_for_tests_SimpleTest_test_details.coverage" NAME="Unittests for tests.SimpleTest.test_details Coverage Results" MODIFIED="1547800054331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Generation_2_lead/example" />
 
 >>>>>>> 8db296185001acbb89e3ee0caeef304832abc708
@@ -119,6 +127,7 @@
       <file pinned="false" current-in-tab="false">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
@@ -133,6 +142,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
 >>>>>>> 763cc6f366320b8ba9143744047a45eab65d3f28
+=======
+        <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
               <caret line="13" selection-start-line="13" selection-end-line="13" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
@@ -171,6 +185,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/BingSearch.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="476">
               <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
 =======
@@ -184,6 +199,13 @@
 
 >>>>>>> 8db296185001acbb89e3ee0caeef304832abc708
 >>>>>>> 763cc6f366320b8ba9143744047a45eab65d3f28
+=======
+            <state relative-caret-position="136">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
             </state>
           </provider>
         </entry>
@@ -245,6 +267,7 @@
 >>>>>>> 763cc6f366320b8ba9143744047a45eab65d3f28
         <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/Source.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="170">
               <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
 <<<<<<< HEAD
@@ -275,10 +298,15 @@
 
 >>>>>>> 8db296185001acbb89e3ee0caeef304832abc708
 >>>>>>> 763cc6f366320b8ba9143744047a45eab65d3f28
+=======
+            <state relative-caret-position="101">
+              <caret line="29" selection-start-line="29" selection-end-line="29" />
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
 <<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
 <<<<<<< HEAD
@@ -308,6 +336,13 @@
               <caret line="48" selection-start-line="48" selection-end-line="48" />
 
 >>>>>>> 8db296185001acbb89e3ee0caeef304832abc708
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/JsonStructure.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="47" selection-start-line="47" selection-end-line="47" />
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
             </state>
           </provider>
         </entry>
@@ -331,7 +366,7 @@
 
         <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/Email.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="623">
+            <state relative-caret-position="225">
               <caret line="55" column="7" selection-start-line="55" selection-start-column="7" selection-end-line="55" selection-end-column="7" />
 
 >>>>>>> 8db296185001acbb89e3ee0caeef304832abc708
@@ -356,6 +391,7 @@
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/tests/testsEmail.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -425,12 +461,25 @@
             <state relative-caret-position="34">
               <caret line="2" column="11" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="11" />
 >>>>>>> 763cc6f366320b8ba9143744047a45eab65d3f28
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/tests.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
 =======
 >>>>>>> d111e65f97c595b04a959d9e110c6dfeacf36720
+=======
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -514,10 +563,13 @@
         <option value="$PROJECT_DIR$/Generation_2_lead/example/urls.py" />
 <<<<<<< HEAD
         <option value="$PROJECT_DIR$/Generation_2_lead/example/views.py" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/Generation_2_lead/example/JsonStructure.py" />
 =======
         <option value="$PROJECT_DIR$/Generation_2_lead/example/BingSearch.py" />
 <<<<<<< HEAD
+=======
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
         <option value="$PROJECT_DIR$/Generation_2_lead/example/Source.py" />
 <<<<<<< HEAD
 =======
@@ -530,8 +582,13 @@
         <option value="$PROJECT_DIR$/Generation_2_lead/example/tests/tests_findEmail.py" />
         <option value="$PROJECT_DIR$/Generation_2_lead/example/tests/tests_binSearch.py" />
 <<<<<<< HEAD
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/Generation_2_lead/example/Email.py" />
         <option value="$PROJECT_DIR$/Generation_2_lead/example/JsonStructure.py" />
+=======
+        <option value="$PROJECT_DIR$/Generation_2_lead/example/Email.py" />
+        <option value="$PROJECT_DIR$/Generation_2_lead/example/BingSearch.py" />
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
         <option value="$PROJECT_DIR$/Generation_2_lead/example/tests.py" />
       </list>
     </option>
@@ -603,6 +660,7 @@
               <item name="PLG2" type="b2602c69:ProjectViewProjectNode" />
               <item name="PLG2" type="462c0819:PsiDirectoryNode" />
             </path>
+<<<<<<< HEAD
             <path>
               <item name="PLG2" type="b2602c69:ProjectViewProjectNode" />
               <item name="PLG2" type="462c0819:PsiDirectoryNode" />
@@ -630,6 +688,8 @@
               <item name="Generation_2_lead" type="462c0819:PsiDirectoryNode" />
             </path>
 >>>>>>> 763cc6f366320b8ba9143744047a45eab65d3f28
+=======
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
           </expand>
           <select />
         </subPane>
@@ -639,7 +699,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../PLG" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -867,6 +931,7 @@
       <workItem from="1548319036608" duration="1641000" />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <workItem from="1548509603454" duration="55000" />
       <workItem from="1548510038418" duration="16543000" />
       <workItem from="1548584400971" duration="10671000" />
@@ -890,6 +955,9 @@
 =======
 >>>>>>> 2f0c18c002bf0dc5fce4e7d81b9afdc36c499c3b
 >>>>>>> ab6bb948508805aad1969a8419a0d54a247fcee6
+=======
+      <workItem from="1548325412320" duration="1070000" />
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
     </task>
     <servers />
   </component>
@@ -908,6 +976,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     <option name="totallyTimeSpent" value="200743000" />
@@ -939,6 +1008,9 @@
 =======
 >>>>>>> 2f0c18c002bf0dc5fce4e7d81b9afdc36c499c3b
 >>>>>>> ab6bb948508805aad1969a8419a0d54a247fcee6
+=======
+    <option name="totallyTimeSpent" value="174544000" />
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -950,6 +1022,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
@@ -982,11 +1055,18 @@
 =======
 >>>>>>> 2f0c18c002bf0dc5fce4e7d81b9afdc36c499c3b
 >>>>>>> ab6bb948508805aad1969a8419a0d54a247fcee6
+=======
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4990758" visible="true" weight="0.17170954" />
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
       <window_info id="Structure" order="1" sideWeight="0.5009242" side_tool="true" weight="0.16717096" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.898527" />
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -1046,6 +1126,18 @@
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32850242" />
 >>>>>>> d111e65f97c595b04a959d9e110c6dfeacf36720
+=======
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
+      <window_info anchor="bottom" id="Database Changes" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3289689" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.34138486" />
+      <window_info anchor="bottom" id="Python Console" order="11" weight="0.3289689" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1072,6 +1164,7 @@
       </provider>
     </entry>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry file="file://$USER_HOME$/Desktop/project IV I/emails finder.py" />
 =======
 <<<<<<< HEAD
@@ -1094,6 +1187,9 @@
       </provider>
     </entry>
 >>>>>>> 763cc6f366320b8ba9143744047a45eab65d3f28
+=======
+    <entry file="file://$USER_HOME$/Desktop/project IV I/emails finder.py" />
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1144,6 +1240,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
 =======
 >>>>>>> 7d2a05e325b5ef457a974a15d753e11a7af1599e
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/site-packages/django/core/handlers/exception.py">
@@ -1164,6 +1261,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/views.py">
+=======
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/site-packages/django/core/handlers/exception.py" />
+    <entry file="file://$PROJECT_DIR$/../views.py" />
+    <entry file="file://$PROJECT_DIR$/Generation_2_lead/Generation_2_lead/settings.py">
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1244,6 +1346,7 @@
       </provider>
     </entry>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/unittest/loader.py" />
     <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/tests/tests_binSearch.py" />
     <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/urls.py">
@@ -1299,6 +1402,12 @@
 >>>>>>> 8db296185001acbb89e3ee0caeef304832abc708
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+=======
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/unittest/loader.py" />
+    <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/tests/tests_binSearch.py" />
+    <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
         <state relative-caret-position="221">
           <caret line="13" selection-start-line="13" selection-end-line="13" />
           <folding>
@@ -1349,6 +1458,7 @@
       </provider>
     </entry>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/emailsfinder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -1379,6 +1489,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
         <state relative-caret-position="623">
+=======
+    <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/Email.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
           <caret line="55" column="7" selection-start-line="55" selection-start-column="7" selection-end-line="55" selection-end-column="7" />
 >>>>>>> 8db296185001acbb89e3ee0caeef304832abc708
           <folding>
@@ -1423,6 +1538,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/Email.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1493,6 +1609,16 @@
 <<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/tests.py" />
     <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/BingSearch.py">
+=======
+    <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/Source.py">
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="34" column="26" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
@@ -1511,6 +1637,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
 <<<<<<< HEAD
+<<<<<<< HEAD
           <caret line="15" column="72" selection-start-line="15" selection-start-column="72" selection-end-line="15" selection-end-column="72" />
 >>>>>>> 8db296185001acbb89e3ee0caeef304832abc708
 =======
@@ -1520,6 +1647,9 @@
             <element signature="e#0#32#0" expanded="true" />
           </folding>
 >>>>>>> 7d2a05e325b5ef457a974a15d753e11a7af1599e
+=======
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
         </state>
       </provider>
 =======
@@ -1527,6 +1657,7 @@
       <provider selected="true" editor-type-id="text-editor" />
 >>>>>>> d111e65f97c595b04a959d9e110c6dfeacf36720
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Generation_2_lead/frontend/src/components/SearchBar.js">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -1595,6 +1726,22 @@
         <state relative-caret-position="242">
           <caret line="46" column="110" selection-start-line="46" selection-start-column="110" selection-end-line="46" selection-end-column="110" />
 >>>>>>> 2f0c18c002bf0dc5fce4e7d81b9afdc36c499c3b
+=======
+    <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/BingSearch.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+>>>>>>> cb21ca317e852736276ed052dc930a583199e591
           <folding>
 <<<<<<< HEAD
             <element signature="e#0#32#0" expanded="true" />
@@ -1630,6 +1777,13 @@
           <folding>
             <element signature="e#1#33#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/JsonStructure.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
         </state>
       </provider>
     </entry>

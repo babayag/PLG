@@ -12,24 +12,41 @@ class Test(TestCase):
 
 
    def test_JsonStructure(self):
+       email1 = ["contact@paness-iiht.com"]
+       source1 = ["https://docs.google.com"]
+       enterUrl1 = "paness-iiht.com"
+       lastPageNumber1 = 10
+       #finalData1 = [{'email': 'contact@paness-iiht.com', 'url': ['https://docs.google.com']}]
+       finalData1 = False
 
+       result = JsonStructure.JsonStructureReturn(JsonStructure, email1, source1, enterUrl1, lastPageNumber1)
+       self.assertEquals(result, finalData1)
+       print("test1")
 
+       """
        #one email one source
        email1 = ["contact@paness-iiht.com"]
        source1 = ["https://docs.google.com"]
+       enterUrl1 = "paness-iiht.com"
+       lastPageNumber1 = 6
        finalData1 = [{'email': 'contact@paness-iiht.com', 'url': ['https://docs.google.com']}]
+       #finalData1 = True
 
-       result = JsonStructure.JsonStructureReturn(JsonStructure, email1, source1)
+       result = JsonStructure.JsonStructureReturn(JsonStructure, email1, source1,enterUrl1,lastPageNumber1)
        self.assertEquals(result, finalData1)
-       print("test1--------------------------------------------------------------------------------------------")
+       print("test1")
+
        # no email no source
        email2 = []
        source2 = []
        finalData2 = []
-
-       result = JsonStructure.JsonStructureReturn(JsonStructure, email2, source2)
+       enterUrl2 = "paness-iiht.com"
+       lastPageNumber2 = 6
+       
+       result = JsonStructure.JsonStructureReturn(JsonStructure, email2, source2,enterUrl2,lastPageNumber2)
        self.assertEquals(result, finalData2)
-       print("test2--------------------------------------------------------------------------------------------")
+       print("test2")
+
 
        # many differents emails and sources
 
@@ -60,3 +77,7 @@ class Test(TestCase):
        result = JsonStructure.JsonStructureReturn(JsonStructure, email4, source4)
        self.assertEquals(result, finalData4)
        print("test4--------------------------------------------------------------------------------------------")
+       
+       source1 = ["https://cameroun.minajobs.net/emplois-stage-recrutement/4635", "https://cameroun.minajobs.net/emplois-stage-recrutement/4635/avis-de-recrutement-dun-agent-dentretien-%e2%80%93-coursier-paness-%e2%80%93-iiht-centre-d%e2%80%99excellence-numerique-at-paness-cabinet-de-conseil-formation-cameroun"]
+
+       """
