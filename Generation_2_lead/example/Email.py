@@ -20,6 +20,8 @@ class Email():
             # if the URL is valid
 
             if FileManager.verifyIfFileExist(FileManager, enterUrl):
+                timeOfLifeOfFile = 2592000  # convert 30 days in second
+                FileManager.clearDirectory(FileManager, timeOfLifeOfFile)
                 #In case the file already exist in the directory
                 lastPageNumber = FileManager.GetLastPageNumber(FileManager,enterUrl)
                 urls = BingSearch.nbrPage(BingSearch, enterUrl, lastPageNumber)

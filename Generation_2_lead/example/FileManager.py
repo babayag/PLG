@@ -1,12 +1,13 @@
-
 import os
 import json
-from .BingSearch import BingSearch
+from datetime import datetime
+import time
 
 class FileManager():
 
     def WriteInFile(self,data,enterUrl,LastpageNbr):
-        os.chdir(r'C:\Users\euseb\Desktop\DEV\Projet Django\PLG\Generation_2_lead\example\cache')
+
+        os.chdir(r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache')
         if self.verifyIfFileExist(self,enterUrl):
             fdata = []
             try:
@@ -26,12 +27,13 @@ class FileManager():
                 with open("{}.json".format(enterUrl), 'w') as outfile:
                     data.append({"LastpageNbr": LastpageNbr})
                     json.dump(data, outfile)
+
             except FileNotFoundError:
                 pass
 
 
     def GetLastPageNumber(self, enterUrl):
-        os.chdir(r'C:\Users\euseb\Desktop\DEV\Projet Django\PLG\Generation_2_lead\example\cache')
+        os.chdir(r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache')
         try:
 
             with open("{}.json".format(enterUrl), "r") as printer:
@@ -42,9 +44,11 @@ class FileManager():
             return None
         return lastNumber
 
-    def verifyIfFileExist(self,enterUrl):
 
-        os.chdir(r'C:\Users\euseb\Desktop\DEV\Projet Django\PLG\Generation_2_lead\example\cache')
+
+    def verifyIfFileExist(self,enterUrl):
+        FileManager.storeDomain(FileManager,enterUrl)
+        os.chdir(r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache')
         try:
             if os.path.isfile("{}.json".format(enterUrl)):
                 return True
@@ -55,7 +59,7 @@ class FileManager():
 
     def getFiveFirstEmail(self,enterUrl):
         fiveFirstEmail =[]
-        os.chdir(r'C:\Users\euseb\Desktop\DEV\Projet Django\PLG\Generation_2_lead\example\cache')
+        os.chdir(r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache')
         try:
             with open("{}.json".format(enterUrl), "r") as printer:
                 fdata = json.load(printer)
@@ -65,3 +69,44 @@ class FileManager():
             pass
 
         return fiveFirstEmail
+
+
+    def clearDirectory(self,timeOfLifeOfFile):
+
+        timeOfEachFile = []
+        currentTime = time.mktime(datetime.now().timetuple())
+
+        #for each file in the folder
+        for file in os.listdir('E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache'):
+
+            timeOfCreation = os.path.getmtime(file)  # get file creation/modification time
+
+            #if the currentTime - time of file creation is grather than 30 days delete the file
+            if currentTime - timeOfCreation > timeOfLifeOfFile:
+                os.remove(file)  # delete outdated file
+            else:
+                timeOfEachFile.append(timeOfCreation)  # add time info to list
+    # after check all files, choose the oldest file creation time from list
+        _sleep_time = (currentTime - min(
+            timeOfEachFile)) if timeOfEachFile else 120  # if _time_list is empty, set sleep time as 120 seconds, else calculate it based on the oldest file creation time
+        time.sleep(_sleep_time)
+
+
+    def storeDomain(self,enterUrl):
+        domainName = []
+        # for each file in the folder"
+        cacheFolderPath = os.listdir('E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache')
+        domainFile = "E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
+        for file in cacheFolderPath:
+
+            if file not in domainFile:
+                domainName.append(file)
+        url = (enterUrl + ".json")
+        if url not in domainName:
+            domainName.append(url)
+        with open(domainFile, 'w') as outfile:
+            outfile.write("[")
+            for item in domainName:
+                outfile.write("'"+ item +"'")
+                outfile.write(",")
+            outfile.write("]")
