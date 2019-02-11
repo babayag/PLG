@@ -1,1 +1,1 @@
-['football.com.json','itkamer.com.json','junior.com.json',]
+['football.com.json','itkamer.com.json','paness-iiht.com.json','wordpress.org.json',]

@@ -49,11 +49,16 @@ class JsonStructure():
         if len(fiveFirstEmailOfFile) != 0:
             counter = 0
             for  x_values, y_values in zip(fiveFirstEmailOfFile, fiveFirstEmailOfData):
-                if sorted(x_values['email']) == sorted(y_values['email']):
-                    counter = counter + 1
-                    print(counter)
-                else:
-                    counter = 0
+                try:
+                    if sorted(x_values['email']) == sorted(y_values['email']):
+                        counter = counter + 1
+                        print(counter)
+                    else:
+                        counter = 0
+                    raise KeyError('some error message')
+                except KeyError as e:
+                    if 'some error message' == e:
+                        counter = 5
         print(counter)
         if counter != 0:
 

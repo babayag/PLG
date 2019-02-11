@@ -7,7 +7,7 @@ class FileManager():
 
     def WriteInFile(self,data,enterUrl,LastpageNbr):
 
-        os.chdir(r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache')
+        os.chdir(r'C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\cache')
         if self.verifyIfFileExist(self,enterUrl):
             fdata = []
             try:
@@ -33,7 +33,7 @@ class FileManager():
 
 
     def GetLastPageNumber(self, enterUrl):
-        os.chdir(r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache')
+        os.chdir(r'C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\cache')
         try:
 
             with open("{}.json".format(enterUrl), "r") as printer:
@@ -48,7 +48,7 @@ class FileManager():
 
     def verifyIfFileExist(self,enterUrl):
         FileManager.storeDomain(FileManager,enterUrl)
-        os.chdir(r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache')
+        os.chdir(r'C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\cache')
         try:
             if os.path.isfile("{}.json".format(enterUrl)):
                 return True
@@ -59,7 +59,7 @@ class FileManager():
 
     def getFiveFirstEmail(self,enterUrl):
         fiveFirstEmail =[]
-        os.chdir(r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache')
+        os.chdir(r'C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\cache')
         try:
             with open("{}.json".format(enterUrl), "r") as printer:
                 fdata = json.load(printer)
@@ -77,7 +77,7 @@ class FileManager():
         currentTime = time.mktime(datetime.now().timetuple())
 
         #for each file in the folder
-        for file in os.listdir('E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache'):
+        for file in os.listdir(r'C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\cache'):
 
             timeOfCreation = os.path.getmtime(file)  # get file creation/modification time
 
@@ -95,8 +95,8 @@ class FileManager():
     def storeDomain(self,enterUrl):
         domainName = []
         # for each file in the folder"
-        cacheFolderPath = os.listdir('E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache')
-        domainFile = "E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
+        cacheFolderPath = os.listdir(r'C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\cache')
+        domainFile = r'C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\DomainsName\Domain.txt'
         for file in cacheFolderPath:
 
             if file not in domainFile:

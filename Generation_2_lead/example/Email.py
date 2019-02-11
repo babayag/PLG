@@ -16,19 +16,19 @@ class Email():
         self.AllData = []
 
     def main(self,enterUrl):
+        # timeOfLifeOfFile = 2592000  # convert 30 days in second
+        # FileManager.clearDirectory(FileManager, timeOfLifeOfFile)
         if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
             # if the URL is valid
 
             if FileManager.verifyIfFileExist(FileManager, enterUrl):
-                timeOfLifeOfFile = 2592000  # convert 30 days in second
-                FileManager.clearDirectory(FileManager, timeOfLifeOfFile)
                 #In case the file already exist in the directory
                 lastPageNumber = FileManager.GetLastPageNumber(FileManager,enterUrl)
                 urls = BingSearch.nbrPage(BingSearch, enterUrl, lastPageNumber)
-                Email.getEmail(Email, urls,enterUrl)
+                return Email.getEmail(Email, urls,enterUrl)
             else:
                 urls = BingSearch.nbrPage(BingSearch, enterUrl, None)
-                Email.getEmail(Email, urls,enterUrl)
+                return Email.getEmail(Email, urls,enterUrl)
 
         else:
             return 'YOU ENTERED A BAD URL!! please entered a url like itkamer.com'
