@@ -1,6 +1,5 @@
 
-import os
-import json
+
 from .FileManager import FileManager
 
 class JsonStructure():

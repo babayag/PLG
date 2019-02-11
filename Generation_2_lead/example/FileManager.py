@@ -33,13 +33,13 @@ class FileManager():
 
 
     def GetLastPageNumber(self, enterUrl):
+
         os.chdir(r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache')
         try:
 
             with open("{}.json".format(enterUrl), "r") as printer:
                 fdata = json.load(printer)
                 lastNumber = fdata[-1]['LastpageNbr']
-
         except FileNotFoundError:
             return None
         return lastNumber
@@ -77,7 +77,7 @@ class FileManager():
         currentTime = time.mktime(datetime.now().timetuple())
 
         #for each file in the folder
-        for file in os.listdir('E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache'):
+        for file in os.listdir(r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache'):
 
             timeOfCreation = os.path.getmtime(file)  # get file creation/modification time
 
@@ -95,18 +95,20 @@ class FileManager():
     def storeDomain(self,enterUrl):
         domainName = []
         # for each file in the folder"
-        cacheFolderPath = os.listdir('E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache')
+        cacheFolderPath = os.listdir(r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache')
         domainFile = "E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
         for file in cacheFolderPath:
 
             if file not in domainFile:
                 domainName.append(file)
+                return 'Not in domainFile'
         url = (enterUrl + ".json")
         if url not in domainName:
             domainName.append(url)
+            return 'Not in domainName'
         with open(domainFile, 'w') as outfile:
             outfile.write("[")
             for item in domainName:
-                outfile.write("'"+ item +"'")
-                outfile.write(",")
+                outfile.write("'"+ item +"'"+","+ "\n")
             outfile.write("]")
+            return 'file is up to date'

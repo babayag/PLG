@@ -1,17 +1,9 @@
 import http.client
 import socket
 import re
-import os
-import json
-from bs4 import BeautifulSoup
 
 
 class BingSearch():
-    '''def __init__(self):
-        self.liste = []
-        self.lastN ='''
-
-
 
     def UrlValidation(self,myUrl):
 

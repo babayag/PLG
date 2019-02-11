@@ -20,15 +20,17 @@ class Email():
             # if the URL is valid
 
             if FileManager.verifyIfFileExist(FileManager, enterUrl):
-                timeOfLifeOfFile = 2592000  # convert 30 days in second
-                FileManager.clearDirectory(FileManager, timeOfLifeOfFile)
                 #In case the file already exist in the directory
                 lastPageNumber = FileManager.GetLastPageNumber(FileManager,enterUrl)
                 urls = BingSearch.nbrPage(BingSearch, enterUrl, lastPageNumber)
-                Email.getEmail(Email, urls,enterUrl)
+                return Email.getEmail(Email, urls,enterUrl)
+
+               # timeOfLifeOfFile = 2592000  # convert 30 days in second
+               # FileManager.clearDirectory(FileManager, timeOfLifeOfFile)
+               # print("getLastNumber00000000")
             else:
                 urls = BingSearch.nbrPage(BingSearch, enterUrl, None)
-                Email.getEmail(Email, urls,enterUrl)
+                return Email.getEmail(Email, urls,enterUrl)
 
         else:
             return 'YOU ENTERED A BAD URL!! please entered a url like itkamer.com'
@@ -46,13 +48,11 @@ class Email():
                 while True:
                     try:
                         litext = lipath[li_number].text
-                        #print(litext)
                         # for line in the drivertextclear
                         for line in litext.splitlines():
                             # search all email in each line, return the objet searchNumbers of type list
 
                             searchEmails = re.findall(r"[a-zA-Z]+[\.\-]?\w*[\.\-]?\w+\.?\w*\@{}".format(enterUrl), line,flags=re.MULTILINE)
-                           # print(searchEmails)
                             # for email in email_1 list
 
                             if searchEmails:
@@ -61,11 +61,10 @@ class Email():
                                     # add email in the emails list: return an object oy type NoneType
                                     self.emails.append(email)
                                     self.sources = Source.appendSource(Source, src)
-                                    #print(self.emails)
                         li_number = li_number + 1
                     except:
                         break
 
         datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, self.emails, self.sources, enterUrl, urls[1])
-        #print(datasStructured)
+
         return datasStructured
