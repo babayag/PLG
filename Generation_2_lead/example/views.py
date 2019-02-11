@@ -1,7 +1,7 @@
 
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.views import APIView
-from .BingSearch import BingSearch
+from .FileManager import FileManager
 
 from .models import Lead
 from .serializers import LeadSerializer
@@ -48,4 +48,10 @@ class UpdateJsonFile(APIView):
         else:
             response = False
         return Response(response)
+
+class ReturnDomainNames(APIView):
+    def post(self, request):
+        FileManager.__init__(FileManager)
+        domains = FileManager.returnDomainNames(FileManager)
+        return Response(domains)
 

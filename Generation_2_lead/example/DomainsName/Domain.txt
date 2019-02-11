@@ -1,12 +1,1 @@
-['fifa.org.json',
-'findthatlead.io.json',
-'football.fr.json',
-'football.org.json',
-'leadmehome.io.json',
-'localhost.com.json',
-'teletoon.fr.json',
-'test.io.json',
-'wordpress.org.json',
-'yahoo.fr.json',
-'itkamer.com.json',
-]
+[fifa.org.json,findthatlead.io.json,football.fr.json,football.org.json,leadmehome.io.json,localhost.com.json,teletoon.fr.json,test.io.json,wordpress.org.json,yahoo.fr.json,afrimarket.cm.json,]

@@ -18,7 +18,7 @@ class Email():
     def main(self,enterUrl):
         if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
             # if the URL is valid
-
+            FileManager.__init__(FileManager)
             if FileManager.verifyIfFileExist(FileManager, enterUrl):
                 #In case the file already exist in the directory
                 lastPageNumber = FileManager.GetLastPageNumber(FileManager,enterUrl)
