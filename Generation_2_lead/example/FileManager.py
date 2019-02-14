@@ -51,13 +51,22 @@ class FileManager():
 
 
     def verifyIfFileExist(self,enterUrl):
-        FileManager.storeDomain(FileManager,enterUrl)
         os.chdir(self.cacheFolderPath)
         try:
             if os.path.isfile("{}.json".format(enterUrl)):
                 return True
             else:
                 return False
+        except FileNotFoundError:
+            pass
+
+    def readFile(self, enterUrl):
+        #cette methode a pour but d'ouvrir un fichier et de retourner son contenu
+        os.chdir(self.cacheFolderPath)
+        try:
+            with open("{}.json".format(enterUrl), "r") as printer:
+                fileContent = json.load(printer)
+                return fileContent
         except FileNotFoundError:
             pass
 

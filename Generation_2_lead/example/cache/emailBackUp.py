@@ -16,49 +16,44 @@ class Email():
         self.AllData = []
 
     def returnTenEmails(self, p, fileContent):
-        result = []
         if fileContent[0][p:] >= 10:
             emails = fileContent[0][p:(p+10)]
             result[0] = emails
-            p+= len(emails['email'])
-            result[1] = p
+            result[1] = p += len(emails['email'])
             result[2] = False
             return result
         else:
             emails = fileContent[0][p:]
             result[0] = emails
-            p += len(emails['email'])
-            result[1] = p
+            result[1] = p += len(emails['email'])
             result[2] = False
             return result
 
 
 
-    def main(self, enterUrl, p):
+    def main(self,enterUrl):
+        # timeOfLifeOfFile = 2592000  # convert 30 days in second
+        # FileManager.clearDirectory(FileManager, timeOfLifeOfFile)
         if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
-            # URL is valid
+            # if the URL is valid
             FileManager.__init__(FileManager)
             if FileManager.verifyIfFileExist(FileManager, enterUrl):
-                # File exist in the directory
-                fc = FileManager.readFile(FileManager, enterUrl)
-                nbrPage = fc[1]
-                emailsToReturn = self.returnTenEmails(self, p, fc)
-                if len(emailsToReturn[0]) == 10:
-                    return emailsToReturn
-                else:
-                    if !fc[2]:
-                        emailsToReturn[2] = False
-                        return emailsToReturn
-                    else:
-                        urls = BingSearch.nbrPage(BingSearch, enterUrl, lastPageNumber)
-                        scrapedEmail = 
-            
-            else: 
-                # File is not exist
+                #In case the file already exist in the directory
+                lastPageNumber = FileManager.GetLastPageNumber(FileManager,enterUrl)
+                urls = BingSearch.nbrPage(BingSearch, enterUrl, lastPageNumber)
+                return Email.getEmail(Email, urls,enterUrl)
+
+               # timeOfLifeOfFile = 2592000  # convert 30 days in second
+               # FileManager.clearDirectory(FileManager, timeOfLifeOfFile)
+               # print("getLastNumber00000000")
+            else:
+                urls = BingSearch.nbrPage(BingSearch, enterUrl, None)
+                return Email.getEmail(Email, urls,enterUrl)
 
         else:
-            # URL is not valid
             return 'YOU ENTERED A BAD URL!! please entered a url like itkamer.com'
+
+    
 
     def getEmail(self, urls,enterUrl):
         Source.__init__(Source)

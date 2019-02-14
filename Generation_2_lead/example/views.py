@@ -29,7 +29,7 @@ class TestSharingView(APIView):
     def post(self, request):
         enterUrl = request.data.get('url', None)
         Email.__init__(Email)
-        finalData = Email.main(Email, enterUrl)
+        finalData = Email.main(Email, enterUrl, p)# p = nomber of email to back
         Jsonfinal = {"data": finalData}
 
         return Response(Jsonfinal)
