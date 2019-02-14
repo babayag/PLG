@@ -9,27 +9,40 @@ class FileManager():
         self.cacheFolderPath = r'C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\cache'
         self.domainFile = r"C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
 
-    def WriteInFile(self,data,enterUrl,LastpageNbr):
-
+    def WriteInFile(self,data,enterUrl,LastpageNbr, canSearch):
         os.chdir(self.cacheFolderPath)
         if self.verifyIfFileExist(self,enterUrl):
             fdata = []
-            try:
-                with open("{}.json".format(enterUrl), 'r') as outfile:
-                    fdata = json.load(outfile)
-                    del fdata[-1]
+            if data == None and LastpageNbr == None:
+                try:
+                    with open("{}.json".format(enterUrl), 'r') as outfile:
+                        fdata = json.load(outfile)
+                        del fdata[-1]
 
-                with open("{}.json".format(enterUrl), 'w') as outfile:
-                    fdata.append(data)
-                    fdata.append({"LastpageNbr": LastpageNbr})
-                    json.dump(fdata, outfile)
-            except FileNotFoundError:
-                pass
+                    with open("{}.json".format(enterUrl), 'w') as outfile:
+                        fdata.append({"canSearch": canSearch})
+                        json.dump(fdata, outfile)
+                except FileNotFoundError:
+                    pass
+            else:
+                try:
+                    with open("{}.json".format(enterUrl), 'r') as outfile:
+                        fdata = json.load(outfile)
+                        del fdata[-1]
+                        del fdata[-1]
 
+                    with open("{}.json".format(enterUrl), 'w') as outfile:
+                        fdata.append(data)
+                        fdata.append({"LastpageNbr": LastpageNbr})
+                        fdata.append({"canSearch": canSearch})
+                        json.dump(fdata, outfile)
+                except FileNotFoundError:
+                    pass
         else:
             try:
                 with open("{}.json".format(enterUrl), 'w') as outfile:
                     data.append({"LastpageNbr": LastpageNbr})
+                    data.append({"canSearch": canSearch})
                     json.dump(data, outfile)
 
             except FileNotFoundError:
@@ -60,15 +73,15 @@ class FileManager():
         except FileNotFoundError:
             pass
 
-    def readFile(self, fileName):
+    def readFile(self, enterUrl):
         #cette methode a pour but d'ouvrir un fichier et de retourner son contenu
         os.chdir(self.cacheFolderPath)
         try:
             with open("{}.json".format(enterUrl), "r") as printer:
                 fileContent = json.load(printer)
                 return fileContent
-            except expression as identifier:
-                pass
+        except FileNotFoundError:
+            pass
 
     def getFiveFirstEmail(self,enterUrl):
         fiveFirstEmail =[]

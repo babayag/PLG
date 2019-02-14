@@ -58,20 +58,24 @@ class JsonStructure():
         if counter != 0:
 
             if counter == len(fiveFirstEmailOfFile):
+                FileManager.__init__(FileManager)
+                FileManager.WriteInFile(FileManager, None, enterUrl, None, False)
                 dataReturn = False
                 #print(" == 5")
             else:
                 if counter == 100:
                     FileManager.__init__(FileManager)
-                    FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr)
+                    FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr, True)
                     dataReturn = True
                     #print("== 100")
                 else:
+                    FileManager.__init__(FileManager)
+                    FileManager.WriteInFile(FileManager, None, enterUrl, None, False)
                     dataReturn = False
                     #print("# de 0")
         else:
             FileManager.__init__(FileManager)
-            FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr)
+            FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr, True)
             dataReturn = True
 
         return dataReturn

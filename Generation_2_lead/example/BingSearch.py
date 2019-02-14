@@ -42,11 +42,12 @@ class BingSearch():
     def nbrPage(self, enterUrl,nbrOfLastPage):
         liste = []
         lastN = 0
+        print(nbrOfLastPage)
 
         myUrl = "/search?q=%40{}&first=11".format(enterUrl)
         result = self.initialSearch(myUrl)
         if nbrOfLastPage != None:
-            for nbrOfPage in range(1+nbrOfLastPage, nbrOfLastPage + 50, 10):
+            for nbrOfPage in range(1+nbrOfLastPage, (nbrOfLastPage + 50), 10):
                 liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage))
 
                 dif = int(nbrOfLastPage + 50) - nbrOfPage
