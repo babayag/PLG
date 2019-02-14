@@ -16,20 +16,29 @@ class Email():
         self.AllData = []
 
     def returnTenEmails(self, p, fileContent):
-        if fileContent[0][p:] >= 10:
-            emails = fileContent[0][p:(p+10)]
-            result[0] = emails
-            result[1] = p += len(emails['email'])
-            result[2] = False
+        result = []
+        allEmails = fileContent[0:len(fileContent)-2]
+        print("eusebio")
+        print(len(allEmails))
+        p = int(p)
+        if len(allEmails[p:]) >= 10:
+            emailsToReturn = allEmails[p:(p+10)]
+            result.append(emailsToReturn)
+            p += len(emailsToReturn)
+            print("eusebio2")
+            print(len(emailsToReturn))
+            result.append(p)
+            result.append(True)
             return result
         else:
-            emails = fileContent[0][p:]
-            result[0] = emails
-            result[1] = p += len(emails['email'])
-            result[2] = False
+            emailsToReturn = allEmails[p:]
+            print('eusebio3')
+            print(len(emailsToReturn))
+            result.append(emailsToReturn)
+            p += len(emailsToReturn)
+            result.append(p)
+            result.append(True)
             return result
-
-
 
     def main(self, enterUrl, p):
         if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
@@ -38,20 +47,40 @@ class Email():
             if FileManager.verifyIfFileExist(FileManager, enterUrl):
                 # File exist in the directory
                 fc = FileManager.readFile(FileManager, enterUrl)
-                nbrPage = fc[1]
+                nbrPage = fc[-2]['LastpageNbr']
                 emailsToReturn = self.returnTenEmails(self, p, fc)
                 if len(emailsToReturn[0]) == 10:
                     return emailsToReturn
                 else:
-                    if !fc[2]:
-                        emailsToReturn[2] = False
+                    if fc[-1] == False:
+                        #impossible to find new emails on bing
+                        emailsToReturn[2] = False # remove the button see more of the view
                         return emailsToReturn
                     else:
-                        urls = BingSearch.nbrPage(BingSearch, enterUrl, lastPageNumber)
-                        scrapedEmail = 
-            
+                        #impossible to find new emails on bing
+                        urls = BingSearch.nbrPage(BingSearch, enterUrl, nbrPage)
+                        scrapedEmail = Email.getEmail(Email, urls,enterUrl)
+                        if scrapedEmail == False:
+                            # file has been not updated
+                            emailsToReturn[2] = False # remove the button see more of the view
+                            return  emailsToReturn
+                        else:
+                            # file has been updated
+                            fc = FileManager.readFile(FileManager, enterUrl)
+                            emailsToReturn = self.returnTenEmails(self, p, fc)
+                            return emailsToReturn
             else: 
                 # File is not exist
+                urls = BingSearch.nbrPage(BingSearch, enterUrl, None)
+                scrapedEmail = Email.getEmail(Email, urls,enterUrl)
+                if scrapedEmail == True:
+                    fc = FileManager.readFile(FileManager, enterUrl)
+                    emailsToReturn = self.returnTenEmails(self, p, fc)
+                    return emailsToReturn
+                else:
+                    return []
+
+
 
             return 'YOU ENTERED A GOOD URL!!'
         else:
