@@ -1,11 +1,11 @@
 from django.test import TestCase
-from ..BingSearch import BingSearch
+from ..FileManager import FileManager
 import re
 
 
 class TestBingSearch(TestCase):
 
-    def testUrlIsValid(self):
+    '''def testUrlIsValid(self):
         url = BingSearch.UrlValidation(BingSearch,"itkamer.com")
         self.assertTrue(url)
         print("URL is correct!!")
@@ -19,6 +19,10 @@ class TestBingSearch(TestCase):
         numberOfPage = BingSearch.nbrPage(BingSearch,"football.com")
 
         self.assertEqual(len(numberOfPage),25)
-        print('Good Test')
+        print('Good Test')'''
+    def teststoreDomain(self):
+        url = "itkamer.com"
+        domainFile = "E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
+        FileManager.storeDomain(FileManager,url)
 
 

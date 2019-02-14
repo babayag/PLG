@@ -1,6 +1,5 @@
 
-import os
-import json
+
 from .FileManager import FileManager
 
 class JsonStructure():
@@ -43,39 +42,36 @@ class JsonStructure():
             data.append(jsonReturn)
         #pagination
         fiveFirstEmailOfData = data[slice(0,5,1)]
+        FileManager.__init__(FileManager)
         fiveFirstEmailOfFile = FileManager.getFiveFirstEmail(FileManager, enterUrl)
         counter = 100
         dataReturn = False
         if len(fiveFirstEmailOfFile) != 0:
             counter = 0
             for  x_values, y_values in zip(fiveFirstEmailOfFile, fiveFirstEmailOfData):
-                try:
-                    if sorted(x_values['email']) == sorted(y_values['email']):
-                        counter = counter + 1
-                        print(counter)
-                    else:
-                        counter = 0
-                    raise KeyError('some error message')
-                except KeyError as e:
-                    if 'some error message' == e:
-                        counter = 5
+                if sorted(x_values['email']) == sorted(y_values['email']):
+                    counter = counter + 1
+                    #print(counter)
+                else:
+                    counter = 0
         print(counter)
         if counter != 0:
 
             if counter == len(fiveFirstEmailOfFile):
                 dataReturn = False
-                print(" == 5")
+                #print(" == 5")
             else:
                 if counter == 100:
+                    FileManager.__init__(FileManager)
                     FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr)
                     dataReturn = True
-                    print("== 100")
+                    #print("== 100")
                 else:
                     dataReturn = False
-                    print("# de 0")
+                    #print("# de 0")
         else:
+            FileManager.__init__(FileManager)
             FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr)
             dataReturn = True
-            print("eusebiolinho")
 
         return dataReturn

@@ -5,9 +5,13 @@ import time
 
 class FileManager():
 
+    def __init__(self):
+        self.cacheFolderPath = r'C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\cache'
+        self.domainFile = r"C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
+
     def WriteInFile(self,data,enterUrl,LastpageNbr):
 
-        os.chdir(r'C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\cache')
+        os.chdir(self.cacheFolderPath)
         if self.verifyIfFileExist(self,enterUrl):
             fdata = []
             try:
@@ -33,13 +37,13 @@ class FileManager():
 
 
     def GetLastPageNumber(self, enterUrl):
-        os.chdir(r'C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\cache')
+
+        os.chdir(self.cacheFolderPath)
         try:
 
             with open("{}.json".format(enterUrl), "r") as printer:
                 fdata = json.load(printer)
                 lastNumber = fdata[-1]['LastpageNbr']
-
         except FileNotFoundError:
             return None
         return lastNumber
@@ -47,8 +51,7 @@ class FileManager():
 
 
     def verifyIfFileExist(self,enterUrl):
-        FileManager.storeDomain(FileManager,enterUrl)
-        os.chdir(r'C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\cache')
+        os.chdir(self.cacheFolderPath)
         try:
             if os.path.isfile("{}.json".format(enterUrl)):
                 return True
@@ -57,9 +60,19 @@ class FileManager():
         except FileNotFoundError:
             pass
 
+    def readFile(self, fileName):
+        #cette methode a pour but d'ouvrir un fichier et de retourner son contenu
+        os.chdir(self.cacheFolderPath)
+        try:
+            with open("{}.json".format(enterUrl), "r") as printer:
+                fileContent = json.load(printer)
+                return fileContent
+            except expression as identifier:
+                pass
+
     def getFiveFirstEmail(self,enterUrl):
         fiveFirstEmail =[]
-        os.chdir(r'C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\cache')
+        os.chdir(self.cacheFolderPath)
         try:
             with open("{}.json".format(enterUrl), "r") as printer:
                 fdata = json.load(printer)
@@ -77,7 +90,7 @@ class FileManager():
         currentTime = time.mktime(datetime.now().timetuple())
 
         #for each file in the folder
-        for file in os.listdir(r'C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\cache'):
+        for file in os.listdir(self.cacheFolderPath):
 
             timeOfCreation = os.path.getmtime(file)  # get file creation/modification time
 
@@ -95,18 +108,22 @@ class FileManager():
     def storeDomain(self,enterUrl):
         domainName = []
         # for each file in the folder"
-        cacheFolderPath = os.listdir(r'C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\cache')
-        domainFile = r'C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\DomainsName\Domain.txt'
-        for file in cacheFolderPath:
+        cacheFolder = os.listdir(self.cacheFolderPath)
+        for file in cacheFolder:
 
-            if file not in domainFile:
+            if file not in self.domainFile:
                 domainName.append(file)
         url = (enterUrl + ".json")
         if url not in domainName:
             domainName.append(url)
-        with open(domainFile, 'w') as outfile:
+        with open(self.domainFile, 'w') as outfile:
             outfile.write("[")
             for item in domainName:
-                outfile.write("'"+ item +"'")
-                outfile.write(",")
+                outfile.write(item +",")
             outfile.write("]")
+
+    def returnDomainNames(self):
+
+        with open(self.domainFile, 'r') as outfile:
+            domain = outfile.read()
+        return domain
