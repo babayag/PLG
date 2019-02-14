@@ -15,27 +15,48 @@ class Email():
         self.sources = []
         self.AllData = []
 
-   
+    def returnTenEmails(self, p, fileContent):
+        if fileContent[0][p:] >= 10:
+            emails = fileContent[0][p:(p+10)]
+            result[0] = emails
+            result[1] = p += len(emails['email'])
+            result[2] = False
+            return result
+        else:
+            emails = fileContent[0][p:]
+            result[0] = emails
+            result[1] = p += len(emails['email'])
+            result[2] = False
+            return result
 
-    def main(self,enterUrl):
+
+
+    def main(self, enterUrl, p):
         if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
-            # if the URL is valid
-
+            # URL is valid
+            FileManager.__init__(FileManager)
             if FileManager.verifyIfFileExist(FileManager, enterUrl):
-                #In case the file already exist in the directory
-                lastPageNumber = FileManager.GetLastPageNumber(FileManager,enterUrl)
-                urls = BingSearch.nbrPage(BingSearch, enterUrl, lastPageNumber)
-                Email.getEmail(Email, urls,enterUrl)
-
-            else:
-                urls = BingSearch.nbrPage(BingSearch, enterUrl, None)
-                Email.getEmail(Email, urls,enterUrl)
+                # File exist in the directory
+                fc = FileManager.readFile(FileManager, enterUrl)
+                nbrPage = fc[1]
+                emailsToReturn = self.returnTenEmails(self, p, fc)
+                if len(emailsToReturn[0]) == 10:
+                    return emailsToReturn
+                else:
+                    if !fc[2]:
+                        emailsToReturn[2] = False
+                        return emailsToReturn
+                    else:
+                        urls = BingSearch.nbrPage(BingSearch, enterUrl, lastPageNumber)
+                        scrapedEmail = 
+            
+            else: 
+                # File is not exist
 
             return 'YOU ENTERED A GOOD URL!!'
         else:
+            # URL is not valid
             return 'YOU ENTERED A BAD URL!! please entered a url like itkamer.com'
-
-
 
     def getEmail(self, urls,enterUrl):
         Source.__init__(Source)
@@ -48,13 +69,11 @@ class Email():
                 while True:
                     try:
                         litext = lipath[li_number].text
-                        #print(litext)
                         # for line in the drivertextclear
                         for line in litext.splitlines():
                             # search all email in each line, return the objet searchNumbers of type list
 
                             searchEmails = re.findall(r"[a-zA-Z]+[\.\-]?\w*[\.\-]?\w+\.?\w*\@{}".format(enterUrl), line,flags=re.MULTILINE)
-                           # print(searchEmails)
                             # for email in email_1 list
 
                             if searchEmails:
@@ -63,11 +82,10 @@ class Email():
                                     # add email in the emails list: return an object oy type NoneType
                                     self.emails.append(email)
                                     self.sources = Source.appendSource(Source, src)
-                                    #print(self.emails)
                         li_number = li_number + 1
                     except:
                         break
 
         datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, self.emails, self.sources, enterUrl, urls[1])
-        #print(datasStructured)
+
         return datasStructured

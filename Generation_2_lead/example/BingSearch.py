@@ -1,22 +1,9 @@
 import http.client
 import socket
 import re
-import os
-import json
-from bs4 import BeautifulSoup
-import re
-import sys
-import http.client
-import socket
-from bs4 import BeautifulSoup
 
 
 class BingSearch():
-    '''def __init__(self):
-        self.liste = []
-        self.lastN ='''
-
-
 
     def UrlValidation(self,myUrl):
 
@@ -58,33 +45,7 @@ class BingSearch():
 
         myUrl = "/search?q=%40{}&first=11".format(enterUrl)
         result = self.initialSearch(myUrl)
-        """try:
-            soup = BeautifulSoup(result, features="html.parser")
-            txt = soup.find("span", {"class": "sb_count"}).text
-            txt = txt.split(" ")[-2]
-
-            try:
-                txt = int(txt)
-            except:
-                txt = txt.split(",")
-                txt1 = ""
-                for i in range(0, len(txt)):
-                    txt1 = txt1 + txt[i]
-                txt = int(txt)
-        except:
-            txt = 101
-
-        if nbrOfLastPage < 100:
-            for nbrOfPage in range(1, txt, 10):
-                liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage))
-                dif = txt - nbrOfPage
-                if dif <= 10:
-                    liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage + dif))
-                    lastN = nbrOfPage + dif
-        else:"""
-
         if nbrOfLastPage != None:
-
             for nbrOfPage in range(1+nbrOfLastPage, nbrOfLastPage + 50, 10):
                 liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage))
 
@@ -92,16 +53,13 @@ class BingSearch():
                 if dif <= 10:
                     liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage + dif))
                     lastN = nbrOfPage + dif
-
         else:
-
             for nbrOfPage in range(1, 50, 10):
                 liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage))
                 dif = 50 - nbrOfPage
                 if dif <= 10:
                     liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage + dif))
                     lastN = nbrOfPage + dif
-
         data = [liste, lastN]
         return data
 
