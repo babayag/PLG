@@ -13,31 +13,21 @@ class FileManager():
         os.chdir(self.cacheFolderPath)
         if self.verifyIfFileExist(self,enterUrl):
             fdata = []
-            if data == None and LastpageNbr == None:
-                try:
-                    with open("{}.json".format(enterUrl), 'r') as outfile:
-                        fdata = json.load(outfile)
-                        del fdata[-1]
+            try:
+                with open("{}.json".format(enterUrl), 'r') as outfile:
+                    fdata = json.load(outfile)
+                    del fdata[-1]
+                    del fdata[-1]
 
-                    with open("{}.json".format(enterUrl), 'w') as outfile:
-                        fdata.append({"canSearch": canSearch})
-                        json.dump(fdata, outfile)
-                except FileNotFoundError:
-                    pass
-            else:
-                try:
-                    with open("{}.json".format(enterUrl), 'r') as outfile:
-                        fdata = json.load(outfile)
-                        del fdata[-1]
-                        del fdata[-1]
+                with open("{}.json".format(enterUrl), 'w') as outfile:
+                    for item in data:
+                        fdata.append(item)
+                    fdata.append({"LastpageNbr": LastpageNbr})
+                    fdata.append({"canSearch": canSearch})
+                    json.dump(fdata, outfile)
+            except FileNotFoundError:
+                pass
 
-                    with open("{}.json".format(enterUrl), 'w') as outfile:
-                        fdata.append(data)
-                        fdata.append({"LastpageNbr": LastpageNbr})
-                        fdata.append({"canSearch": canSearch})
-                        json.dump(fdata, outfile)
-                except FileNotFoundError:
-                    pass
         else:
             try:
                 with open("{}.json".format(enterUrl), 'w') as outfile:
@@ -56,7 +46,7 @@ class FileManager():
 
             with open("{}.json".format(enterUrl), "r") as printer:
                 fdata = json.load(printer)
-                lastNumber = fdata[-1]['LastpageNbr']
+                lastNumber = fdata[-2]['LastpageNbr']
         except FileNotFoundError:
             return None
         return lastNumber
@@ -140,3 +130,18 @@ class FileManager():
         with open(self.domainFile, 'r') as outfile:
             domain = outfile.read()
         return domain
+
+    def updateCanSearch(self,enterUrl):
+        os.chdir(self.cacheFolderPath)
+        fdata = []
+        try:
+            with open("{}.json".format(enterUrl), 'r') as outfile:
+                fdata = json.load(outfile)
+                del fdata[-1]
+                print(fdata)
+            with open("{}.json".format(enterUrl), 'w') as outfile:
+                fdata.append({"canSearch": False})
+                
+        except FileNotFoundError:
+            pass
+    

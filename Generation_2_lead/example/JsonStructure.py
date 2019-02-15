@@ -40,6 +40,7 @@ class JsonStructure():
                     "url": newEmailSources[emailsCounter]
                 }
             data.append(jsonReturn)
+            print(data)
         #pagination
         fiveFirstEmailOfData = data[slice(0,5,1)]
         FileManager.__init__(FileManager)
@@ -59,7 +60,7 @@ class JsonStructure():
 
             if counter == len(fiveFirstEmailOfFile):
                 FileManager.__init__(FileManager)
-                FileManager.WriteInFile(FileManager, None, enterUrl, None, False)
+                FileManager.updateCanSearch(FileManager, enterUrl)
                 dataReturn = False
                 #print(" == 5")
             else:
@@ -70,7 +71,7 @@ class JsonStructure():
                     #print("== 100")
                 else:
                     FileManager.__init__(FileManager)
-                    FileManager.WriteInFile(FileManager, None, enterUrl, None, False)
+                    FileManager.updateCanSearch(FileManager, enterUrl)
                     dataReturn = False
                     #print("# de 0")
         else:
