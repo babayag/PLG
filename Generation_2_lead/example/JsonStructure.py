@@ -1,6 +1,5 @@
 
-import os
-import json
+
 from .FileManager import FileManager
 
 class JsonStructure():
@@ -47,43 +46,44 @@ class JsonStructure():
                     "url": newEmailSources[emailsCounter]
                 }
             data.append(jsonReturn)
-            """self.pagination(self,data,enterUrl,LastpageNbr)
             print(data)
-            return data"""
-
-
         #pagination
-    #def pagination(self,data,enterUrl,LastpageNbr):
-            fiveFirstEmailOfData = data[slice(0,5,1)]
-            fiveFirstEmailOfFile = FileManager.getFiveFirstEmail(FileManager, enterUrl)
-            counter = 100
-            dataReturn = False
-            if len(fiveFirstEmailOfFile) != 0:
-                counter = 0
-                for  x_values, y_values in zip(fiveFirstEmailOfFile, fiveFirstEmailOfData):
-                    if sorted(x_values['email']) == sorted(y_values['email']):
-                        counter = counter + 1
-                       # print(counter)
-                    else:
-                        counter = 0
-            print(counter)
-            if counter != 0:
-
-                if counter == len(fiveFirstEmailOfFile):
-                    dataReturn = False
-                    #print(" == 5")
+        fiveFirstEmailOfData = data[slice(0,5,1)]
+        FileManager.__init__(FileManager)
+        fiveFirstEmailOfFile = FileManager.getFiveFirstEmail(FileManager, enterUrl)
+        counter = 100
+        dataReturn = False
+        if len(fiveFirstEmailOfFile) != 0:
+            counter = 0
+            for  x_values, y_values in zip(fiveFirstEmailOfFile, fiveFirstEmailOfData):
+                if sorted(x_values['email']) == sorted(y_values['email']):
+                    counter = counter + 1
+                    #print(counter)
                 else:
-                    if counter == 100:
-                        FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr)
-                        dataReturn = True
-                       # print("== 100")
-                    else:
-                        dataReturn = False
-                       # print("# de 0")
+                    counter = 0
+        print(counter)
+        if counter != 0:
+
+            if counter == len(fiveFirstEmailOfFile):
+                FileManager.__init__(FileManager)
+                FileManager.updateCanSearch(FileManager, enterUrl)
+                dataReturn = False
+                #print(" == 5")
             else:
-                FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr)
-                dataReturn = True
-                #print
+                if counter == 100:
+                    FileManager.__init__(FileManager)
+                    FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr, True)
+                    dataReturn = True
+                    #print("== 100")
+                else:
+                    FileManager.__init__(FileManager)
+                    FileManager.updateCanSearch(FileManager, enterUrl)
+                    dataReturn = False
+                    #print("# de 0")
+        else:
+            FileManager.__init__(FileManager)
+            FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr, True)
+            dataReturn = True
 
             print(dataReturn)
             return dataReturn

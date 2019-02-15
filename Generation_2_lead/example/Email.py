@@ -14,25 +14,78 @@ class Email():
         self.sources = []
         self.AllData = []
 
-    def main(self, enterUrl):
-        if BingSearch.UrlValidation(BingSearch, enterUrl) == True:
-            # if the URL is valid
-
-            if FileManager.verifyIfFileExist(FileManager, enterUrl):
-                # In case the file already exist in the directory
-                lastPageNumber = FileManager.GetLastPageNumber(FileManager, enterUrl)
-                urls = BingSearch.nbrPage(BingSearch, enterUrl, lastPageNumber)
-                print(urls)
-                Email.getEmail(Email, urls, enterUrl)
-            else:
-                urls = BingSearch.nbrPage(BingSearch, enterUrl, None)
-                Email.getEmail(Email, urls, enterUrl)
-
-            return 'YOU ENTERED A GOOD URL!!'
+    def returnTenEmails(self, p, fileContent):
+        result = []
+        allEmails = fileContent[0:len(fileContent)-2]
+        print("eusebio")
+        print(len(allEmails))
+        p = int(p)
+        if len(allEmails[p:]) >= 10:
+            emailsToReturn = allEmails[p:(p+10)]
+            result.append(emailsToReturn)
+            p += len(emailsToReturn)
+            print("eusebio2")
+            print(len(emailsToReturn))
+            result.append(p)
+            result.append(True)
+            return result
         else:
+            emailsToReturn = allEmails[p:]
+            print('eusebio3')
+            print(len(emailsToReturn))
+            result.append(emailsToReturn)
+            p += len(emailsToReturn)
+            result.append(p)
+            result.append(True)
+            return result
+
+    def main(self, enterUrl, p):
+        if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
+            # URL is valid
+            FileManager.__init__(FileManager)
+            if FileManager.verifyIfFileExist(FileManager, enterUrl) == True:
+                # File exist in the directory
+                FileManager.__init__(FileManager)
+                fc = FileManager.readFile(FileManager, enterUrl)
+                nbrPage = FileManager.GetLastPageNumber(FileManager, enterUrl)
+                emailsToReturn = self.returnTenEmails(self, p, fc)
+                if len(emailsToReturn[0]) == 10:
+                    return emailsToReturn
+                else:
+                    if fc[2] == False:
+                        #impossible to find new emails on bing
+                        emailsToReturn[2] = False # remove the button see more of the view
+                        return emailsToReturn
+                    else:
+                        #impossible to find new emails on bing
+                        urls = BingSearch.nbrPage(BingSearch, enterUrl, nbrPage)
+                        scrapedEmail = Email.getEmail(Email, urls,enterUrl)
+                        if scrapedEmail == False:
+                            # file has been not updated
+                            emailsToReturn[2] = False # remove the button see more of the view
+                            return  emailsToReturn
+                        else:
+                            # file has been updated
+                            FileManager.__init__(FileManager)
+                            fc = FileManager.readFile(FileManager, enterUrl)
+                            emailsToReturn = self.returnTenEmails(self, p, fc)
+                            return emailsToReturn
+            else: 
+                # File is not exist
+                urls = BingSearch.nbrPage(BingSearch, enterUrl, None)
+                scrapedEmail = Email.getEmail(Email, urls,enterUrl)
+                if scrapedEmail == True:
+                    FileManager.__init__(FileManager)
+                    fc = FileManager.readFile(FileManager, enterUrl)
+                    emailsToReturn = self.returnTenEmails(self, p, fc)
+                    return emailsToReturn
+                else:
+                    return []
+        else:
+            # URL is not valid
             return 'YOU ENTERED A BAD URL!! please entered a url like itkamer.com'
 
-    def getEmail(self, urls, enterUrl):
+    def getEmail(self, urls,enterUrl):
         Source.__init__(Source)
         with PoolExecutor(max_workers=7) as executor:
             for _ in executor.map(BingSearch.initialSearch, urls[0]):
@@ -43,14 +96,11 @@ class Email():
                 while True:
                     try:
                         litext = lipath[li_number].text
-                        # print(litext)
                         # for line in the drivertextclear
                         for line in litext.splitlines():
                             # search all email in each line, return the objet searchNumbers of type list
 
-                            searchEmails = re.findall(r"[a-zA-Z]+[\.\-]?\w*[\.\-]?\w+\.?\w*\@{}".format(enterUrl), line,
-                                                      flags=re.MULTILINE)
-                            # print(searchEmails)
+                            searchEmails = re.findall(r"[a-zA-Z]+[\.\-]?\w*[\.\-]?\w+\.?\w*\@{}".format(enterUrl), line,flags=re.MULTILINE)
                             # for email in email_1 list
 
                             if searchEmails:
@@ -59,11 +109,10 @@ class Email():
                                     # add email in the emails list: return an object oy type NoneType
                                     self.emails.append(email)
                                     self.sources = Source.appendSource(Source, src)
-                                    # print(self.emails)
                         li_number = li_number + 1
                     except:
                         break
 
         datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, self.emails, self.sources, enterUrl, urls[1])
-        #print(datasStructured)
+
         return datasStructured
