@@ -9,27 +9,40 @@ class FileManager():
         self.cacheFolderPath = r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache'
         self.domainFile = r"E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
 
-    def WriteInFile(self,data,enterUrl,LastpageNbr):
-
+    def WriteInFile(self,data,enterUrl,LastpageNbr, canSearch):
         os.chdir(self.cacheFolderPath)
         if self.verifyIfFileExist(self,enterUrl):
             fdata = []
-            try:
-                with open("{}.json".format(enterUrl), 'r') as outfile:
-                    fdata = json.load(outfile)
-                    del fdata[-1]
+            if data == None and LastpageNbr == None:
+                try:
+                    with open("{}.json".format(enterUrl), 'r') as outfile:
+                        fdata = json.load(outfile)
+                        del fdata[-1]
 
-                with open("{}.json".format(enterUrl), 'w') as outfile:
-                    fdata.append(data)
-                    fdata.append({"LastpageNbr": LastpageNbr})
-                    json.dump(fdata, outfile)
-            except FileNotFoundError:
-                pass
+                    with open("{}.json".format(enterUrl), 'w') as outfile:
+                        fdata.append({"canSearch": canSearch})
+                        json.dump(fdata, outfile)
+                except FileNotFoundError:
+                    pass
+            else:
+                try:
+                    with open("{}.json".format(enterUrl), 'r') as outfile:
+                        fdata = json.load(outfile)
+                        del fdata[-1]
+                        del fdata[-1]
 
+                    with open("{}.json".format(enterUrl), 'w') as outfile:
+                        fdata.append(data)
+                        fdata.append({"LastpageNbr": LastpageNbr})
+                        fdata.append({"canSearch": canSearch})
+                        json.dump(fdata, outfile)
+                except FileNotFoundError:
+                    pass
         else:
             try:
                 with open("{}.json".format(enterUrl), 'w') as outfile:
                     data.append({"LastpageNbr": LastpageNbr})
+                    data.append({"canSearch": canSearch})
                     json.dump(data, outfile)
 
             except FileNotFoundError:
