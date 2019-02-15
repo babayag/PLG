@@ -8,9 +8,10 @@ class JsonStructure():
     def JsonStructureReturn(self, Nemails, Nsources, enterUrl, LastpageNbr):
         self.LastpageNbr = LastpageNbr
         emails = []
-        allData = []
         data = []
         emailSources = []
+        allData = []
+
         newEmails = []
         newEmailSources = []
 
