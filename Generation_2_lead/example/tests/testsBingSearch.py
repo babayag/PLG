@@ -28,7 +28,7 @@ class TestBingSearch(TestCase):
 '''
 
     def testsMain(self):
-        test = Email.main(Email, "itkamer.com", 0)
+        test = Email.main(Email, "cleverism.com", 0)
         print(test)
 
 
