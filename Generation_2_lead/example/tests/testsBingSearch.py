@@ -1,7 +1,7 @@
 from django.test import TestCase
 from ..FileManager import FileManager
+from ..Email import Email
 import re
-
 
 class TestBingSearch(TestCase):
 
@@ -19,10 +19,18 @@ class TestBingSearch(TestCase):
         numberOfPage = BingSearch.nbrPage(BingSearch,"football.com")
 
         self.assertEqual(len(numberOfPage),25)
-        print('Good Test')'''
+        print('Good Test')
     def teststoreDomain(self):
         url = "itkamer.com"
         domainFile = "E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
         FileManager.storeDomain(FileManager,url)
+
+'''
+
+    def testsMain(self):
+        test = Email.main(Email, "itkamer.com", 0)
+        print(test)
+
+
 
 

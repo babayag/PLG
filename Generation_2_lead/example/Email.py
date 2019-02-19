@@ -10,10 +10,10 @@ from .FileManager import FileManager
 
 class Email():
 
-    def __init__(self):
-        self.emails = []
-        self.sources = []
-        self.AllData = []
+    # def __init__(self):
+    #     self.emails = []
+    #     self.sources = []
+    #     self.AllData = []
 
     def returnTenEmails(self, p, fileContent):
         result = []
@@ -54,17 +54,18 @@ class Email():
                 if len(emailsToReturn[0]) == 10:
                     return emailsToReturn
                 else:
-                    if fc[2] == False:
+                    if fc[-1]['canSearch'] == False:
                         #impossible to find new emails on bing
                         #print("impossible to find new emails on bing 1")
                         emailsToReturn[2] = False # remove the button see more of the view
-                        print(1)
+                        
+                        print("False ljkjl;k Maassa")
                         return emailsToReturn
                     else:
                         #possible to find new emails on bing
                         #print("possible to find new emails on bing 2")
                         urls = BingSearch.nbrPage(BingSearch, enterUrl, nbrPage)
-                        scrapedEmail = Email.getEmail(Email, urls,enterUrl)
+                        scrapedEmail = Email.getEmail(Email, urls, enterUrl)
                         if scrapedEmail == False:
                             # file has been not updated
                             #print("file has been not updated")
@@ -80,11 +81,10 @@ class Email():
                             emailsToReturn = self.returnTenEmails(self, p, fc)
                             return emailsToReturn
             else: 
-                # File is not exist
-                #print("File is not exist")
+                # File does not exist
                 
                 urls = BingSearch.nbrPage(BingSearch, enterUrl, None)
-                scrapedEmail = Email.getEmail(Email, urls,enterUrl)
+                scrapedEmail = Email.getEmail(Email, urls, enterUrl)
                 if scrapedEmail == True:
                     print(4)
                     FileManager.__init__(FileManager)
@@ -96,16 +96,19 @@ class Email():
                     return []
         else:
             # URL is not valid
-            return 'YOU ENTERED A BAD URL!! please entered a url like itkamer.com'
+            return 'YOU ENTERED A BAD URL!! please enter a url like itkamer.com'
 
-    def getEmail(self, urls,enterUrl):
+    def getEmail(self, urls, enterUrl):
+        emails = []
+        sources = []
         Source.__init__(Source)
         with PoolExecutor(max_workers=7) as executor:
+            print("Workers")
             for _ in executor.map(BingSearch.initialSearch, urls[0]):
                 soup = BeautifulSoup(_, features="html.parser")
                 lipath = soup.findAll("li", {"class": "b_algo"})
                 li_number = 0
-
+                print(li_number)
                 while True:
                     try:
                         litext = lipath[li_number].text
@@ -119,13 +122,16 @@ class Email():
                             if searchEmails:
                                 src = Source.search(Source, li_number, lipath)
                                 for email in searchEmails:
+                                   
                                     # add email in the emails list: return an object oy type NoneType
-                                    self.emails.append(email)
-                                    self.sources = Source.appendSource(Source, src)
+                                    emails.append(email)
+                                    
+                                    sources = Source.appendSource(Source, src)
+                                    
                         li_number = li_number + 1
                     except:
                         break
-
-        datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, self.emails, self.sources, enterUrl, urls[1])
-
+        print(sources)
+        datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, emails, sources, enterUrl, urls[1])
+        # print(datasStructured)
         return datasStructured

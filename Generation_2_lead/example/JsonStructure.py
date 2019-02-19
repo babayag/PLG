@@ -1,11 +1,9 @@
-
-
 from .FileManager import FileManager
 
 class JsonStructure():
-    def getFiveFirstEmail(self,fc,data):
+    def getFiveFirstEmail(self, fc, data):
         result = 0
-        allEmails = fc[0:len(fc)-2]
+        allEmails = fc[0:len(fc)-2] 
         if len(allEmails) >= 5:
             if len(data) >= 5:
                 for newDatas in data:
@@ -13,38 +11,36 @@ class JsonStructure():
                         result = result + 1
                     else:
                         result = 0
-                print('len(data) >= 5 ')
+                print('len(data) >= 5')
                 print(result)
                 return result
             else:
                 for newDatas in  data:
-                    #print(newDatas['email'])
-                    #print(allEmails['email'])
                     if newDatas in allEmails:
                         result = result + 1
                         print(result)
-                print('else of len(data) >= 5 ')
+                print('else of len(data) >= 5')
                 print(result)
                 return result
         else:
-            if len(allEmails) >= len(data):
-                for newDatas in data:
-                    if newDatas in allEmails:
-                        result = result + 1
-                    else:
-                        result = 0
-                print('len(allEmails) >= len(data)')
-                print(result)
-                return result
-            else:
-                for newDatas in data:
-                    if newDatas in allEmails:
-                        result = result + 1
-                    else:
-                        result = 0
-                print('elese of len(allEmails) >= len(data)')
-                print(result)
-                return result
+            # if len(allEmails) >= len(data):
+            for newDatas in data:
+                if newDatas in allEmails:
+                    result = result + 1
+                else:
+                    result = 0
+            print('len(allEmails) >= len(data)')
+            print(result)
+            return result
+            # else:
+            #     for newDatas in data:
+            #         if newDatas in allEmails:
+            #             result = result + 1
+            #         else:
+            #             result = 0
+            #     print('elese of len(allEmails) >= len(data)')
+            #     print(result)
+            #     return result
 
     def JsonStructureReturn(self, Nemails, Nsources, enterUrl, LastpageNbr):
         self.LastpageNbr = LastpageNbr
@@ -54,8 +50,11 @@ class JsonStructure():
         emailSources = []
         newEmails = []
         newEmailSources = []
+        # print(Nemails) 
+        # print(Nsources)
         for email, source in zip(Nemails, Nsources):
             allData.append("{} {}".format(email, source))
+        # print(allData)
 
         output = sorted(allData)
 
@@ -68,19 +67,21 @@ class JsonStructure():
             count = emails.count(mail)
             if mail not in newEmails:
                 newEmails.append(mail)
+                print(newEmails)
                 
                 sourceWithoutDbl = []
                 for counter in emailSources[index:index + count]:
-                    if counter not in sourceWithoutDbl: sourceWithoutDbl.append(counter)
+                    if counter not in sourceWithoutDbl:
+                       sourceWithoutDbl.append(counter)
                 newEmailSources.append(sourceWithoutDbl)
                 index += count
 
         for emailsCounter in range(len(newEmails)):
 
             jsonReturn ={
-                    "email": newEmails[emailsCounter],
-                    "url": newEmailSources[emailsCounter]
-                }
+                "email": newEmails[emailsCounter],
+                "url": newEmailSources[emailsCounter]
+            }
             data.append(jsonReturn)
             #print("Tshutsho")
             #print(data)
@@ -90,7 +91,7 @@ class JsonStructure():
         counter = 0
         if FileManager.verifyIfFileExist(FileManager, enterUrl):
             fc = FileManager.readFile(FileManager,enterUrl)
-            counter = self.getFiveFirstEmail(self,fc,data)
+            counter = self.getFiveFirstEmail(self, fc, data)
         #fiveFirstEmailOfFile = FileManager.getFiveFirstEmail(FileManager, enterUrl)
         
         dataReturn = False
@@ -126,9 +127,7 @@ class JsonStructure():
                     dataReturn = False
                     #print("# de 0")"""
         else:
-            print("no update")
             FileManager.__init__(FileManager)
             FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr, True)
             dataReturn = True
-
         return dataReturn

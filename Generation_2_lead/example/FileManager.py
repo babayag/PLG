@@ -6,10 +6,10 @@ import time
 class FileManager():
 
     def __init__(self):
-        self.cacheFolderPath = r'C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\cache'
-        self.domainFile = r"C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
+        self.cacheFolderPath = r'F:\SEMESTER 3\Software Product Design and Ergonomics\App\Project\Profitable LG\PLG\Generation_2_lead\example\cache'
+        self.domainFile = r"F:\SEMESTER 3\Software Product Design and Ergonomics\App\Project\Profitable LG\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
 
-    def WriteInFile(self,data,enterUrl,LastpageNbr, canSearch):
+    def WriteInFile(self, data, enterUrl, LastpageNbr, canSearch):
         os.chdir(self.cacheFolderPath)
         if self.verifyIfFileExist(self,enterUrl):
             fdata = []
@@ -21,7 +21,8 @@ class FileManager():
 
                 with open("{}.json".format(enterUrl), 'w') as outfile:
                     for item in data:
-                        fdata.append(item)
+                        if item not in fdata:
+                           fdata.append(item)
                     fdata.append({"LastpageNbr": LastpageNbr})
                     fdata.append({"canSearch": canSearch})
                     json.dump(fdata, outfile)
