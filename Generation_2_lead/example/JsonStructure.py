@@ -27,16 +27,16 @@ class JsonStructure():
                 print(result)
                 return result
         else:
-            if len(allEmails) >= len(data):
-                for newDatas in data:
-                    if newDatas in allEmails:
-                        result = result + 1
-                    else:
-                        result = 0
-                print('len(allEmails) >= len(data)')
-                print(result)
-                return result
-            else:
+            """if len(allEmails) >= len(data):"""
+            for newDatas in data:
+                if newDatas in allEmails:
+                    result = result + 1
+                else:
+                    result = 0
+            print('len(allEmails) >= len(data)')
+            print(result)
+            return result
+            """else:
                 for newDatas in data:
                     if newDatas in allEmails:
                         result = result + 1
@@ -44,7 +44,7 @@ class JsonStructure():
                         result = 0
                 print('elese of len(allEmails) >= len(data)')
                 print(result)
-                return result
+                return result"""
 
     def JsonStructureReturn(self, Nemails, Nsources, enterUrl, LastpageNbr):
         self.LastpageNbr = LastpageNbr
