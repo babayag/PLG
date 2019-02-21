@@ -6,8 +6,8 @@ import time
 class FileManager():
 
     def __init__(self):
-        self.cacheFolderPath = r'C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\cache'
-        self.domainFile = r"C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
+        self.cacheFolderPath = r'E:\paness IIHT\M2\project\Nouveau dossier\PLG\Generation_2_lead\example\cache'
+        self.domainFile = r"E:\paness IIHT\M2\project\Nouveau dossier\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
 
     def WriteInFile(self,data,enterUrl,LastpageNbr, canSearch):
         os.chdir(self.cacheFolderPath)
@@ -27,6 +27,7 @@ class FileManager():
                     json.dump(fdata, outfile)
             except FileNotFoundError:
                 pass
+            return True
 
         else:
             try:
@@ -37,6 +38,7 @@ class FileManager():
 
             except FileNotFoundError:
                 pass
+            return False
 
 
     def GetLastPageNumber(self, enterUrl):
@@ -125,11 +127,11 @@ class FileManager():
                 outfile.write(item +",")
             outfile.write("]")
 
-    def returnDomainNames(self):
+    """def returnDomainNames(self):
 
         with open(self.domainFile, 'r') as outfile:
             domain = outfile.read()
-        return domain
+        return domain"""
 
     def updateCanSearch(self,enterUrl):
         os.chdir(self.cacheFolderPath)

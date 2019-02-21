@@ -64,3 +64,6 @@ class BingSearch():
         data = [liste, lastN]
         #print(data)
         return data
+
+   
+   
