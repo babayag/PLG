@@ -6,46 +6,41 @@ class JsonStructure():
     def getFiveFirstEmail(self,fc,data):
         result = 0
         allEmails = fc[0:len(fc)-2]
+        
         if len(allEmails) >= 5:
-            if len(data) >= 5:
-                for newDatas in data:
-                    if newDatas in allEmails:
-                        result = result + 1
-                    else:
-                        result = 0
-                print('len(data) >= 5 ')
-                print(result)
+            for newDatas in data:
+                for email in allEmails[0:5]:
+                    if newDatas['email'] == email['email']:
+                        print(newDatas['url'])
+                        print(email['url'])
+                        if newDatas['url'] == email['url']:
+                            result = result + 1
+                    print(result)
+            print("==========")
+            print(len(data))
+            print("==========")
+            if result == len(data):
                 return result
             else:
-                for newDatas in  data:
-                    #print(newDatas['email'])
-                    #print(allEmails['email'])
-                    if newDatas in allEmails:
-                        result = result + 1
-                        print(result)
-                print('else of len(data) >= 5 ')
-                print(result)
-                return result
+                return 0
         else:
-            """if len(allEmails) >= len(data):"""
             for newDatas in data:
-                if newDatas in allEmails:
-                    result = result + 1
-                else:
-                    result = 0
-            print('len(allEmails) >= len(data)')
-            print(result)
+                for email in allEmails:
+                    if newDatas['email'] == email['email']:
+                        if newDatas['url'] == email['url']:
+                            result = result + 1
+                    print(result)
+            print(len(data))
+            if result != 0:
+                return result
+            else:
+                return 0
+        '''if result == 5:
             return result
-            """else:
-                for newDatas in data:
-                    if newDatas in allEmails:
-                        result = result + 1
-                    else:
-                        result = 0
-                print('elese of len(allEmails) >= len(data)')
-                print(result)
-                return result"""
-
+        else:
+            result = 0
+            return result'''
+    
     def JsonStructureReturn(self, Nemails, Nsources, enterUrl, LastpageNbr):
         self.LastpageNbr = LastpageNbr
         emails = []
@@ -94,37 +89,14 @@ class JsonStructure():
         #fiveFirstEmailOfFile = FileManager.getFiveFirstEmail(FileManager, enterUrl)
         
         dataReturn = False
-        """if len(fiveFirstEmailOfFile) != 0:
-            counter = 0
-            for  x_values, y_values in zip(fiveFirstEmailOfFile, fiveFirstEmailOfData):
-                if sorted(x_values['email']) == sorted(y_values['email']):
-                    counter = counter + 1
-                    #print(counter)
-                else:
-                    counter = 0"""
-        #print(counter)
+        print("eusebio")
+        print(counter)
         if counter != 0:
             print("to update")
             FileManager.__init__(FileManager)
             #FileManager.updateCanSearch(FileManager, enterUrl)
             FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr, False)
             dataReturn = False
-            """if counter == len(fiveFirstEmailOfFile):
-                FileManager.__init__(FileManager)
-                FileManager.updateCanSearch(FileManager, enterUrl)
-                dataReturn = False
-                #print(" == 5")
-            else:
-                if counter == 100:
-                    FileManager.__init__(FileManager)
-                    FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr, True)
-                    dataReturn = True
-                    #print("== 100")
-                else:
-                    FileManager.__init__(FileManager)
-                    FileManager.updateCanSearch(FileManager, enterUrl)
-                    dataReturn = False
-                    #print("# de 0")"""
         else:
             print("no update")
             FileManager.__init__(FileManager)

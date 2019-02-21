@@ -44,7 +44,7 @@ class TestBingSearch(TestCase):
         domainUrl4 = "google.com"
 
         expectedResult = "google.com"
-        actualResult = BingSearch.extractGoodDomain(BingSearch, domainUrl3)
+        actualResult = BingSearch.extractGoodDomain(BingSearch, domainUrl2)
         self.assertEquals(actualResult, expectedResult)
         print("testExtractGoodDomain")
 

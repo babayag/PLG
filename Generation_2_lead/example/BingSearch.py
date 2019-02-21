@@ -22,7 +22,7 @@ class BingSearch():
     def extractGoodDomain(self, enterUrl):
         """domain = urlparse(enterUrl)
         print(domain.netloc)
-        return domain.netloc"""
+        return domain.hostname"""
         #domainSplited = domain.hostname.split('.')
         #if len(domainSplited) > 2:
             #puredomain = domainSplited[1] + "." + domainSplited[2]

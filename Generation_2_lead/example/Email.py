@@ -40,10 +40,26 @@ class Email():
             result.append(True)
             return result
 
+    def DownloadEmails(self, enterUrl):
+        if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
+            # URL is valid
+            pureUrl = BingSearch.extractGoodDomain(BingSearch, enterUrl)
+            FileManager.__init__(FileManager)
+            if FileManager.verifyIfFileExist(FileManager,pureUrl) == True:
+                # File exist in the directory
+                FileManager.__init__(FileManager)
+                fc = FileManager.readFile(FileManager, pureUrl)
+                emailsToReturn = fc[0:len(fc)-2]
+                return emailsToReturn
+            else:
+                return " FILE IS NOT EXIST !!!"
+        else:
+            return 'YOU ENTERED A BAD URL !!!'
+
     def main(self, enterUrl, p):
         if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
             # URL is valid
-            pureUrl = BingSearch.extractGoodDomain(self, enterUrl)
+            pureUrl = BingSearch.extractGoodDomain(BingSearch, enterUrl)
             FileManager.__init__(FileManager)
             if FileManager.verifyIfFileExist(FileManager, pureUrl) == True:
                 # File exist in the directory
