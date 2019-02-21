@@ -50,9 +50,10 @@ class UpdateJsonFile(APIView):
             response = False
         return Response(response)
 
-class ReturnDomainNames(APIView):
-    def post(self, request):
-        FileManager.__init__(FileManager)
-        domains = FileManager.returnDomainNames(FileManager)
-        return Response(domains)
-
+class DownloadEmailInCsv(APIView):
+    def Get(self, request):
+        enterUrl = request.data.get('url', None)
+        Email.__init__(Email)
+        emailsAnsSources = Email.DownloadEmails(Email, enterUrl)
+        Data = {'data': emailsAnsSources}
+        return Data
