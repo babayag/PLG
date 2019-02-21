@@ -44,15 +44,16 @@ class Email():
         if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
             # URL is valid
             FileManager.__init__(FileManager)
-            if FileManager.verifyIfFileExist(FileManager, enterUrl):
+            if FileManager.verifyIfFileExist(FileManager, enterUrl) == True:
                 # File exist in the directory
+                FileManager.__init__(FileManager)
                 fc = FileManager.readFile(FileManager, enterUrl)
-                nbrPage = fc[-2]['LastpageNbr']
+                nbrPage = FileManager.GetLastPageNumber(FileManager, enterUrl)
                 emailsToReturn = self.returnTenEmails(self, p, fc)
                 if len(emailsToReturn[0]) == 10:
                     return emailsToReturn
                 else:
-                    if fc[-1] == False:
+                    if fc[2] == False:
                         #impossible to find new emails on bing
                         emailsToReturn[2] = False # remove the button see more of the view
                         return emailsToReturn
@@ -66,6 +67,7 @@ class Email():
                             return  emailsToReturn
                         else:
                             # file has been updated
+                            FileManager.__init__(FileManager)
                             fc = FileManager.readFile(FileManager, enterUrl)
                             emailsToReturn = self.returnTenEmails(self, p, fc)
                             return emailsToReturn
@@ -74,15 +76,12 @@ class Email():
                 urls = BingSearch.nbrPage(BingSearch, enterUrl, None)
                 scrapedEmail = Email.getEmail(Email, urls,enterUrl)
                 if scrapedEmail == True:
+                    FileManager.__init__(FileManager)
                     fc = FileManager.readFile(FileManager, enterUrl)
                     emailsToReturn = self.returnTenEmails(self, p, fc)
                     return emailsToReturn
                 else:
                     return []
-
-
-
-            return 'YOU ENTERED A GOOD URL!!'
         else:
             # URL is not valid
             return 'YOU ENTERED A BAD URL!! please entered a url like itkamer.com'

@@ -9,5 +9,7 @@ class TestFileManager(TestCase):
     def testgetFiveFirstEmail(self):
         testurl = 'itkamer.com'
         FileManager.__init__(FileManager)
-        result = FileManager.getFiveFirstEmail(self, testurl)
+        result = FileManager.getFiveFirstEmail(FileManager, testurl)
         self.assertEqual(len(result), 0)
+
+    
