@@ -6,8 +6,8 @@ import time
 class FileManager():
 
     def __init__(self):
-        self.cacheFolderPath = r'C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\cache'
-        self.domainFile = r"C:\Users\euseb\Desktop\DEV\ProjetDjango\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
+        self.cacheFolderPath = r'C:\Users\nteguem roland\PLG\Generation_2_lead\example\cache'
+        self.domainFile = r"C:\Users\nteguem roland\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
 
     def WriteInFile(self,data,enterUrl,LastpageNbr, canSearch):
         os.chdir(self.cacheFolderPath)
@@ -70,39 +70,6 @@ class FileManager():
                 return fileContent
         except FileNotFoundError:
             pass
-
-    """def getFiveFirstEmail(self,fc,data):
-        result = 0
-        allEmails = fc[0:len(fc)-2]
-        if len(allEmails) >= 5:
-            for x_values, y_values in zip(allEmails[0:5], data[0:5]):
-                if sorted(x_values['email']) == sorted(y_values['email']):
-                    result = result + 1
-                    return result
-                else:
-                    result = 0
-                    return result
-        else:
-            for x_values, y_values in zip(allEmails[0:1], data[0:1]):
-                if sorted(x_values['email']) == sorted(y_values['email']):
-                    result = result + 1
-                    return result
-                else:
-                    result = 0
-                    return result
-
-
-        fiveFirstEmail =[]
-        os.chdir(self.cacheFolderPath)
-        try:
-            with open("{}.json".format(enterUrl), "r") as printer:
-                fdata = json.load(printer)
-                fiveFirstEmail = fdata[slice(0,5,1)]
-
-        except FileNotFoundError:
-            pass
-
-        return fiveFirstEmail'''"""
 
 
     def clearDirectory(self,timeOfLifeOfFile):
