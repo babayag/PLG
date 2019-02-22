@@ -4,6 +4,19 @@ from .FileManager import FileManager
 
 class JsonStructure():
     def getFiveFirstEmail(self,fc,data):
+        """for newDatas in data:
+                for email in allEmails:
+                    if newDatas['email'] == email['email']:
+                        if newDatas['url'] == email['url']:
+                            result = result + 1
+                            index = data.index(newDatas)
+                            print(len(data))
+                            print("type")
+                            print(index)
+                            var = data.pop(index)
+                            print(var)
+                        else:
+                            email['url'].append(newDatas['url'])"""
         result = 0
         allEmails = fc[0:len(fc)-2]
         
@@ -11,14 +24,8 @@ class JsonStructure():
             for newDatas in data:
                 for email in allEmails[0:5]:
                     if newDatas['email'] == email['email']:
-                        print(newDatas['url'])
-                        print(email['url'])
                         if newDatas['url'] == email['url']:
                             result = result + 1
-                    print(result)
-            print("==========")
-            print(len(data))
-            print("==========")
             if result == len(data):
                 return result
             else:
@@ -29,17 +36,10 @@ class JsonStructure():
                     if newDatas['email'] == email['email']:
                         if newDatas['url'] == email['url']:
                             result = result + 1
-                    print(result)
-            print(len(data))
             if result != 0:
                 return result
             else:
                 return 0
-        '''if result == 5:
-            return result
-        else:
-            result = 0
-            return result'''
     
     def JsonStructureReturn(self, Nemails, Nsources, enterUrl, LastpageNbr):
         self.LastpageNbr = LastpageNbr

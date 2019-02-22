@@ -20,8 +20,6 @@ class FileManager():
                     del fdata[-1]
 
                 with open("{}.json".format(enterUrl), 'w') as outfile:
-                    for item in data:
-                        fdata.append(item)
                     fdata.append({"LastpageNbr": LastpageNbr})
                     fdata.append({"canSearch": canSearch})
                     json.dump(fdata, outfile)
