@@ -8,7 +8,6 @@ urlpatterns = [
     path('', views.LeadListCreate.as_view()),
     path('<int:pk>/', views.DetailLead.as_view()),
     path('share', views.ShareView.as_view()),
-    path('getDomains', views.ReturnDomainNames.as_view()),
     path('testSharing', views.TestSharingView.as_view()),
     path('updateJsonFile', views.UpdateJsonFile.as_view()),
 ]

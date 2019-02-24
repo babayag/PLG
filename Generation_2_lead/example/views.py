@@ -1,7 +1,6 @@
 
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.views import APIView
-from .FileManager import FileManager
 
 from .models import Lead
 from .serializers import LeadSerializer
@@ -30,7 +29,7 @@ class TestSharingView(APIView):
         enterUrl = request.data.get('url', None)
         p = request.data.get('p', None)
         Email.__init__(Email)
-        finalData = Email.main(Email, enterUrl, p)# p = nomber of email to back
+        finalData = Email.main(Email, enterUrl, p)# p = number of email to back
         Jsonfinal = {"data": finalData}
 
         return Response(Jsonfinal)
@@ -50,9 +49,4 @@ class UpdateJsonFile(APIView):
             response = False
         return Response(response)
 
-class ReturnDomainNames(APIView):
-    def post(self, request):
-        FileManager.__init__(FileManager)
-        domains = FileManager.returnDomainNames(FileManager)
-        return Response(domains)
 
