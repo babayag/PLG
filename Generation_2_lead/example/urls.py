@@ -10,5 +10,6 @@ urlpatterns = [
     path('share', views.ShareView.as_view()),
     path('testSharing', views.TestSharingView.as_view()),
     path('updateJsonFile', views.UpdateJsonFile.as_view()),
+    path('downloadEmails', views.DownloadEmailInCsv.as_view()),
 ]
 

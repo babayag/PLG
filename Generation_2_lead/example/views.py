@@ -47,4 +47,10 @@ class UpdateJsonFile(APIView):
             response = False
         return Response(response)
 
-
+class DownloadEmailInCsv(APIView):
+    def Get(self, request):
+        enterUrl = request.data.get('url', None)
+        Email.__init__(Email)
+        emailsAnsSources = Email.DownloadEmails(Email, enterUrl)
+        Data = {'data': emailsAnsSources}
+        return Data
