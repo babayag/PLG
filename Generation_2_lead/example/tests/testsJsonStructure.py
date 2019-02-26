@@ -15,9 +15,9 @@ class Test(TestCase):
        email1 = ["contact@paness-iiht.com"]
        source1 = ["https://docs.google.com"]
        enterUrl1 = "paness-iiht.com"
-       lastPageNumber1 = 10
+       lastPageNumber1 = 50
        #finalData1 = [{'email': 'contact@paness-iiht.com', 'url': ['https://docs.google.com']}]
-       finalData1 = False
+       finalData1 = True
 
        result = JsonStructure.JsonStructureReturn(JsonStructure, email1, source1, enterUrl1, lastPageNumber1)
        self.assertEquals(result, finalData1)

@@ -46,6 +46,9 @@ class JsonStructure():
                 print(result)
                 return result
 
+
+
+
     def JsonStructureReturn(self, Nemails, Nsources, enterUrl, LastpageNbr):
         self.LastpageNbr = LastpageNbr
         emails = []

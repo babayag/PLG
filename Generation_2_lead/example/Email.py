@@ -96,8 +96,10 @@ class Email():
         else:
             # URL is not valid
             return 'YOU ENTERED A BAD URL!! please entered a url like itkamer.com'
+            
 
     def getEmail(self, urls,enterUrl):
+
         Source.__init__(Source)
         with PoolExecutor(max_workers=7) as executor:
             for _ in executor.map(BingSearch.initialSearch, urls[0]):
