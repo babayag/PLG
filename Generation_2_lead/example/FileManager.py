@@ -9,7 +9,7 @@ class FileManager():
         self.cacheFolderPath = r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache'
         self.domainFile = r"E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
 
-    def WriteInFile(self,data,enterUrl,LastpageNbr, canSearch):
+    def WriteInFile(self, data, enterUrl, LastpageNbr, canSearch):
         os.chdir(self.cacheFolderPath)
         if self.verifyIfFileExist(self,enterUrl):
             fdata = []
@@ -22,7 +22,8 @@ class FileManager():
 
                 with open("{}.json".format(enterUrl), 'w') as outfile:
                     for item in data:
-                        fdata.append(item)
+                        if item not in fdata:
+                           fdata.append(item)
                     fdata.append({"LastpageNbr": LastpageNbr})
                     fdata.append({"canSearch": canSearch})
                     json.dump(fdata, outfile)
@@ -74,7 +75,27 @@ class FileManager():
         except FileNotFoundError:
             pass
 
-    def getFiveFirstEmail(self,enterUrl):
+    """def getFiveFirstEmail(self,fc,data):
+        result = 0
+        allEmails = fc[0:len(fc)-2]
+        if len(allEmails) >= 5:
+            for x_values, y_values in zip(allEmails[0:5], data[0:5]):
+                if sorted(x_values['email']) == sorted(y_values['email']):
+                    result = result + 1
+                    return result
+                else:
+                    result = 0
+                    return result
+        else:
+            for x_values, y_values in zip(allEmails[0:1], data[0:1]):
+                if sorted(x_values['email']) == sorted(y_values['email']):
+                    result = result + 1
+                    return result
+                else:
+                    result = 0
+                    return result
+
+
         fiveFirstEmail =[]
         os.chdir(self.cacheFolderPath)
         try:
@@ -85,7 +106,7 @@ class FileManager():
         except FileNotFoundError:
             pass
 
-        return fiveFirstEmail
+        return fiveFirstEmail'''"""
 
 
     def clearDirectory(self,timeOfLifeOfFile):
@@ -116,9 +137,9 @@ class FileManager():
             with open("{}.json".format(enterUrl), 'r') as outfile:
                 fdata = json.load(outfile)
                 del fdata[-1]
+                #print(fdata)
             with open("{}.json".format(enterUrl), 'w') as outfile:
                 fdata.append({"canSearch": False})
                 json.dump(fdata, outfile)
-                return True
         except FileNotFoundError:
             pass

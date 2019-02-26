@@ -24,12 +24,11 @@ class ShareView(APIView):
     permission_classes = []
 
 
-class TestSharingView(APIView):
+class TestSharingView(APIView): 
     def post(self, request):
         enterUrl = request.data.get('url', None)
         p = request.data.get('p', None)
-        Email.__init__(Email)
-        finalData = Email.main(Email, enterUrl, p)# p = number of email to back
+        finalData = Email.main(Email, enterUrl, p)# p = nomber of email to back
         Jsonfinal = {"data": finalData}
 
         return Response(Jsonfinal)
@@ -40,7 +39,6 @@ class UpdateJsonFile(APIView):
     def post(self, request):
         response = False
         enterUrl = request.data.get('url', None)
-        Email.__init__(Email)
         finalData = Email.main(Email, enterUrl)
         Jsonfinal = {"data": finalData}
         if len(Jsonfinal) != 0:
