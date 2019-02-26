@@ -25,7 +25,7 @@ SECRET_KEY = '^&t3gh&dfqr-)3z@eu+s+1+c4thall6rh3(hk&w_n9n)e=z%bz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['41.205.23.64', '41.205.23.64:8000', 'http://localhost:3000', '47.99.121.32', '127.0.0.1']
+ALLOWED_HOSTS = ['41.205.23.64', '41.205.23.64:8000', 'localhost:3000', '47.99.121.32', '127.0.0.1']
 
 
 
@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',  # new
     'example',
+    'djoser',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -62,7 +63,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',
+    'localhost:3000',
     '41.205.23.64:8080'
 )
 
