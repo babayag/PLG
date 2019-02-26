@@ -10,11 +10,6 @@ from .FileManager import FileManager
 
 class Email():
 
-    # def __init__(self):
-    #     self.emails = []
-    #     self.sources = []
-    #     self.AllData = []
-
     def returnTenEmails(self, p, fileContent):
         result = []
         allEmails = fileContent[0:len(fileContent)-2]
