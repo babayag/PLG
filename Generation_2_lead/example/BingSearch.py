@@ -1,25 +1,52 @@
 import http.client
 import socket
 import re
-
-
+import urllib
+from urllib.parse import urlparse
 class BingSearch():
 
     def UrlValidation(self,myUrl):
 
         regex = re.compile(
+            r'^(?:http|ftp)s?://|'
             r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+[A-Z]{2,6}\.?|'  # domain...
-            r'localhost|'  # localhost...
             r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})'  # ...or ip
             r'(?::\d+)?'  # optional port
             r'(?:/?|[/?]\S+)$', re.IGNORECASE)
 
         if (re.match(regex, myUrl) is not None ):
-
             return True
         else:
            return False
 
+    def extractGoodDomain(self, enterUrl):
+        """domain = urlparse(enterUrl)
+        print(domain.netloc)
+        return domain.hostname"""
+        #domainSplited = domain.hostname.split('.')
+        #if len(domainSplited) > 2:
+            #puredomain = domainSplited[1] + "." + domainSplited[2]
+            #return puredomain
+            
+        #else:
+            #puredomain = domainSplited[0] + "." + domainSplited[1]
+            #return puredomain
+        if "http://" in enterUrl:
+            url = enterUrl[len("http://"):len(enterUrl)]
+            if "www." in url:
+                return  url[len("www."):len(url)]
+            else:
+                return url
+        elif "https://" in enterUrl:
+            url = enterUrl[len("https://"):len(enterUrl)]
+            if "www." in url:
+                return  url[len("www."):len(url)]
+            else:
+                return url
+        elif "www." in enterUrl:
+            return enterUrl[len("www."):len(enterUrl)]
+        else:
+            return enterUrl
 
     def initialSearch(myUrl):
 
