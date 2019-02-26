@@ -9,19 +9,21 @@ class FileManager():
         self.cacheFolderPath = r'E:\paness IIHT\M2\project\Nouveau dossier\PLG\Generation_2_lead\example\cache'
         self.domainFile = r"E:\paness IIHT\M2\project\Nouveau dossier\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
 
-    def WriteInFile(self,data,enterUrl,LastpageNbr, canSearch):
+    def WriteInFile(self, data, enterUrl, LastpageNbr, canSearch):
         os.chdir(self.cacheFolderPath)
         if self.verifyIfFileExist(self,enterUrl):
             fdata = []
             try:
                 with open("{}.json".format(enterUrl), 'r') as outfile:
                     fdata = json.load(outfile)
+                    #delete the two last element of the list which are LastpageNbr and canSearch
                     del fdata[-1]
                     del fdata[-1]
 
                 with open("{}.json".format(enterUrl), 'w') as outfile:
                     for item in data:
-                        fdata.append(item)
+                        if item not in fdata:
+                           fdata.append(item)
                     fdata.append({"LastpageNbr": LastpageNbr})
                     fdata.append({"canSearch": canSearch})
                     json.dump(fdata, outfile)
@@ -66,7 +68,7 @@ class FileManager():
             pass
 
     def readFile(self, enterUrl):
-        #cette methode a pour but d'ouvrir un fichier et de retourner son contenu
+        #open the folder and return its contents
         os.chdir(self.cacheFolderPath)
         try:
             with open("{}.json".format(enterUrl), "r") as printer:
@@ -129,29 +131,6 @@ class FileManager():
             timeOfEachFile)) if timeOfEachFile else 120  # if _time_list is empty, set sleep time as 120 seconds, else calculate it based on the oldest file creation time
         time.sleep(_sleep_time)
 
-
-    def storeDomain(self,enterUrl):
-        domainName = []
-        # for each file in the folder"
-        cacheFolder = os.listdir(self.cacheFolderPath)
-        for file in cacheFolder:
-
-            if file not in self.domainFile:
-                domainName.append(file)
-        url = (enterUrl + ".json")
-        if url not in domainName:
-            domainName.append(url)
-        with open(self.domainFile, 'w') as outfile:
-            outfile.write("[")
-            for item in domainName:
-                outfile.write(item +",")
-            outfile.write("]")
-
-    """def returnDomainNames(self):
-
-        with open(self.domainFile, 'r') as outfile:
-            domain = outfile.read()
-        return domain"""
 
     def updateCanSearch(self,enterUrl):
         os.chdir(self.cacheFolderPath)

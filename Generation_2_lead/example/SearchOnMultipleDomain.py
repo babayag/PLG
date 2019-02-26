@@ -9,7 +9,11 @@ class SearchOnMultipleDomain():
     def verifyUrlAndSearchEmail(self,domains):
         ResultForAllDomain = []
         page = 500
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> e44aeee6495fd204e8b1d7c13c08b0a63910ec7c
         for i in domains:
             if BingSearch.UrlValidation(BingSearch,i):
                 #goodUrl = BingSearch.extractGoodDomain(BingSearch,i)
