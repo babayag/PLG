@@ -10,11 +10,6 @@ from .FileManager import FileManager
 
 class Email():
 
-    def __init__(self):
-        self.emails = []
-        self.sources = []
-        self.AllData = []
-
     def returnTenEmails(self, p, fileContent):
         result = []
         allEmails = fileContent[0:len(fileContent)-2]
@@ -71,11 +66,12 @@ class Email():
                 if len(emailsToReturn[0]) == 10:
                     return emailsToReturn
                 else:
-                    if fc[2] == False:
+                    if fc[-1]['canSearch'] == False:
                         #impossible to find new emails on bing
                         #print("impossible to find new emails on bing 1")
                         emailsToReturn[2] = False # remove the button see more of the view
-                        print(1)
+                        
+                        print("False ljkjl;k Maassa")
                         return emailsToReturn
                     else:
                         #possible to find new emails on bing
@@ -97,8 +93,7 @@ class Email():
                             emailsToReturn = self.returnTenEmails(self, p, fc)
                             return emailsToReturn
             else: 
-                # File is not exist
-                #print("File is not exist")
+                # File does not exist
                 
                 urls = BingSearch.nbrPage(BingSearch, pureUrl, None)
                 scrapedEmail = Email.getEmail(Email, urls,pureUrl)
@@ -113,16 +108,19 @@ class Email():
                     return []
         else:
             # URL is not valid
-            return 'YOU ENTERED A BAD URL!! please entered a url like itkamer.com'
+            return 'YOU ENTERED A BAD URL!! please enter a url like itkamer.com or wwww.itkamer.com or https://themiddlefingerproject.org'
 
     def getEmail(self, urls,pureUrl):
+        emails = []
+        sources = []
         Source.__init__(Source)
         with PoolExecutor(max_workers=7) as executor:
+            print("Workers")
             for _ in executor.map(BingSearch.initialSearch, urls[0]):
                 soup = BeautifulSoup(_, features="html.parser")
                 lipath = soup.findAll("li", {"class": "b_algo"})
                 li_number = 0
-
+                print(li_number)
                 while True:
                     try:
                         litext = lipath[li_number].text
@@ -136,13 +134,16 @@ class Email():
                             if searchEmails:
                                 src = Source.search(Source, li_number, lipath)
                                 for email in searchEmails:
+                                   
                                     # add email in the emails list: return an object oy type NoneType
-                                    self.emails.append(email)
-                                    self.sources = Source.appendSource(Source, src)
+                                    emails.append(email)
+                                    
+                                    sources = Source.appendSource(Source, src)
+                                    
                         li_number = li_number + 1
                     except:
                         break
 
-        datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, self.emails, self.sources, pureUrl, urls[1])
+        datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, emails, sources, pureUrl, urls[1])
 
         return datasStructured
