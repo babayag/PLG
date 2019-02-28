@@ -147,3 +147,18 @@ class Email():
         datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, emails, sources, pureUrl, urls[1])
 
         return datasStructured
+    
+    def verifyUrlAndSearchEmail(self,Domain):
+       #result for all domain return
+        resultforAllDomain = []
+        for item in Domain:
+            if BingSearch.UrlValidation(BingSearch,item):
+               goodurl = BingSearch.extractGoodDomain(BingSearch,item)
+               FileManager.__init__(FileManager)
+               if FileManager.verifyIfFileExist(FileManager,goodurl):
+                  fileread = FileManager.readFile(FileManager,goodurl)
+               else:
+                   url = BingSearch.nbrPage(BingSearch,goodurl,page)
+                   EmailandSource = Email.getEmail(Email,url,goodurl)
+                   structureEmailandSource = JsonStructure.JsonStructureReturn(JsonStructure,EmailandSource[0],EmailandSource[1])
+
