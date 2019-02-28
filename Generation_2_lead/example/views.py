@@ -8,6 +8,7 @@ from rest_framework import generics
 from rest_framework.response import Response
 
 from .Email import Email
+from .GenerateValidEmail import GenerateValidEmail
 
 # Create your views here.
 
@@ -48,9 +49,22 @@ class UpdateJsonFile(APIView):
         return Response(response)
 
 class DownloadEmailInCsv(APIView):
-    def Get(self, request):
+    def post(self, request):
         enterUrl = request.data.get('url', None)
         Email.__init__(Email)
         emailsAnsSources = Email.DownloadEmails(Email, enterUrl)
         Data = {'data': emailsAnsSources}
-        return Data
+        return Response(Data)
+
+class CreateEmailView(APIView): 
+    def post(self, request):
+        firstname = request.data.get('firstname', None)
+        lastname = request.data.get('lastname', None)
+        domain = request.data.get('domain', None)
+          
+        # finalData = Email.main(Email, enterUrl, p)# p = nomber of email to back
+        # Jsonfinal = {"data": finalData}
+
+        validEmails = GenerateValidEmail.returnValidEmail(GenerateValidEmail,firstname,lastname,domain)
+
+        return Response(validEmails)
