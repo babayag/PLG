@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-
+import datetime
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -34,7 +34,6 @@ ALLOWED_HOSTS = ['41.205.23.64', '41.205.23.64:8000', 'localhost:3000', '47.99.1
 INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',  # new
-    'example',
     'djoser',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,12 +41,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'example',
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ],
 }
 
 MIDDLEWARE = [
@@ -64,7 +67,8 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
-    '41.205.23.64:8080'
+    '41.205.23.64:8080',
+    '127.0.0.1:8000',
 )
 
 ROOT_URLCONF = 'Generation_2_lead.urls'
@@ -88,7 +92,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Generation_2_lead.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
@@ -134,6 +137,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+#json web token lifetime expire
+
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=15),
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
@@ -143,3 +151,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
    os.path.join(BASE_DIR, 'frontend', 'build', 'static'),
 ]
+
+AUTH_USER_MODEL = 'example.SpaUser'
