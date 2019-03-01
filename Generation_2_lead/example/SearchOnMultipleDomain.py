@@ -1,28 +1,27 @@
 from .BingSearch import BingSearch
 from .Email import Email
 from .JsonStructure import JsonStructure
-from .FileManager import FileManager
 
 class SearchOnMultipleDomain():
 
 
     def verifyUrlAndSearchEmail(self,domains):
-        ResultForAllDomain = []
-        page = 500
- 
+        datasStructured = []
         for i in domains:
+            #if Url respect Url Patern
             if BingSearch.UrlValidation(BingSearch,i):
-                #goodUrl = BingSearch.extractGoodDomain(BingSearch,i)
-                FileManager.__init__(FileManager)
-                if FileManager.verifyIfFileExist() == True:
-
-                    fileContent = FileManager.readFile(FileManager,i)
-                    return fileContent
-
-                else:
-
-                    url = BingSearch.nbrPage(BingSearch,page)
-                    EmailSource = Email.getEmail(Email,url,enterUrl)
-                    data = JsonStructure.JsonStructureReturn(JsonStructure,EmailSource[0],EmailSource[1],enterUrl)
+                #extract good domaine from the enterUrl
+                goodUrl = BingSearch.extractGoodDomain(BingSearch,i)
+                #Browse 500 results and return searchUrl
+                url = BingSearch.browse500Pages(BingSearch, goodUrl)
+                emailSource = Email.getEmail(Email, url, goodUrl)
+                datasStructured.append(JsonStructure.StructureMultipleDomains(JsonStructure, emailSource[0], emailSource[1], goodUrl))
             else:
-                return 'YOU ENTERED A BAD URL ! enter Url like itikamer.com'
+                #if url is not valid  return empty table
+                DomainEmailAndUrl = {
+                    "Domain": i,
+                    # set data list content to concern attribut
+                    "concern": []
+                }
+                datasStructured.append(DomainEmailAndUrl)
+        return datasStructured

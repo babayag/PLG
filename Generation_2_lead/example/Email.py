@@ -10,30 +10,20 @@ from .FileManager import FileManager
 
 class Email():
 
-    # def __init__(self):
-    #     self.emails = []
-    #     self.sources = []
-    #     self.AllData = []
 
     def returnTenEmails(self, p, fileContent):
         result = []
         allEmails = fileContent[0:len(fileContent)-2]
-        #print("eusebio")
-        #print(len(allEmails))
         p = int(p)
         if len(allEmails[p:]) >= 10:
             emailsToReturn = allEmails[p:(p+10)]
             result.append(emailsToReturn)
             p += len(emailsToReturn)
-            #print("eusebio2")
-            #print(len(emailsToReturn))
             result.append(p)
             result.append(True)
             return result
         else:
             emailsToReturn = allEmails[p:]
-            #print('eusebio3')
-            #print(len(emailsToReturn))
             result.append(emailsToReturn)
             p += len(emailsToReturn)
             result.append(p)
@@ -73,10 +63,8 @@ class Email():
                 else:
                     if fc[-1]['canSearch'] == False:
                         #impossible to find new emails on bing
-                        #print("impossible to find new emails on bing 1")
                         emailsToReturn[2] = False # remove the button see more of the view
-                        
-                        print("False ljkjl;k Maassa")
+
                         return emailsToReturn
                     else:
                         #possible to find new emails on bing
@@ -86,13 +74,10 @@ class Email():
                         if scrapedEmail == False:
                             # file has been not updated
                             #print("file has been not updated")
-                            print(2)
                             emailsToReturn[2] = False # remove the button see more of the view
                             return  emailsToReturn
                         else:
                             # file has been updated
-                            #print('file has been updated')
-                            print(3)
                             FileManager.__init__(FileManager)
                             fc = FileManager.readFile(FileManager, pureUrl)
                             emailsToReturn = self.returnTenEmails(self, p, fc)
@@ -103,7 +88,6 @@ class Email():
                 urls = BingSearch.nbrPage(BingSearch, pureUrl, None)
                 scrapedEmail = Email.getEmail(Email, urls,pureUrl)
                 if scrapedEmail == True:
-                    print(4)
                     FileManager.__init__(FileManager)
                     fc = FileManager.readFile(FileManager, pureUrl)
                     emailsToReturn = self.returnTenEmails(self, p, fc)
@@ -118,37 +102,70 @@ class Email():
     def getEmail(self, urls,pureUrl):
         emails = []
         sources = []
+        dataToReturn = []
         Source.__init__(Source)
         with PoolExecutor(max_workers=7) as executor:
             print("Workers")
-            for _ in executor.map(BingSearch.initialSearch, urls[0]):
-                soup = BeautifulSoup(_, features="html.parser")
-                lipath = soup.findAll("li", {"class": "b_algo"})
-                li_number = 0
-                print(li_number)
-                while True:
-                    try:
-                        litext = lipath[li_number].text
-                        # for line in the drivertextclear
-                        for line in litext.splitlines():
-                            # search all email in each line, return the objet searchNumbers of type list
+            if type(urls[0]) != str:
+                for _ in executor.map(BingSearch.initialSearch, urls[0]):
+                    soup = BeautifulSoup(_, features="html.parser")
+                    lipath = soup.findAll("li", {"class": "b_algo"})
+                    li_number = 0
+                    while True:
+                        try:
+                            litext = lipath[li_number].text
+                            # for line in the drivertextclear
+                            for line in litext.splitlines():
+                                # search all email in each line, return the objet searchNumbers of type list
 
-                            searchEmails = re.findall(r"[a-zA-Z]+[\.\-]?\w*[\.\-]?\w+\.?\w*\@{}".format(pureUrl), line,flags=re.MULTILINE)
-                            # for email in email_1 list
+                                searchEmails = re.findall(r"[a-zA-Z]+[\.\-]?\w*[\.\-]?\w+\.?\w*\@{}".format(pureUrl), line,flags=re.MULTILINE)
+                                # for email in email_1 list
 
-                            if searchEmails:
-                                src = Source.search(Source, li_number, lipath)
-                                for email in searchEmails:
-                                   
-                                    # add email in the emails list: return an object oy type NoneType
-                                    emails.append(email)
-                                    
-                                    sources = Source.appendSource(Source, src)
-                                    
-                        li_number = li_number + 1
-                    except:
-                        break
+                                if searchEmails:
+                                    src = Source.search(Source, li_number, lipath)
+                                    for email in searchEmails:
 
-        datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, emails, sources, pureUrl, urls[1])
+                                        # add email in the emails list: return an object oy type NoneType
+                                        emails.append(email)
+                                        sources = Source.appendSource(Source, src)
 
-        return datasStructured
+                            li_number = li_number + 1
+                        except:
+                            break
+
+                datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, emails, sources, pureUrl, urls[1])
+                print(datasStructured)
+                return datasStructured
+
+            else:
+
+                for _ in executor.map(BingSearch.initialSearch, urls):
+                    soup = BeautifulSoup(_, features="html.parser")
+                    lipath = soup.findAll("li", {"class": "b_algo"})
+                    li_number = 0
+                    while True:
+                        try:
+                            litext = lipath[li_number].text
+                            # for line in the drivertextclear
+                            for line in litext.splitlines():
+                                # search all email in each line, return the objet searchNumbers of type list
+
+                                searchEmails = re.findall(r"[a-zA-Z]+[\.\-]?\w*[\.\-]?\w+\.?\w*\@{}".format(pureUrl),
+                                                          line, flags=re.MULTILINE)
+                                # for email in email_1 list
+
+                                if searchEmails:
+                                    src = Source.search(Source, li_number, lipath)
+                                    for email in searchEmails:
+                                        # add email in the emails list: return an object oy type NoneType
+                                        emails.append(email)
+                                        #print(emails)
+                                        sources = Source.appendSource(Source, src)
+                            li_number = li_number + 1
+
+                        except:
+                            break
+
+                emailsAndSources =[emails, sources]
+
+                return emailsAndSources
