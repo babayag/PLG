@@ -63,7 +63,6 @@ class Email():
                 else:
                     if fc[-1]['canSearch'] == False:
                         #impossible to find new emails on bing
-                        #print("impossible to find new emails on bing 1")
                         emailsToReturn[2] = False # remove the button see more of the view
 
                         return emailsToReturn
@@ -79,8 +78,6 @@ class Email():
                             return  emailsToReturn
                         else:
                             # file has been updated
-                            #print('file has been updated')
-                            print(3)
                             FileManager.__init__(FileManager)
                             fc = FileManager.readFile(FileManager, pureUrl)
                             emailsToReturn = self.returnTenEmails(self, p, fc)
@@ -137,6 +134,7 @@ class Email():
                             break
 
                 datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, emails, sources, pureUrl, urls[1])
+                print(datasStructured)
                 return datasStructured
 
             else:

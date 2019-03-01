@@ -9,6 +9,7 @@ from rest_framework.response import Response
 
 from .SearchOnMultipleDomain import SearchOnMultipleDomain
 from .Email import Email
+from .GenerateValidEmail import GenerateValidEmail
 
 # Create your views here.
 
@@ -59,15 +60,20 @@ class DownloadEmailInCsv(APIView):
 
 class SearchMultipledomain(APIView):
     def post(self, request):
-        enterUrl1 = request.data.get('url1', None)
-        enterUrl2 = request.data.get('url2', None)
-        enterUrl3 = request.data.get('url3', None)
-        enterUrl4 = request.data.get('url4', None)
-        enterUrl5 = request.data.get('url5', None)
-        enterUrl6 = request.data.get('url6', None)
-        enterUrl7 = request.data.get('url7', None)
-        Domains = [enterUrl1,enterUrl2,enterUrl3,enterUrl4, enterUrl5,enterUrl6,enterUrl7 ]
-
+        Domains1 = request.data.get('domains1', None)
+        Domains2 = request.data.get('domains2', None)
+        Domains = [Domains1,Domains2]
+       
         moreDomain = SearchOnMultipleDomain.verifyUrlAndSearchEmail(SearchOnMultipleDomain,Domains)
         Datamore = {'data': moreDomain}
         return Response(Datamore)
+        
+class CreateEmailView(APIView): 
+    def post(self, request):
+        firstname = request.data.get('firstname', None)
+        lastname = request.data.get('lastname', None)
+        domain = request.data.get('domain', None)
+          
+        validEmails = GenerateValidEmail.returnValidEmail(GenerateValidEmail,firstname,lastname,domain)
+
+        return Response(validEmails)

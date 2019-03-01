@@ -7,7 +7,6 @@ class FileManager():
 
     def __init__(self):
         self.cacheFolderPath = r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache'
-        self.domainFile = r"E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
 
     def WriteInFile(self, data, enterUrl, LastpageNbr, canSearch):
         os.chdir(self.cacheFolderPath)
