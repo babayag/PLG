@@ -7,6 +7,7 @@ from .serializers import LeadSerializer
 from rest_framework import generics
 from rest_framework.response import Response
 
+from .SearchOnMultipleDomain import SearchOnMultipleDomain
 from .Email import Email
 
 # Create your views here.
@@ -40,6 +41,7 @@ class UpdateJsonFile(APIView):
         response = False
         enterUrl = request.data.get('url', None)
         finalData = Email.main(Email, enterUrl)
+        print(finalData)
         Jsonfinal = {"data": finalData}
         if len(Jsonfinal) != 0:
             response = True
@@ -48,9 +50,24 @@ class UpdateJsonFile(APIView):
         return Response(response)
 
 class DownloadEmailInCsv(APIView):
-    def Get(self, request):
+    def post(self, request):
         enterUrl = request.data.get('url', None)
         Email.__init__(Email)
         emailsAnsSources = Email.DownloadEmails(Email, enterUrl)
         Data = {'data': emailsAnsSources}
-        return Data
+        return Response(Data)
+
+class SearchMultipledomain(APIView):
+    def post(self, request):
+        enterUrl1 = request.data.get('url1', None)
+        enterUrl2 = request.data.get('url2', None)
+        enterUrl3 = request.data.get('url3', None)
+        enterUrl4 = request.data.get('url4', None)
+        enterUrl5 = request.data.get('url5', None)
+        enterUrl6 = request.data.get('url6', None)
+        enterUrl7 = request.data.get('url7', None)
+        Domains = [enterUrl1,enterUrl2,enterUrl3,enterUrl4, enterUrl5,enterUrl6,enterUrl7 ]
+
+        moreDomain = SearchOnMultipleDomain.verifyUrlAndSearchEmail(SearchOnMultipleDomain,Domains)
+        Datamore = {'data': moreDomain}
+        return Response(Datamore)

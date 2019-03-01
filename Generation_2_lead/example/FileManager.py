@@ -75,38 +75,6 @@ class FileManager():
         except FileNotFoundError:
             pass
 
-    """def getFiveFirstEmail(self,fc,data):
-        result = 0
-        allEmails = fc[0:len(fc)-2]
-        if len(allEmails) >= 5:
-            for x_values, y_values in zip(allEmails[0:5], data[0:5]):
-                if sorted(x_values['email']) == sorted(y_values['email']):
-                    result = result + 1
-                    return result
-                else:
-                    result = 0
-                    return result
-        else:
-            for x_values, y_values in zip(allEmails[0:1], data[0:1]):
-                if sorted(x_values['email']) == sorted(y_values['email']):
-                    result = result + 1
-                    return result
-                else:
-                    result = 0
-                    return result
-
-
-        fiveFirstEmail =[]
-        os.chdir(self.cacheFolderPath)
-        try:
-            with open("{}.json".format(enterUrl), "r") as printer:
-                fdata = json.load(printer)
-                fiveFirstEmail = fdata[slice(0,5,1)]
-
-        except FileNotFoundError:
-            pass
-
-        return fiveFirstEmail'''"""
 
 
     def clearDirectory(self,timeOfLifeOfFile):
@@ -137,9 +105,10 @@ class FileManager():
             with open("{}.json".format(enterUrl), 'r') as outfile:
                 fdata = json.load(outfile)
                 del fdata[-1]
-                #print(fdata)
             with open("{}.json".format(enterUrl), 'w') as outfile:
                 fdata.append({"canSearch": False})
                 json.dump(fdata, outfile)
         except FileNotFoundError:
             pass
+
+
