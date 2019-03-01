@@ -4,29 +4,37 @@ from .FileManager import FileManager
 
 class JsonStructure():
     def getFiveFirstEmail(self,fc,data):
-        """for newDatas in data:
-                for email in allEmails:
-                    if newDatas['email'] == email['email']:
-                        if newDatas['url'] == email['url']:
-                            result = result + 1
-                            index = data.index(newDatas)
-                            print(len(data))
-                            print("type")
-                            print(index)
-                            var = data.pop(index)
-                            print(var)
-                        else:
-                            email['url'].append(newDatas['url'])"""
         result = 0
         allEmails = fc[0:len(fc)-2]
         
         if len(allEmails) >= 5:
+            print("==============")
+            print(len(data))
+            print("==============")
             for newDatas in data:
-                for email in allEmails[0:5]:
+                index = 0
+                for email in allEmails:
                     if newDatas['email'] == email['email']:
-                        if newDatas['url'] == email['url']:
-                            result = result + 1
-            if result == len(data):
+                        if newDatas['url'] != email['url']:
+                            # url are #
+                            for myUrl in newDatas['url']:
+                                email['url'].append(myUrl)
+                                result = result + 1
+                            index = data.index(newDatas)
+                            del data[index]
+                        else:
+                            # URL are same
+                            if newDatas['url'][0] == email['url'][0]:
+                                result = result + 1
+                            index = data.index(newDatas)
+                            del data[index]
+                    #del data[index]
+            print("==========")
+            print("Value of result")
+            print(result)
+            print("==========")
+
+            if result != 0:
                 return result
             else:
                 return 0
@@ -36,6 +44,8 @@ class JsonStructure():
                     if newDatas['email'] == email['email']:
                         if newDatas['url'] == email['url']:
                             result = result + 1
+                    print(result)
+            print(len(data))
             if result != 0:
                 return result
             else:

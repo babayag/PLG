@@ -71,11 +71,12 @@ class Email():
                 if len(emailsToReturn[0]) == 10:
                     return emailsToReturn
                 else:
-                    if fc[2] == False:
+                    if fc[-1]["canSearch"] == False:
                         #impossible to find new emails on bing
                         #print("impossible to find new emails on bing 1")
+                        #emailsToReturn = self.returnTenEmails(self, p, fc)
+                        print("je suis un portugais et mon nom est EUSEBIO")
                         emailsToReturn[2] = False # remove the button see more of the view
-                        print(1)
                         return emailsToReturn
                     else:
                         #possible to find new emails on bing
@@ -85,13 +86,11 @@ class Email():
                         if scrapedEmail == False:
                             # file has been not updated
                             #print("file has been not updated")
-                            print(2)
                             emailsToReturn[2] = False # remove the button see more of the view
                             return  emailsToReturn
                         else:
                             # file has been updated
                             #print('file has been updated')
-                            print(3)
                             FileManager.__init__(FileManager)
                             fc = FileManager.readFile(FileManager, pureUrl)
                             emailsToReturn = self.returnTenEmails(self, p, fc)
@@ -103,7 +102,6 @@ class Email():
                 urls = BingSearch.nbrPage(BingSearch, pureUrl, None)
                 scrapedEmail = Email.getEmail(Email, urls,pureUrl)
                 if scrapedEmail == True:
-                    print(4)
                     FileManager.__init__(FileManager)
                     fc = FileManager.readFile(FileManager, pureUrl)
                     emailsToReturn = self.returnTenEmails(self, p, fc)
