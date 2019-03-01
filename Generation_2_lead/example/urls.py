@@ -9,6 +9,7 @@ urlpatterns = [
     path('auth/', include('djoser.urls.jwt')),
     path('<int:pk>/', views.DetailLead.as_view()),
     path('share', views.ShareView.as_view()),
+    path('getAllDomains', views.SearchMultipledomain.as_view()),
     path('testSharing', views.TestSharingView.as_view()),
     path('updateJsonFile', views.UpdateJsonFile.as_view()),
     path('downloadEmails', views.DownloadEmailInCsv.as_view()),
