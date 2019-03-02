@@ -7,6 +7,7 @@ from .serializers import LeadSerializer
 from rest_framework import generics
 from rest_framework.response import Response
 
+from .SearchOnMultipleDomain import SearchOnMultipleDomain
 from .Email import Email
 from .GenerateValidEmail import GenerateValidEmail
 
@@ -41,6 +42,7 @@ class UpdateJsonFile(APIView):
         response = False
         enterUrl = request.data.get('url', None)
         finalData = Email.main(Email, enterUrl)
+        print(finalData)
         Jsonfinal = {"data": finalData}
         if len(Jsonfinal) != 0:
             response = True
@@ -56,15 +58,22 @@ class DownloadEmailInCsv(APIView):
         Data = {'data': emailsAnsSources}
         return Response(Data)
 
+class SearchMultipledomain(APIView):
+    def post(self, request):
+        Domains1 = request.data.get('domains1', None)
+        Domains2 = request.data.get('domains2', None)
+        Domains = [Domains1,Domains2]
+       
+        moreDomain = SearchOnMultipleDomain.verifyUrlAndSearchEmail(SearchOnMultipleDomain,Domains)
+        Datamore = {'data': moreDomain}
+        return Response(Datamore)
+        
 class CreateEmailView(APIView): 
     def post(self, request):
         firstname = request.data.get('firstname', None)
         lastname = request.data.get('lastname', None)
         domain = request.data.get('domain', None)
           
-        # finalData = Email.main(Email, enterUrl, p)# p = nomber of email to back
-        # Jsonfinal = {"data": finalData}
-
         validEmails = GenerateValidEmail.returnValidEmail(GenerateValidEmail,firstname,lastname,domain)
 
         return Response(validEmails)

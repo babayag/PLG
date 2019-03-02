@@ -121,7 +121,6 @@ class GenerateValidEmail():
         validEmails = []
         debut = datetime.datetime.now()
         listOfEmails = self.generatePossibleMail(self,firstname,lastname,domainName)
-        print(listOfEmails)
         with PoolExecutor(max_workers=7) as executor:
                 for email in listOfEmails:
                     emails = self.verifyEmail(self,email)
@@ -130,8 +129,6 @@ class GenerateValidEmail():
                     else:
                         validEmails.append(email)
                     
-        fin = datetime.datetime.now()
-        print(fin - debut)
         if len(validEmails)> 0 :
             print("Final result : Valid mail")
             for mail in validEmails:
