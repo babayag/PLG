@@ -71,7 +71,7 @@ class Email():
                         #print("impossible to find new emails on bing 1")
                         emailsToReturn[2] = False # remove the button see more of the view
                         
-                        print("False ljkjl;k Maassa")
+                       # print("False ljkjl;k Maassa")
                         return emailsToReturn
                     else:
                         #possible to find new emails on bing
@@ -81,13 +81,13 @@ class Email():
                         if scrapedEmail == False:
                             # file has been not updated
                             #print("file has been not updated")
-                            print(2)
+                            #print(2)
                             emailsToReturn[2] = False # remove the button see more of the view
                             return  emailsToReturn
                         else:
                             # file has been updated
                             #print('file has been updated')
-                            print(3)
+                            #print(3)
                             FileManager.__init__(FileManager)
                             fc = FileManager.readFile(FileManager, pureUrl)
                             emailsToReturn = self.returnTenEmails(self, p, fc)
@@ -98,13 +98,13 @@ class Email():
                 urls = BingSearch.nbrPage(BingSearch, pureUrl, None)
                 scrapedEmail = Email.getEmail(Email, urls,pureUrl)
                 if scrapedEmail == True:
-                    print(4)
+                    #print(4)
                     FileManager.__init__(FileManager)
                     fc = FileManager.readFile(FileManager, pureUrl)
                     emailsToReturn = self.returnTenEmails(self, p, fc)
                     return emailsToReturn
                 else:
-                    print(5)
+                    #print(5)
                     return []
         else:
             # URL is not valid
@@ -120,7 +120,7 @@ class Email():
                 soup = BeautifulSoup(_, features="html.parser")
                 lipath = soup.findAll("li", {"class": "b_algo"})
                 li_number = 0
-                print(li_number)
+                #print(li_number)
                 while True:
                     try:
                         litext = lipath[li_number].text

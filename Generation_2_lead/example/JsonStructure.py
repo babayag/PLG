@@ -2,6 +2,7 @@ from .FileManager import FileManager
 
 class JsonStructure():
     def getFiveFirstEmail(self, fc, data):
+        print(fc)
         result = 0
         allEmails = fc[0:len(fc)-2]
         
@@ -9,14 +10,14 @@ class JsonStructure():
             for newDatas in data:
                 for email in allEmails[0:5]:
                     if newDatas['email'] == email['email']:
-                        print(newDatas['url'])
-                        print(email['url'])
+                        #print(newDatas['url'])
+                        #print(email['url'])
                         if newDatas['url'] == email['url']:
                             result = result + 1
-                    print(result)
-            print("==========")
-            print(len(data))
-            print("==========")
+                    #print(fc)
+            #print("==========")
+            #print(len(data))
+            #print("==========")
             if result == len(data):
                 return result
             else:
@@ -27,8 +28,8 @@ class JsonStructure():
                     if newDatas['email'] == email['email']:
                         if newDatas['url'] == email['url']:
                             result = result + 1
-                    print(result)
-            print(len(data))
+                    #print(result)
+           # print(len(data))
             if result != 0:
                 return result
             else:
@@ -40,6 +41,7 @@ class JsonStructure():
             return result'''
     
     def JsonStructureReturn(self, Nemails, Nsources, enterUrl, LastpageNbr):
+
         self.LastpageNbr = LastpageNbr
         emails = []
         data = []
@@ -48,8 +50,7 @@ class JsonStructure():
 
         newEmails = []
         newEmailSources = []
-        # print(Nemails) 
-        # print(Nsources)
+         
         for email, source in zip(Nemails, Nsources):
             allData.append("{} {}".format(email, source))
         # print(allData)
@@ -67,8 +68,7 @@ class JsonStructure():
             count = emails.count(mail)
             if mail not in newEmails:
                 newEmails.append(mail)
-                print(newEmails)
-                
+                #print(newEmails)
                 sourceWithoutDbl = []
                 for counter in emailSources[index:index + count]:
                     if counter not in sourceWithoutDbl:
@@ -83,22 +83,19 @@ class JsonStructure():
                 "url": newEmailSources[emailsCounter]
             }
             data.append(jsonReturn)
-            #print("Tshutsho")
-            #print(data)
-        #pagination
-        #fiveFirstEmailOfData = data[slice(0,5,1)]
+            
         FileManager.__init__(FileManager)
         counter = 0
         if FileManager.verifyIfFileExist(FileManager, enterUrl):
             fc = FileManager.readFile(FileManager,enterUrl)
             counter = self.getFiveFirstEmail(self, fc, data)
-        #fiveFirstEmailOfFile = FileManager.getFiveFirstEmail(FileManager, enterUrl)
         
+
         dataReturn = False
-        print("eusebio")
-        print(counter)
+        #print("eusebio")
+        #print(counter)
         if counter != 0:
-            print("to update")
+            #print("to update")
             FileManager.__init__(FileManager)
             #FileManager.updateCanSearch(FileManager, enterUrl)
             FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr, False)

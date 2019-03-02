@@ -17,11 +17,11 @@ class Test(TestCase):
        enterUrl1 = "paness-iiht.com"
        lastPageNumber1 = 50
        #finalData1 = [{'email': 'contact@paness-iiht.com', 'url': ['https://docs.google.com']}]
-       finalData1 = True
+       finalData1 = False
 
        result = JsonStructure.JsonStructureReturn(JsonStructure, email1, source1, enterUrl1, lastPageNumber1)
        self.assertEquals(result, finalData1)
-       print("test1")
+       
 
        """
        #one email one source
@@ -81,3 +81,5 @@ class Test(TestCase):
        source1 = ["https://cameroun.minajobs.net/emplois-stage-recrutement/4635", "https://cameroun.minajobs.net/emplois-stage-recrutement/4635/avis-de-recrutement-dun-agent-dentretien-%e2%80%93-coursier-paness-%e2%80%93-iiht-centre-d%e2%80%99excellence-numerique-at-paness-cabinet-de-conseil-formation-cameroun"]
 
        """
+
+    def test_getFiveFirstEmail(self):

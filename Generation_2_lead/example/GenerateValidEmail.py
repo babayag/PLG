@@ -78,6 +78,8 @@ class GenerateValidEmail():
         email3 =  "_"+name+"@"+domainName
         listOfEmails.append(email3)
 
+        return listOfEmails
+
     def generatePossibleMail(self,firstname,lastname,domainName):
         """
         Get first, last name and domain name, and return a list of possible mail
@@ -96,7 +98,7 @@ class GenerateValidEmail():
         return listOfEmails
 
     def verifyEmail(self,email):
-        key = '5c75657c99ec7'
+        key = '5c7a7118cfeb4'
         requestUrl = "https://api.debounce.io/v1/?api={0}&email={1}&append=false".format(key,email)
         request = requests.post(requestUrl)
         request = request.json()
@@ -105,16 +107,16 @@ class GenerateValidEmail():
         result = False
         for report in resultTuple:
             if report == 'Safe to Send':
-                result = email
+                result = True
             elif report == 'Risky':
-                result = email
+                result = True
             else:
                 pass
             
         return result
 
     def returnValidEmail(self,firstname,lastname,domainName):
-
+        
         self.verifyEntry(self,firstname,lastname,domainName)
         validEmails = []
         debut = datetime.datetime.now()
@@ -123,7 +125,7 @@ class GenerateValidEmail():
         with PoolExecutor(max_workers=7) as executor:
                 for email in listOfEmails:
                     emails = self.verifyEmail(self,email)
-                    if emails == False:
+                    if emails == False: 
                         pass
                     else:
                         validEmails.append(email)

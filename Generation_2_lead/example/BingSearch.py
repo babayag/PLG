@@ -69,7 +69,7 @@ class BingSearch():
     def nbrPage(self, enterUrl,nbrOfLastPage):
         liste = []
         lastN = 0
-        print(nbrOfLastPage)
+        #print(nbrOfLastPage)
 
         myUrl = "/search?q=%40{}&first=11".format(enterUrl)
         result = self.initialSearch(myUrl)
