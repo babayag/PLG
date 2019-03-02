@@ -96,11 +96,19 @@ class TestGetEmail(TestCase):
         print(result[1])
         self.assertEquals(result[1], resulttest)
 
-  def testDownloadEmails(self):
+    def testDownloadEmails(self):
         url = "https://www.itkamer.com"
         Email.__init__(Email)
         result = Email.DownloadEmails(Email,url)
         self.assertEqual(type(len(result)),int)
+
+
+    def testCityAndSources(self):
+        enterNiche = "dentist"
+        enterCity = "New York"
+        actualResult = Email.cityAndNiche(Email, enterNiche, enterCity)
+        espectResult = False
+        self.assertEqual(actualResult, espectResult)
 
 
 

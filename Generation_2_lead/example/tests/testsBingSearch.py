@@ -1,8 +1,8 @@
 from django.test import TestCase
 from ..FileManager import FileManager
+from ..Email import Email
 from ..BingSearch import BingSearch
 import re
-
 
 class TestBingSearch(TestCase):
 

@@ -10,10 +10,10 @@ from .FileManager import FileManager
 
 class Email():
 
-    def __init__(self):
-        self.emails = []
-        self.sources = []
-        self.AllData = []
+    # def __init__(self):
+    #     self.emails = []
+    #     self.sources = []
+    #     self.AllData = []
 
     def returnTenEmails(self, p, fileContent):
         result = []
@@ -56,6 +56,25 @@ class Email():
         else:
             return 'YOU ENTERED A BAD URL !!!'
 
+    def cityAndNiche(self, enterNiche, enterCity):
+        FileManager.__init__(FileManager)
+        enterNicheEnterCity = enterCity+'_'+enterNiche
+        if FileManager.verifyIfFileExist(FileManager, enterNicheEnterCity) == True:
+            # File exist
+            FileManager.__init__(FileManager)
+            fc = FileManager.readFile(self, enterNicheEnterCity);
+            emailToReturn = []
+            for domain in fc:
+                goodDomain = BingSearch.extractGoodDomain(BingSearch,domain)
+                urls = BingSearch.nbrPage(BingSearch, goodDomain, None)
+                emailsAndSources = Email.getEmail(Email, urls, domain)
+                datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, emailsAndSources[0], emailsAndSources[1], domain, urls[1])
+                emailToReturn.append(datasStructured)
+                print(emailToReturn)
+                return True
+        else:
+            return False
+
     def main(self, enterUrl, p):
         if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
             # URL is valid
@@ -71,19 +90,22 @@ class Email():
                 if len(emailsToReturn[0]) == 10:
                     return emailsToReturn
                 else:
-                    if fc[-1]["canSearch"] == False:
+                    if fc[-1]['canSearch'] == False:
                         #impossible to find new emails on bing
                         #print("impossible to find new emails on bing 1")
                         #emailsToReturn = self.returnTenEmails(self, p, fc)
                         print("je suis un portugais et mon nom est EUSEBIO")
                         emailsToReturn[2] = False # remove the button see more of the view
+                        
+                        print("False ljkjl;k Maassa")
                         return emailsToReturn
                     else:
                         #possible to find new emails on bing
                         #print("possible to find new emails on bing 2")
                         urls = BingSearch.nbrPage(BingSearch, pureUrl, nbrPage)
-                        scrapedEmail = Email.getEmail(Email, urls,pureUrl)
-                        if scrapedEmail == False:
+                        emailsAndSources = Email.getEmail(Email, urls,pureUrl)
+                        datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, emailsAndSources[0], emailsAndSources[1], pureUrl,urls[1])
+                        if datasStructured == False:
                             # file has been not updated
                             #print("file has been not updated")
                             emailsToReturn[2] = False # remove the button see more of the view
@@ -96,31 +118,35 @@ class Email():
                             emailsToReturn = self.returnTenEmails(self, p, fc)
                             return emailsToReturn
             else: 
-                # File is not exist
-                #print("File is not exist")
+                # File does not exist
                 
                 urls = BingSearch.nbrPage(BingSearch, pureUrl, None)
-                scrapedEmail = Email.getEmail(Email, urls,pureUrl)
-                if scrapedEmail == True:
+                emailsAndSources = Email.getEmail(Email, urls,pureUrl)
+                datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, emailsAndSources[0], emailsAndSources[1], pureUrl, urls[1])
+                if datasStructured == True:
                     FileManager.__init__(FileManager)
                     fc = FileManager.readFile(FileManager, pureUrl)
                     emailsToReturn = self.returnTenEmails(self, p, fc)
                     return emailsToReturn
                 else:
-                    print(5)
                     return []
         else:
             # URL is not valid
-            return 'YOU ENTERED A BAD URL!! please entered a url like itkamer.com'
+            return 'YOU ENTERED A BAD URL!! please enter a url like itkamer.com or wwww.itkamer.com or https://themiddlefingerproject.org'
+
+    
 
     def getEmail(self, urls,pureUrl):
+        emails = []
+        sources = []
         Source.__init__(Source)
         with PoolExecutor(max_workers=7) as executor:
+            print("Workers")
             for _ in executor.map(BingSearch.initialSearch, urls[0]):
                 soup = BeautifulSoup(_, features="html.parser")
                 lipath = soup.findAll("li", {"class": "b_algo"})
                 li_number = 0
-
+                print(li_number)
                 while True:
                     try:
                         litext = lipath[li_number].text
@@ -134,13 +160,15 @@ class Email():
                             if searchEmails:
                                 src = Source.search(Source, li_number, lipath)
                                 for email in searchEmails:
+                                   
                                     # add email in the emails list: return an object oy type NoneType
-                                    self.emails.append(email)
-                                    self.sources = Source.appendSource(Source, src)
+                                    emails.append(email)
+                                    
+                                    sources = Source.appendSource(Source, src)
+                                    
                         li_number = li_number + 1
                     except:
                         break
 
-        datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, self.emails, self.sources, pureUrl, urls[1])
-
-        return datasStructured
+        data = [emails, sources]
+        return data
