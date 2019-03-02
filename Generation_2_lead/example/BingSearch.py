@@ -20,33 +20,32 @@ class BingSearch():
            return False
 
     def extractGoodDomain(self, enterUrl):
-        """domain = urlparse(enterUrl)
-        print(domain.netloc)
-        return domain.hostname"""
-        #domainSplited = domain.hostname.split('.')
-        #if len(domainSplited) > 2:
-            #puredomain = domainSplited[1] + "." + domainSplited[2]
-            #return puredomain
+        goodDomain = enterUrl
+        if "://" in enterUrl:
+           splitenterUrl = enterUrl.split("://")
+           splitpoint = splitenterUrl[1].split(".")
+           if len(splitpoint) > 2:
+              splitextension = splitpoint[2].split('/')
+              goodDomain = splitpoint[1]+'.'+splitextension[0]
+              return goodDomain
+           else:
+              splitextension = splitpoint[1].split('/')
+              goodDomain = splitpoint[0]+'.'+splitextension[0]
+              return goodDomain
+
+        elif enterUrl.count('.') > 1:
             
-        #else:
-            #puredomain = domainSplited[0] + "." + domainSplited[1]
-            #return puredomain
-        if "http://" in enterUrl:
-            url = enterUrl[len("http://"):len(enterUrl)]
-            if "www." in url:
-                return  url[len("www."):len(url)]
-            else:
-                return url
-        elif "https://" in enterUrl:
-            url = enterUrl[len("https://"):len(enterUrl)]
-            if "www." in url:
-                return  url[len("www."):len(url)]
-            else:
-                return url
-        elif "www." in enterUrl:
-            return enterUrl[len("www."):len(enterUrl)]
+            splitpoint = enterUrl.split(".")
+            splitextension = splitpoint[2].split('/')
+            goodDomain = splitpoint[1]+'.'+splitextension[0]
+            return goodDomain
+        elif enterUrl.count('.') == 1:
+             splitpoint = enterUrl.split(".")
+             splitextension = splitpoint[1].split('/')
+             goodDomain = splitpoint[0]+'.'+splitextension[0]
+             return goodDomain
         else:
-            return enterUrl
+            return goodDomain
 
     def initialSearch(myUrl):
 

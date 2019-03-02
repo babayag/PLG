@@ -39,9 +39,12 @@ class TestBingSearch(TestCase):
 
     def testExtractGoodDomain(self):
         domainUrl1 = "http://www.google.com"
-        domainUrl2 = "https://www.google.com"
+        domainUrl2 = "httpsfg://www.google.com"
         domainUrl3 = "www.google.com"
-        domainUrl4 = "google.com"
+        domainUrl4 = "google.eusebio.com"
+        domainUrl5 = "http://google.com"
+        domainUrl6 = "https://www.google.io"
+        domainUrl7 = "https://us.google.io"
 
         expectedResult = "google.com"
         actualResult = BingSearch.extractGoodDomain(BingSearch, domainUrl2)
