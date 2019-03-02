@@ -6,8 +6,12 @@ import time
 class FileManager():
 
     def __init__(self):
+<<<<<<< HEAD
         self.cacheFolderPath =  r'C:\Users\nteguem roland\PLG/Generation_2_lead/example/cache'
         self.domainFile = r"C:\Users\nteguem roland\PLG/Generation_2_lead/example/DomainsName/Domain.txt"
+=======
+        self.cacheFolderPath = r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache'
+>>>>>>> dbbed91a13189a6503a2eb13eb1072b01921e002
 
     def WriteInFile(self, data, enterUrl, LastpageNbr, canSearch):
         os.chdir(self.cacheFolderPath)
@@ -75,6 +79,10 @@ class FileManager():
         except FileNotFoundError:
             pass
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> dbbed91a13189a6503a2eb13eb1072b01921e002
 
     def clearDirectory(self,timeOfLifeOfFile):
 
@@ -104,9 +112,10 @@ class FileManager():
             with open("{}.json".format(enterUrl), 'r') as outfile:
                 fdata = json.load(outfile)
                 del fdata[-1]
-                #print(fdata)
             with open("{}.json".format(enterUrl), 'w') as outfile:
                 fdata.append({"canSearch": False})
                 json.dump(fdata, outfile)
         except FileNotFoundError:
             pass
+
+
