@@ -56,7 +56,7 @@ class Email():
         else:
             return 'YOU ENTERED A BAD URL !!!'
 
-    def cityAndNiche(self, enterNiche, enterCity):
+    """def cityAndNiche(self, enterNiche, enterCity):
         FileManager.__init__(FileManager)
         enterNicheEnterCity = enterCity+'_'+enterNiche
         if FileManager.verifyIfFileExist(FileManager, enterNicheEnterCity) == True:
@@ -73,7 +73,7 @@ class Email():
                 print(emailToReturn)
                 return True
         else:
-            return False
+            return False"""
 
     def main(self, enterUrl, p):
         if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
