@@ -28,7 +28,14 @@ class TestsGenerateValidEmail(TestCase):
     def testgeneratePossibleMailWithTwoEntry(self):
       
         listemailgenerate = []
+        domainName = "itkamer.com"
+        lastname = "roland"
+        firstname = "nteguem"
         GenerateValidEmail.__init__(GenerateValidEmail)
-        GenerateValidEmail.generatePossibleMailWithTwoEntry(
-            GenerateValidEmail, "nteguem", "roland", "itkamer.com", listemailgenerate)
-        self.assertEqual(len(listemailgenerate), 14)
+        expecteddata = ['nroland@itkamer.com', 'nteguem.roland@itkamer.com', 'roland@itkamer.com', 
+        'nteguem_roland@itkamer.com', 'n_roland@itkamer.com', 'nteguemr@itkamer.com', 'nteguem@itkamer.com', 
+        'n@itkamer.com', 'r@itkamer.com', 'nr@itkamer.com', 'nteguemroland@itkamer.com', 'rolandnteguem@itkamer.com',
+         'roland.nteguem@itkamer.com', 'rnteguem@itkamer.com']
+        result = GenerateValidEmail.generatePossibleMailWithTwoEntry(
+            GenerateValidEmail, firstname,lastname, domainName, listemailgenerate)
+        self.assertEqual(result, expecteddata)
