@@ -62,21 +62,25 @@ class Email():
                     return emailsToReturn
                 else:
                     if fc[-1]['canSearch'] == False:
+                        print("test 0")
                         #impossible to find new emails on bing
                         emailsToReturn[2] = False # remove the button see more of the view
 
                         return emailsToReturn
                     else:
                         #possible to find new emails on bing
-                        #print("possible to find new emails on bing 2")
-                        urls = BingSearch.nbrPage(BingSearch, pureUrl, nbrPage)
+                        urls = BingSearch.nbrPage(BingSearch, pureUrl, nbrPage,50)
                         scrapedEmail = Email.getEmail(Email, urls,pureUrl)
-                        if scrapedEmail == False:
+                        datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, scrapedEmail[0], scrapedEmail[1], pureUrl, urls[1])
+                        print(datasStructured)
+                        if datasStructured == False:
+                            print("test 1")
                             # file has been not updated
                             #print("file has been not updated")
                             emailsToReturn[2] = False # remove the button see more of the view
                             return  emailsToReturn
                         else:
+                            print("test 2")
                             # file has been updated
                             FileManager.__init__(FileManager)
                             fc = FileManager.readFile(FileManager, pureUrl)
@@ -85,15 +89,15 @@ class Email():
             else: 
                 # File does not exist
                 
-                urls = BingSearch.nbrPage(BingSearch, pureUrl, None)
+                urls = BingSearch.nbrPage(BingSearch, pureUrl, None,50)
                 scrapedEmail = Email.getEmail(Email, urls,pureUrl)
-                if scrapedEmail == True:
+                datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, scrapedEmail[0], scrapedEmail[1],pureUrl, urls[1])
+                if datasStructured == True:
                     FileManager.__init__(FileManager)
                     fc = FileManager.readFile(FileManager, pureUrl)
                     emailsToReturn = self.returnTenEmails(self, p, fc)
                     return emailsToReturn
                 else:
-                    print(5)
                     return []
         else:
             # URL is not valid
@@ -102,70 +106,41 @@ class Email():
     def getEmail(self, urls,pureUrl):
         emails = []
         sources = []
-        dataToReturn = []
         Source.__init__(Source)
         with PoolExecutor(max_workers=7) as executor:
             print("Workers")
-            if type(urls[0]) != str:
-                for _ in executor.map(BingSearch.initialSearch, urls[0]):
-                    soup = BeautifulSoup(_, features="html.parser")
-                    lipath = soup.findAll("li", {"class": "b_algo"})
-                    li_number = 0
-                    while True:
-                        try:
-                            litext = lipath[li_number].text
-                            # for line in the drivertextclear
-                            for line in litext.splitlines():
-                                # search all email in each line, return the objet searchNumbers of type list
-
-                                searchEmails = re.findall(r"[a-zA-Z]+[\.\-]?\w*[\.\-]?\w+\.?\w*\@{}".format(pureUrl), line,flags=re.MULTILINE)
-                                # for email in email_1 list
-
-                                if searchEmails:
-                                    src = Source.search(Source, li_number, lipath)
-                                    for email in searchEmails:
-
-                                        # add email in the emails list: return an object oy type NoneType
-                                        emails.append(email)
-                                        sources = Source.appendSource(Source, src)
-
-                            li_number = li_number + 1
-                        except:
-                            break
-
-                datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, emails, sources, pureUrl, urls[1])
-                print(datasStructured)
-                return datasStructured
-
+            if type(urls[0]) == str:
+                urls = urls
             else:
+                urls = urls[0]
 
-                for _ in executor.map(BingSearch.initialSearch, urls):
-                    soup = BeautifulSoup(_, features="html.parser")
-                    lipath = soup.findAll("li", {"class": "b_algo"})
-                    li_number = 0
-                    while True:
-                        try:
-                            litext = lipath[li_number].text
-                            # for line in the drivertextclear
-                            for line in litext.splitlines():
-                                # search all email in each line, return the objet searchNumbers of type list
+                #datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, emails, sources, pureUrl, urls[1])
 
-                                searchEmails = re.findall(r"[a-zA-Z]+[\.\-]?\w*[\.\-]?\w+\.?\w*\@{}".format(pureUrl),
-                                                          line, flags=re.MULTILINE)
-                                # for email in email_1 list
+            for _ in executor.map(BingSearch.initialSearch, urls):
+                soup = BeautifulSoup(_, features="html.parser")
+                lipath = soup.findAll("li", {"class": "b_algo"})
+                li_number = 0
+                while True:
+                    try:
+                        litext = lipath[li_number].text
+                        # for line in the drivertextclear
+                        for line in litext.splitlines():
+                            # search all email in each line, return the objet searchNumbers of type list
 
-                                if searchEmails:
-                                    src = Source.search(Source, li_number, lipath)
-                                    for email in searchEmails:
-                                        # add email in the emails list: return an object oy type NoneType
-                                        emails.append(email)
-                                        #print(emails)
-                                        sources = Source.appendSource(Source, src)
-                            li_number = li_number + 1
+                            searchEmails = re.findall(r"[a-zA-Z]+[\.\-]?\w*[\.\-]?\w+\.?\w*\@{}".format(pureUrl),
+                                                      line, flags=re.MULTILINE)
+                            # for email in email_1 list
 
-                        except:
-                            break
+                            if searchEmails:
+                                src = Source.search(Source, li_number, lipath)
+                                for email in searchEmails:
+                                    # add email in the emails list: return an object oy type NoneType
+                                    emails.append(email)
+                                    sources = Source.appendSource(Source, src)
+                        li_number = li_number + 1
 
-                emailsAndSources =[emails, sources]
+                    except:
+                        break
 
-                return emailsAndSources
+            emailsAndSources = [emails, sources]
+            return emailsAndSources
