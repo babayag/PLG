@@ -60,10 +60,8 @@ class DownloadEmailInCsv(APIView):
 
 class SearchMultipledomain(APIView):
     def post(self, request):
-        Domains1 = request.data.get('domains1', None)
-        Domains2 = request.data.get('domains2', None)
-        Domains = [Domains1,Domains2]
-       
+        Domains = request.data.get('domains', None)
+        print(request.data)       
         moreDomain = SearchOnMultipleDomain.verifyUrlAndSearchEmail(SearchOnMultipleDomain,Domains)
         Datamore = {'data': moreDomain}
         return Response(Datamore)

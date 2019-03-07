@@ -15,4 +15,3 @@ urlpatterns = [
     path('downloadEmails', views.DownloadEmailInCsv.as_view()),
     path('findervalidEmail', views.CreateEmailView.as_view()),
 ]
-
