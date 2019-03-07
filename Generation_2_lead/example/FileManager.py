@@ -6,7 +6,7 @@ import time
 class FileManager():
 
     def __init__(self):
-        self.cacheFolderPath = r'F:\SEMESTER 3\Software Product Design and Ergonomics\App\Project\Profitable LG\PLG\Generation_2_lead\cache'
+        self.cacheFolderPath = r'F:\SEMESTER 3\Software Product Design and Ergonomics\App\Project\Profitable LG\PLG\Generation_2_lead\example\cache'
 
     def WriteInFile(self, data, enterUrl, LastpageNbr, canSearch):
         os.chdir(self.cacheFolderPath)
@@ -74,27 +74,6 @@ class FileManager():
         except FileNotFoundError:
             pass
 
-
-
-    def clearDirectory(self,timeOfLifeOfFile):
-
-        timeOfEachFile = []
-        currentTime = time.mktime(datetime.now().timetuple())
-
-        #for each file in the folder
-        for file in os.listdir(self.cacheFolderPath):
-
-            timeOfCreation = os.path.getmtime(file)  # get file creation/modification time
-
-            #if the currentTime - time of file creation is grather than 30 days delete the file
-            if currentTime - timeOfCreation > timeOfLifeOfFile:
-                os.remove(file)  # delete outdated file
-            else:
-                timeOfEachFile.append(timeOfCreation)  # add time info to list
-    # after check all files, choose the oldest file creation time from list
-        _sleep_time = (currentTime - min(
-            timeOfEachFile)) if timeOfEachFile else 120  # if _time_list is empty, set sleep time as 120 seconds, else calculate it based on the oldest file creation time
-        time.sleep(_sleep_time)
 
 
     def updateCanSearch(self,enterUrl):

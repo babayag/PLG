@@ -7,8 +7,8 @@ class TestGetEmail(TestCase):
 
     def testWentAllIsFound(self):
         TestAllEmail = []
-        Email.__init__(Email)
-        email = Email.getEmail(Email,"itkamer.com")
+
+        email = Email.getEmail(Email,urls,pureUrl)
 
         for i in range(len(email)):
             TestAllEmail.append(email[i]['email'])
@@ -19,15 +19,6 @@ class TestGetEmail(TestCase):
 
 
 
-    def testWhenThereIsNullEmailreturn(self):
-        TestNullEmail = []
-        Email.__init__(Email)
-        email = Email.getEmail(Email, "hunter.io")
-        for i in range(len(email)):
-            TestNullEmail.append(email[i]['email'])
-        self.assertEqual(len(TestNullEmail), 0)
-        print(TestNullEmail)
-        print(" Emails have not been found on the URL you entered !!")
 
 
 

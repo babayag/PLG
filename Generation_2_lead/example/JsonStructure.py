@@ -1,34 +1,48 @@
 from .FileManager import FileManager
 
+
 class JsonStructure():
     def getFiveFirstEmail(self, fc, data):
         result = 0
-        allEmails = fc[0:len(fc)-2]
-        
+        newData = []
+        allEmails = fc[0:len(fc) - 2]
+        index = None
+        idx = []
         if len(allEmails) >= 5:
-            for newDatas in data:
-                for email in allEmails[0:5]:
-                    if newDatas['email'] == email['email']:
+            for idOfNewDatas in range(len(data)):
+                # index = data.index(newDatas)
+                for idOfEmail in range(len(allEmails)):
+                    if data[idOfNewDatas]['email'] == allEmails[idOfEmail]['email']:
+                        if index not in idx:
+                            idx.append(index)
+                        if data[idOfNewDatas]['url'][0] in allEmails[idOfEmail]['url'] or data[idOfNewDatas]['url'][
+                            0] == allEmails[idOfEmail]['url']:
 
-                        if newDatas['url'] == email['url']:
                             result = result + 1
-
+                            newData.append(data[idOfNewDatas])
+                        else:
+                            allEmails[idOfEmail]['url'].append(data[idOfNewDatas]['url'])
+           
+          
             if result == len(data):
                 return result
             else:
                 return 0
+
         else:
-            for newDatas in data:
-                for email in allEmails:
-                    if newDatas['email'] == email['email']:
-                        if newDatas['url'] == email['url']:
+            for idOfNewDatas in range(len(data)):
+                # index = data.index(newDatas)
+                for idOfEmail in range(len(allEmails)):
+                    if data[idOfNewDatas]['email'] == allEmails[idOfEmail]['email']:
+                        #   elm = data.pop(index)
+                        if data[idOfNewDatas]['url'] in allEmails[idOfEmail]['url'] or data[idOfNewDatas]['url'] == \
+                                allEmails[idOfEmail]['url']:
                             result = result + 1
-            if result != 0:
+            if result == len(data):
                 return result
             else:
                 return 0
 
-    
     def JsonStructureReturn(self, Nemails, Nsources, enterUrl, LastpageNbr):
         self.LastpageNbr = LastpageNbr
         emails = []
@@ -37,7 +51,6 @@ class JsonStructure():
         emailSources = []
         newEmails = []
         newEmailSources = []
-
         for email, source in zip(Nemails, Nsources):
             allData.append("{} {}".format(email, source))
 
@@ -52,41 +65,36 @@ class JsonStructure():
             count = emails.count(mail)
             if mail not in newEmails:
                 newEmails.append(mail)
-                print(newEmails)
-                
+
                 sourceWithoutDbl = []
                 for counter in emailSources[index:index + count]:
-                    if counter not in sourceWithoutDbl:
-                       sourceWithoutDbl.append(counter)
+                    if counter not in sourceWithoutDbl: sourceWithoutDbl.append(counter)
                 newEmailSources.append(sourceWithoutDbl)
                 index += count
 
         for emailsCounter in range(len(newEmails)):
-
-            jsonReturn ={
+            jsonReturn = {
                 "email": newEmails[emailsCounter],
                 "url": newEmailSources[emailsCounter]
             }
             data.append(jsonReturn)
-        print(data)
-        #pagination
+
         FileManager.__init__(FileManager)
         counter = 0
         if FileManager.verifyIfFileExist(FileManager, enterUrl):
-            fc = FileManager.readFile(FileManager,enterUrl)
-            counter = self.getFiveFirstEmail(self, fc, jsonReturn)
-        
+            fc = FileManager.readFile(FileManager, enterUrl)
+            counter = self.getFiveFirstEmail(self, fc, data)
         dataReturn = False
-
         if counter != 0:
-            print("to update")
             FileManager.__init__(FileManager)
+            # FileManager.updateCanSearch(FileManager, enterUrl)
             FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr, False)
             dataReturn = False
         else:
             FileManager.__init__(FileManager)
             FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr, True)
             dataReturn = True
+
         return dataReturn
 
 
@@ -122,6 +130,13 @@ class JsonStructure():
                 newEmailSources.append(sourceWithoutDbl)
                 index += count
 
+        # we initialise DomainEmailAndUrl with content Domain and list of email and url
+        DomainEmailAndUrl = {
+            "Domain": goodUrl,
+
+            "concern": []
+        }
+
         # for emails index in range len(newEmails)
         for emailsCounter in range(len(newEmails)):
 
@@ -131,10 +146,11 @@ class JsonStructure():
             }
             #append email and Url in the data list
             data.append(EmailAndUrl)
+
             DomainEmailAndUrl = {
                 "Domain": goodUrl,
                 # set data list content to concern attribut
-                   "concern": data
+                "concern": data
             }
 
         return DomainEmailAndUrl
