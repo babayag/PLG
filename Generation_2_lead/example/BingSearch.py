@@ -20,17 +20,7 @@ class BingSearch():
            return False
 
     def extractGoodDomain(self, enterUrl):
-        """domain = urlparse(enterUrl)
-        print(domain.netloc)
-        return domain.hostname"""
-        #domainSplited = domain.hostname.split('.')
-        #if len(domainSplited) > 2:
-            #puredomain = domainSplited[1] + "." + domainSplited[2]
-            #return puredomain
-            
-        #else:
-            #puredomain = domainSplited[0] + "." + domainSplited[1]
-            #return puredomain
+
         if "http://" in enterUrl:
             url = enterUrl[len("http://"):len(enterUrl)]
             if "www." in url:
@@ -69,7 +59,6 @@ class BingSearch():
     def nbrPage(self, enterUrl,nbrOfLastPage):
         liste = []
         lastN = 0
-        print(nbrOfLastPage)
 
         myUrl = "/search?q=%40{}&first=11".format(enterUrl)
         result = self.initialSearch(myUrl)
@@ -91,3 +80,14 @@ class BingSearch():
         data = [liste, lastN]
         return data
 
+
+    def browse500Pages(self,enterUrl):
+        liste = []
+        NbrOfPageToBrowse = 200
+        # browse 500 pages
+        for nbrOfPage in range(1, NbrOfPageToBrowse, 10):
+            liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage))
+            dif = NbrOfPageToBrowse - nbrOfPage
+            if dif <= 10:
+                liste.append("/search?q=%40{}&first={}".format(enterUrl, NbrOfPageToBrowse))
+        return liste

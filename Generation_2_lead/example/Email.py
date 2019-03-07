@@ -10,30 +10,20 @@ from .FileManager import FileManager
 
 class Email():
 
-    # def __init__(self):
-    #     self.emails = []
-    #     self.sources = []
-    #     self.AllData = []
 
     def returnTenEmails(self, p, fileContent):
         result = []
         allEmails = fileContent[0:len(fileContent)-2]
-        #print("eusebio")
-        #print(len(allEmails))
         p = int(p)
         if len(allEmails[p:]) >= 10:
             emailsToReturn = allEmails[p:(p+10)]
             result.append(emailsToReturn)
             p += len(emailsToReturn)
-            #print("eusebio2")
-            #print(len(emailsToReturn))
             result.append(p)
             result.append(True)
             return result
         else:
             emailsToReturn = allEmails[p:]
-            #print('eusebio3')
-            #print(len(emailsToReturn))
             result.append(emailsToReturn)
             p += len(emailsToReturn)
             result.append(p)
@@ -56,24 +46,32 @@ class Email():
         else:
             return 'YOU ENTERED A BAD URL !!!'
 
-    """def cityAndNiche(self, enterNiche, enterCity):
+    def cityAndNiche(self, enterNiche, enterCity):
         FileManager.__init__(FileManager)
-        enterNicheEnterCity = enterCity+'_'+enterNiche
+        enterNicheEnterCity = enterNiche+'_'+enterCity
         if FileManager.verifyIfFileExist(FileManager, enterNicheEnterCity) == True:
             # File exist
-            FileManager.__init__(FileManager)
-            fc = FileManager.readFile(self, enterNicheEnterCity);
+            fc = FileManager.readFile(FileManager, enterNicheEnterCity)
             emailToReturn = []
-            for domain in fc:
-                goodDomain = BingSearch.extractGoodDomain(BingSearch,domain)
+            i = 0
+            for domain in fc[-1]['Domain']:
+                if BingSearch.UrlValidation(BingSearch,domain):
+                    goodDomain = BingSearch.extractGoodDomain(BingSearch,domain)
+                    urls = BingSearch.browse500Pages(BingSearch, goodDomain)
+                    emailsAndSources = self.getEmail(self, urls, domain)
+                    print(emailsAndSources)
+                else:
+                    print(domain)
+                """goodDomain = BingSearch.extractGoodDomain(BingSearch,domain)
                 urls = BingSearch.nbrPage(BingSearch, goodDomain, None)
                 emailsAndSources = Email.getEmail(Email, urls, domain)
                 datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, emailsAndSources[0], emailsAndSources[1], domain, urls[1])
                 emailToReturn.append(datasStructured)
-                print(emailToReturn)
-                return True
+                print(emailToReturn)"""
+                
+            return True
         else:
-            return False"""
+            return False
 
     def main(self, enterUrl, p):
         if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
@@ -92,12 +90,8 @@ class Email():
                 else:
                     if fc[-1]['canSearch'] == False:
                         #impossible to find new emails on bing
-                        #print("impossible to find new emails on bing 1")
-                        #emailsToReturn = self.returnTenEmails(self, p, fc)
-                        print("je suis un portugais et mon nom est EUSEBIO")
                         emailsToReturn[2] = False # remove the button see more of the view
-                        
-                        print("False ljkjl;k Maassa")
+
                         return emailsToReturn
                     else:
                         #possible to find new emails on bing
@@ -112,7 +106,6 @@ class Email():
                             return  emailsToReturn
                         else:
                             # file has been updated
-                            #print('file has been updated')
                             FileManager.__init__(FileManager)
                             fc = FileManager.readFile(FileManager, pureUrl)
                             emailsToReturn = self.returnTenEmails(self, p, fc)
@@ -139,6 +132,7 @@ class Email():
     def getEmail(self, urls,pureUrl):
         emails = []
         sources = []
+        dataToReturn = []
         Source.__init__(Source)
         with PoolExecutor(max_workers=7) as executor:
             print("Workers")
@@ -146,7 +140,6 @@ class Email():
                 soup = BeautifulSoup(_, features="html.parser")
                 lipath = soup.findAll("li", {"class": "b_algo"})
                 li_number = 0
-                print(li_number)
                 while True:
                     try:
                         litext = lipath[li_number].text
