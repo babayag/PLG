@@ -114,8 +114,6 @@ class Email():
             else:
                 urls = urls[0]
 
-                #datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, emails, sources, pureUrl, urls[1])
-
             for _ in executor.map(BingSearch.initialSearch, urls):
                 soup = BeautifulSoup(_, features="html.parser")
                 lipath = soup.findAll("li", {"class": "b_algo"})

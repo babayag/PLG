@@ -4,25 +4,52 @@ from .FileManager import FileManager
 class JsonStructure():
     def getFiveFirstEmail(self, fc, data):
         result = 0
+        newData = []
         allEmails = fc[0:len(fc) - 2]
-
+        index = None
+        idx = []
         if len(allEmails) >= 5:
-            for newDatas in data:
-                for email in allEmails[0:5]:
-                    if newDatas['email'] == email['email']:
-                        if newDatas['url'] == email['url']:
+            for idOfNewDatas in range(len(data)):
+                # index = data.index(newDatas)
+                for idOfEmail in range(len(allEmails)):
+                    print('yes')
+                    print(data[idOfNewDatas]['email'])
+                    print(allEmails[idOfEmail]['email'])
+                    if data[idOfNewDatas]['email'] == allEmails[idOfEmail]['email']:
+                        if index not in idx:
+                            idx.append(index)
+                        if data[idOfNewDatas]['url'][0] in allEmails[idOfEmail]['url'] or data[idOfNewDatas]['url'][
+                            0] == allEmails[idOfEmail]['url']:
+
                             result = result + 1
+                            newData.append(data[idOfNewDatas])
+                            print(result)
+                        else:
+                            allEmails[idOfEmail]['url'].append(data[idOfNewDatas]['url'])
+            print("eusebio")
+            print(result)
+            print("length of data")
+            print(data)
+            print("7777777777777777")
+            print(newData)
             if result == len(data):
                 return result
             else:
                 return 0
+
         else:
-            for newDatas in data:
-                for email in allEmails:
-                    if newDatas['email'] == email['email']:
-                        if newDatas['url'] == email['url']:
+            for idOfNewDatas in range(len(data)):
+                # index = data.index(newDatas)
+                for idOfEmail in range(len(allEmails)):
+                    print('yes')
+                    print(data[idOfNewDatas]['email'])
+                    print(allEmails[idOfEmail]['email'])
+                    if data[idOfNewDatas]['email'] == allEmails[idOfEmail]['email']:
+                        #   elm = data.pop(index)
+                        if data[idOfNewDatas]['url'] in allEmails[idOfEmail]['url'] or data[idOfNewDatas]['url'] == \
+                                allEmails[idOfEmail]['url']:
                             result = result + 1
-            if result != 0:
+            if result == len(data):
                 return result
             else:
                 return 0
@@ -117,6 +144,13 @@ class JsonStructure():
                 newEmailSources.append(sourceWithoutDbl)
                 index += count
 
+        # we initialise DomainEmailAndUrl with content Domain and list of email and url
+        DomainEmailAndUrl = {
+            "Domain": goodUrl,
+
+            "concern": []
+        }
+
         # for emails index in range len(newEmails)
         for emailsCounter in range(len(newEmails)):
 
@@ -126,10 +160,11 @@ class JsonStructure():
             }
             #append email and Url in the data list
             data.append(EmailAndUrl)
+
             DomainEmailAndUrl = {
                 "Domain": goodUrl,
                 # set data list content to concern attribut
-                   "concern": data
+                "concern": data
             }
 
         return DomainEmailAndUrl

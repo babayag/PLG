@@ -57,24 +57,24 @@ class BingSearch():
             pass
 
 
-    def nbrPage(self, enterUrl,nbrOfLastPage,NbrResultTBrowse):
+    def nbrPage(self, enterUrl,nbrOfLastPage,NbrResultToBrowse):
         liste = []
         lastN = 0
 
         myUrl = "/search?q=%40{}&first=11".format(enterUrl)
         result = self.initialSearch(myUrl)
         if nbrOfLastPage != None:
-            for nbrOfPage in range(1+nbrOfLastPage, (nbrOfLastPage + NbrResultTBrowse), 10):
+            for nbrOfPage in range(1+nbrOfLastPage, (nbrOfLastPage + NbrResultToBrowse), 10):
                 liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage))
 
-                dif = int(nbrOfLastPage + NbrResultTBrowse) - nbrOfPage
+                dif = int(nbrOfLastPage + NbrResultToBrowse) - nbrOfPage
                 if dif <= 10:
                     liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage + dif))
                     lastN = nbrOfPage + dif
         else:
-            for nbrOfPage in range(1, NbrResultTBrowse, 10):
+            for nbrOfPage in range(1, NbrResultToBrowse, 10):
                 liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage))
-                dif = NbrResultTBrowse - nbrOfPage
+                dif = NbrResultToBrowse - nbrOfPage
                 if dif <= 10:
                     liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage + dif))
                     lastN = nbrOfPage + dif
