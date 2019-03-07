@@ -64,9 +64,16 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+<<<<<<< HEAD
+    <SUITE FILE_PATH="coverage/PLG$emails_finder.coverage" NAME="emails finder Coverage Results" MODIFIED="1547368538166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:/Project IV I" />
+    <SUITE FILE_PATH="coverage/PLG$Unittests_for_tests_SimpleTest_test_details.coverage" NAME="Unittests for tests.SimpleTest.test_details Coverage Results" MODIFIED="1547800054331" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Generation_2_lead/example" />
+    <SUITE FILE_PATH="coverage/PLG$BingSearch.coverage" NAME="BingSearch Coverage Results" MODIFIED="1548332041564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Generation_2_lead/example" />
+    <SUITE FILE_PATH="coverage/PLG$emails_finder__1_.coverage" NAME="emails finder (1) Coverage Results" MODIFIED="1547380696953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="C:/project IV I" />
+=======
     <SUITE FILE_PATH="coverage/PLG$emails_finder.coverage" NAME="emails finder Coverage Results" MODIFIED="1547368538166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/../Project IV I" />
     <SUITE FILE_PATH="coverage/PLG$emails_finder__1_.coverage" NAME="emails finder (1) Coverage Results" MODIFIED="1547380696953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="D:/../project IV I" />
     <SUITE FILE_PATH="coverage/PLG$BingSearch.coverage" NAME="BingSearch Coverage Results" MODIFIED="1548332041564" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Generation_2_lead/example" />
+>>>>>>> 2f0c18c002bf0dc5fce4e7d81b9afdc36c499c3b
     <SUITE FILE_PATH="coverage/PLG$emailsfinder.coverage" NAME="emailsfinder Coverage Results" MODIFIED="1547380668167" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Generation_2_lead/example" />
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -479,10 +486,17 @@
       </list>
     </option>
   </component>
+<<<<<<< HEAD
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="684" />
+=======
   <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="10" />
     <option name="y" value="20" />
     <option name="width" value="1346" />
+>>>>>>> 2f0c18c002bf0dc5fce4e7d81b9afdc36c499c3b
     <option name="height" value="688" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -531,6 +545,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="editor.config.ad.shown" value="true" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -597,12 +612,20 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
+<<<<<<< HEAD
+      <option name="WORKING_DIRECTORY" value="C:/project IV I" />
+=======
       <option name="WORKING_DIRECTORY" value="D:/../project IV I" />
+>>>>>>> 2f0c18c002bf0dc5fce4e7d81b9afdc36c499c3b
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+<<<<<<< HEAD
+      <option name="SCRIPT_NAME" value="C:/project IV I/emails finder.py" />
+=======
       <option name="SCRIPT_NAME" value="D:/../project IV I/emails finder.py" />
+>>>>>>> 2f0c18c002bf0dc5fce4e7d81b9afdc36c499c3b
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -619,12 +642,20 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
+<<<<<<< HEAD
+      <option name="WORKING_DIRECTORY" value="C:/Project IV I" />
+=======
       <option name="WORKING_DIRECTORY" value="D:/../Project IV I" />
+>>>>>>> 2f0c18c002bf0dc5fce4e7d81b9afdc36c499c3b
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+<<<<<<< HEAD
+      <option name="SCRIPT_NAME" value="C:/Project IV I/emails finder.py" />
+=======
       <option name="SCRIPT_NAME" value="D:/../Project IV I/emails finder.py" />
+>>>>>>> 2f0c18c002bf0dc5fce4e7d81b9afdc36c499c3b
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -1092,8 +1123,15 @@
 >>>>>>> 7d2a05e325b5ef457a974a15d753e11a7af1599e
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/unittest/loader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7837">
-          <caret line="461" selection-start-line="461" selection-end-line="461" />
+        <state relative-caret-position="255">
+          <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../AppData/Local/Programs/Python/Python36-32/Lib/unittest/loader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="171" column="25" selection-start-line="171" selection-start-column="25" selection-end-line="171" selection-end-column="25" />
           <folding>
             <element signature="e#26#35#0" expanded="true" />
           </folding>
@@ -1164,6 +1202,19 @@
       </provider>
     </entry>
 <<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/Generation_2_lead/Generation_2_lead/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1972">
+          <caret line="116" selection-start-line="116" selection-end-line="116" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/Source.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+=======
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/emailsfinder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -1193,6 +1244,7 @@
           <folding>
             <element signature="e#23#32#0" expanded="true" />
           </folding>
+>>>>>>> 2f0c18c002bf0dc5fce4e7d81b9afdc36c499c3b
         </state>
       </provider>
     </entry>
@@ -1308,8 +1360,11 @@
     <entry file="file://$PROJECT_DIR$/Generation_2_lead/frontend/src/components/SearchBar.js">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
         <state relative-caret-position="391">
           <caret line="35" column="39" selection-start-line="35" selection-start-column="39" selection-end-line="35" selection-end-column="39" />
+>>>>>>> ab6bb948508805aad1969a8419a0d54a247fcee6
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1320,6 +1375,7 @@
 >>>>>>> 2f0c18c002bf0dc5fce4e7d81b9afdc36c499c3b
           <folding>
             <element signature="e#1#53#0" expanded="true" />
+>>>>>>> 2f0c18c002bf0dc5fce4e7d81b9afdc36c499c3b
           </folding>
 =======
         <state relative-caret-position="335">
@@ -1338,7 +1394,6 @@
             <element signature="e#22#31#0" expanded="true" />
           </folding>
         </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Generation_2_lead/example/Email.py">
       <provider selected="true" editor-type-id="text-editor">

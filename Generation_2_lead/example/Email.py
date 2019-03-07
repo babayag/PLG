@@ -1,5 +1,3 @@
-
-
 import re
 from concurrent.futures import ThreadPoolExecutor as PoolExecutor
 from bs4 import BeautifulSoup
@@ -9,7 +7,6 @@ from .JsonStructure import JsonStructure
 from .FileManager import FileManager
 
 class Email():
-
 
     def returnTenEmails(self, p, fileContent):
         result = []
@@ -45,6 +42,25 @@ class Email():
                 return " FILE IS NOT EXIST !!!"
         else:
             return 'YOU ENTERED A BAD URL !!!'
+
+    def cityAndNiche(self, enterNiche, enterCity):
+        FileManager.__init__(FileManager)
+        enterNicheEnterCity = enterNiche+'_'+enterCity
+        if FileManager.verifyIfFileExist(FileManager, enterNicheEnterCity) == True:
+            # File exist
+            fc = FileManager.readFile(FileManager, enterNicheEnterCity)
+            emailToReturn = []
+            for domain in fc[-1]['Domain']:
+                if BingSearch.UrlValidation(BingSearch,domain):
+                    goodDomain = BingSearch.extractGoodDomain(BingSearch,domain)
+                    urls = BingSearch.nbrPage(BingSearch, goodDomain, None, 50)
+                    emailsAndSources = self.getEmail(self, urls, goodDomain)
+                    e = JsonStructure.StructureMultipleDomains(JsonStructure, emailsAndSources[0], emailsAndSources[1], goodDomain)
+                    emailToReturn.append(e)
+            print(e)
+            return emailToReturn
+        else:
+            return False
 
     def main(self, enterUrl, p):
         if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
@@ -103,6 +119,8 @@ class Email():
             # URL is not valid
             return 'YOU ENTERED A BAD URL!! please enter a url like itkamer.com or wwww.itkamer.com or https://themiddlefingerproject.org'
 
+    
+
     def getEmail(self, urls,pureUrl):
         emails = []
         sources = []
@@ -139,6 +157,5 @@ class Email():
 
                     except:
                         break
-
             emailsAndSources = [emails, sources]
             return emailsAndSources

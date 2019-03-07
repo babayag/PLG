@@ -1,5 +1,3 @@
-
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework.views import APIView
 
 from .models import Lead
@@ -10,6 +8,7 @@ from rest_framework.response import Response
 from .SearchOnMultipleDomain import SearchOnMultipleDomain
 from .Email import Email
 from .GenerateValidEmail import GenerateValidEmail
+from .FinLeads import FindLeads
 
 # Create your views here.
 
@@ -74,3 +73,11 @@ class CreateEmailView(APIView):
         validEmails = GenerateValidEmail.returnValidEmail(GenerateValidEmail,firstname,lastname,domain)
 
         return Response(validEmails)
+
+class FindYourLeads(APIView):
+    def post(self, request):
+        enteredNiche = request.data.get('niche', None)
+        enteredCity = request.data.get('city', None)
+        emailsAndSourceToParse = FindLeads.finder(FindLeads, enteredNiche, enteredCity)
+        datasToReturn = {'data': emailsAndSourceToParse}
+        return Response(datasToReturn)

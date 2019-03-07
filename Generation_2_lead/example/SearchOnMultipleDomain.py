@@ -16,7 +16,6 @@ class SearchOnMultipleDomain():
                 url = BingSearch.nbrPage(BingSearch,goodUrl,None,200)
                 #url = [listeOfUrl , LastPageNbr] so we need only listeOfUrl it is why we write url[0]
                 emailSource = Email.getEmail(Email, url[0], goodUrl)
-
                 # emailSource is an array of Array of Emails and Array of Sources
                 #we call JsonStructure to stucture data as we want
                 datasStructured.append(JsonStructure.StructureMultipleDomains(JsonStructure, emailSource[0], emailSource[1], goodUrl))

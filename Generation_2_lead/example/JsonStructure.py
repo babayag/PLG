@@ -42,7 +42,23 @@ class JsonStructure():
                 return result
             else:
                 return 0
-
+        
+        """lengthOfData1 = len(data)
+        for i in idx:
+            print("cas 112")
+            lengthOfData2 = len(data)
+            if lengthOfData1 == lengthOfData2:
+                
+                del data[1]
+                print("cas 1")
+                print(len(data))
+            else:
+                for y in range(len(idx)):
+                    idx[y] = idx[y] - 1
+                del data[i]
+                print("cas 2")
+                print(len(data))"""
+    
     def JsonStructureReturn(self, Nemails, Nsources, enterUrl, LastpageNbr):
         self.LastpageNbr = LastpageNbr
         emails = []
@@ -138,6 +154,8 @@ class JsonStructure():
         }
 
         # for emails index in range len(newEmails)
+        
+        DomainEmailAndUrl = {}
         for emailsCounter in range(len(newEmails)):
 
             EmailAndUrl ={

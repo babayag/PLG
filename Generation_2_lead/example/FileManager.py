@@ -6,7 +6,7 @@ import time
 class FileManager():
 
     def __init__(self):
-        self.cacheFolderPath = r'F:\SEMESTER 3\Software Product Design and Ergonomics\App\Project\Profitable LG\PLG\Generation_2_lead\example\cache'
+        self.cacheFolderPath = r'/home/LeadMehome/PLG/Generation_2_lead/example/cache'
 
     def WriteInFile(self, data, enterUrl, LastpageNbr, canSearch):
         os.chdir(self.cacheFolderPath)
@@ -20,9 +20,9 @@ class FileManager():
                     del fdata[-1]
 
                 with open("{}.json".format(enterUrl), 'w') as outfile:
-                    for item in data:
+                    """for item in data:
                         if item not in fdata:
-                           fdata.append(item)
+                           fdata.append(item)"""
                     fdata.append({"LastpageNbr": LastpageNbr})
                     fdata.append({"canSearch": canSearch})
                     json.dump(fdata, outfile)
