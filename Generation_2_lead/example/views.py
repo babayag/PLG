@@ -62,7 +62,9 @@ class SearchMultipledomain(APIView):
     def post(self, request):
         Domains1 = request.data.get('domains1', None)
         Domains2 = request.data.get('domains2', None)
-        Domains = [Domains1,Domains2]
+        Domains3 = request.data.get('domains3', None)
+        Domains4 = request.data.get('domains4', None)
+        Domains = [Domains1,Domains2,Domains3,Domains4]
        
         moreDomain = SearchOnMultipleDomain.verifyUrlAndSearchEmail(SearchOnMultipleDomain,Domains)
         Datamore = {'data': moreDomain}
@@ -77,3 +79,11 @@ class CreateEmailView(APIView):
         validEmails = GenerateValidEmail.returnValidEmail(GenerateValidEmail,firstname,lastname,domain)
 
         return Response(validEmails)
+
+class GetEmailsByNicheAndCity(APIView):
+    def post(self, request):
+        enteredNiche = request.data.get('niche', None)
+        enteredCity = request.data.get('city', None)
+        emailsAndSourceToParse = Email.cityAndNiche(Email,enteredNiche, enteredCity)
+        datasToReturn = {'data': emailsAndSourceToParse}
+        return Response(datasToReturn)
