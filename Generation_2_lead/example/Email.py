@@ -8,7 +8,6 @@ from .FileManager import FileManager
 
 class Email():
 
-
     def returnTenEmails(self, p, fileContent):
         result = []
         allEmails = fileContent[0:len(fileContent)-2]
@@ -128,7 +127,12 @@ class Email():
         Source.__init__(Source)
         with PoolExecutor(max_workers=7) as executor:
             print("Workers")
-            for _ in executor.map(BingSearch.initialSearch, urls[0]):
+            if type(urls[0]) == str:
+                urls = urls
+            else:
+                urls = urls[0]
+
+            for _ in executor.map(BingSearch.initialSearch, urls):
                 soup = BeautifulSoup(_, features="html.parser")
                 lipath = soup.findAll("li", {"class": "b_algo"})
                 li_number = 0

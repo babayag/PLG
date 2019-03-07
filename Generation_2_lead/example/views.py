@@ -1,5 +1,3 @@
-
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework.views import APIView
 
 from .models import Lead
@@ -10,6 +8,7 @@ from rest_framework.response import Response
 from .SearchOnMultipleDomain import SearchOnMultipleDomain
 from .Email import Email
 from .GenerateValidEmail import GenerateValidEmail
+from .FinLeads import FindLeads
 
 # Create your views here.
 
@@ -60,12 +59,7 @@ class DownloadEmailInCsv(APIView):
 
 class SearchMultipledomain(APIView):
     def post(self, request):
-        Domains1 = request.data.get('domains1', None)
-        Domains2 = request.data.get('domains2', None)
-        Domains3 = request.data.get('domains3', None)
-        Domains4 = request.data.get('domains4', None)
-        Domains = [Domains1,Domains2,Domains3,Domains4]
-       
+        Domains = request.data.get('domains', None)
         moreDomain = SearchOnMultipleDomain.verifyUrlAndSearchEmail(SearchOnMultipleDomain,Domains)
         Datamore = {'data': moreDomain}
         return Response(Datamore)
@@ -80,10 +74,10 @@ class CreateEmailView(APIView):
 
         return Response(validEmails)
 
-class GetEmailsByNicheAndCity(APIView):
+class FindYourLeads(APIView):
     def post(self, request):
         enteredNiche = request.data.get('niche', None)
         enteredCity = request.data.get('city', None)
-        emailsAndSourceToParse = Email.cityAndNiche(Email,enteredNiche, enteredCity)
+        emailsAndSourceToParse = FindLeads.finder(FindLeads, enteredNiche, enteredCity)
         datasToReturn = {'data': emailsAndSourceToParse}
         return Response(datasToReturn)

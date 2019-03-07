@@ -103,7 +103,7 @@ class TestGetEmail(TestCase):
         self.assertEqual(type(len(result)),int)"""
 
 
-    def testCityAndSources(self):
+    def testFindLeads(self):
         enterNiche = "chiropractor"
         enterCity = "newport"
         actualResult = Email.cityAndNiche(Email, enterNiche, enterCity)
