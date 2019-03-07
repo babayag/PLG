@@ -6,7 +6,7 @@ import time
 class FileManager():
 
     def __init__(self):
-        self.cacheFolderPath = r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache'
+        self.cacheFolderPath = r'/home/LeadMehome/PLG/Generation_2_lead/example/cache'
 
     def WriteInFile(self, data, enterUrl, LastpageNbr, canSearch):
         os.chdir(self.cacheFolderPath)
@@ -20,9 +20,9 @@ class FileManager():
                     del fdata[-1]
 
                 with open("{}.json".format(enterUrl), 'w') as outfile:
-                    for item in data:
+                    """for item in data:
                         if item not in fdata:
-                           fdata.append(item)
+                           fdata.append(item)"""
                     fdata.append({"LastpageNbr": LastpageNbr})
                     fdata.append({"canSearch": canSearch})
                     json.dump(fdata, outfile)
@@ -74,27 +74,6 @@ class FileManager():
         except FileNotFoundError:
             pass
 
-
-
-    def clearDirectory(self,timeOfLifeOfFile):
-
-        timeOfEachFile = []
-        currentTime = time.mktime(datetime.now().timetuple())
-
-        #for each file in the folder
-        for file in os.listdir(self.cacheFolderPath):
-
-            timeOfCreation = os.path.getmtime(file)  # get file creation/modification time
-
-            #if the currentTime - time of file creation is grather than 30 days delete the file
-            if currentTime - timeOfCreation > timeOfLifeOfFile:
-                os.remove(file)  # delete outdated file
-            else:
-                timeOfEachFile.append(timeOfCreation)  # add time info to list
-    # after check all files, choose the oldest file creation time from list
-        _sleep_time = (currentTime - min(
-            timeOfEachFile)) if timeOfEachFile else 120  # if _time_list is empty, set sleep time as 120 seconds, else calculate it based on the oldest file creation time
-        time.sleep(_sleep_time)
 
 
     def updateCanSearch(self,enterUrl):
