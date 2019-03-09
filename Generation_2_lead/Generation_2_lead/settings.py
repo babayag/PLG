@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',  # new
     'djoser',
+    #'knox',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,11 +51,14 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        #'knox.auth.TokenAuthentication',
     ],
 }
 
+#json web token lifetime expire
 SIMPLE_JWT={
-'AUTH_HEADER_TYPES': ('JWT',),
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=2),
+    'AUTH_HEADER_TYPES': ('JWT',),
 }
 
 MIDDLEWARE = [
@@ -142,10 +146,6 @@ USE_L10N = True
 USE_TZ = True
 
 #json web token lifetime expire
-
-JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(minutes=15),
-}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/

@@ -1,12 +1,13 @@
 
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.views import APIView
-
+# from knox.models import AuthToken
 from .models import Lead
 from .serializers import LeadSerializer
 from rest_framework import generics
 from rest_framework.response import Response
 
+# from .serializers import CreateUserSerializer, UserSerializer , LoginUserSerializer
 from .SearchOnMultipleDomain import SearchOnMultipleDomain
 from .Email import Email
 from .GenerateValidEmail import GenerateValidEmail
@@ -21,6 +22,33 @@ class DetailLead(generics.RetrieveUpdateDestroyAPIView):
     queryset = Lead.objects.all()
     serializer_class = LeadSerializer
 
+# class RegistrationAPI(generics.GenericAPIView):
+#     serializer_class = CreateUserSerializer
+
+#     def post(self, request, *args, **kwargs):
+#         serializer = self.get_serializer(data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#         user = serializer.save()
+#         return Response({
+#             "user": UserSerializer(user, context=self.get_serializer_context()).data,
+#             "token": AuthToken.objects.create(user)
+#         })
+
+# class LoginAPI(generics.GenericAPIView):
+    
+#     serializer_class = LoginUserSerializer
+
+#     def post(self, request, *args, **kwargs):
+#         print(request.data)
+#         serializer = self.get_serializer(data=request.data)
+#         print(serializer)
+#         serializer.is_valid(raise_exception=True)
+#         user = serializer.validated_data
+#         print(user)
+#         return Response({
+#             "user": UserSerializer(user, context=self.get_serializer_context()).data,
+#             "token": AuthToken.objects.create(user)
+#         })
 
 class ShareView(APIView):
     permission_classes = []
