@@ -1,5 +1,3 @@
-
-
 import re
 from concurrent.futures import ThreadPoolExecutor as PoolExecutor
 from bs4 import BeautifulSoup
@@ -9,7 +7,6 @@ from .JsonStructure import JsonStructure
 from .FileManager import FileManager
 
 class Email():
-
 
     def returnTenEmails(self, p, fileContent):
         result = []
@@ -46,6 +43,25 @@ class Email():
         else:
             return 'YOU ENTERED A BAD URL !!!'
 
+    def cityAndNiche(self, enterNiche, enterCity):
+        FileManager.__init__(FileManager)
+        enterNicheEnterCity = enterNiche+'_'+enterCity
+        if FileManager.verifyIfFileExist(FileManager, enterNicheEnterCity) == True:
+            # File exist
+            fc = FileManager.readFile(FileManager, enterNicheEnterCity)
+            emailToReturn = []
+            for domain in fc[-1]['Domain']:
+                if BingSearch.UrlValidation(BingSearch,domain):
+                    goodDomain = BingSearch.extractGoodDomain(BingSearch,domain)
+                    urls = BingSearch.nbrPage(BingSearch, goodDomain, None, 50)
+                    emailsAndSources = self.getEmail(self, urls, goodDomain)
+                    e = JsonStructure.StructureMultipleDomains(JsonStructure, emailsAndSources[0], emailsAndSources[1], goodDomain)
+                    emailToReturn.append(e)
+            print(e)
+            return emailToReturn
+        else:
+            return False
+
     def main(self, enterUrl, p):
         if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
             # URL is valid
@@ -62,21 +78,25 @@ class Email():
                     return emailsToReturn
                 else:
                     if fc[-1]['canSearch'] == False:
+                        print("test 0")
                         #impossible to find new emails on bing
                         emailsToReturn[2] = False # remove the button see more of the view
 
                         return emailsToReturn
                     else:
                         #possible to find new emails on bing
-                        #print("possible to find new emails on bing 2")
-                        urls = BingSearch.nbrPage(BingSearch, pureUrl, nbrPage)
+                        urls = BingSearch.nbrPage(BingSearch, pureUrl, nbrPage,50)
                         scrapedEmail = Email.getEmail(Email, urls,pureUrl)
-                        if scrapedEmail == False:
+                        datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, scrapedEmail[0], scrapedEmail[1], pureUrl, urls[1])
+                        print(datasStructured)
+                        if datasStructured == False:
+                            print("test 1")
                             # file has been not updated
                             #print("file has been not updated")
                             emailsToReturn[2] = False # remove the button see more of the view
                             return  emailsToReturn
                         else:
+                            print("test 2")
                             # file has been updated
                             FileManager.__init__(FileManager)
                             fc = FileManager.readFile(FileManager, pureUrl)
@@ -85,87 +105,57 @@ class Email():
             else: 
                 # File does not exist
                 
-                urls = BingSearch.nbrPage(BingSearch, pureUrl, None)
+                urls = BingSearch.nbrPage(BingSearch, pureUrl, None,50)
                 scrapedEmail = Email.getEmail(Email, urls,pureUrl)
-                if scrapedEmail == True:
+                datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, scrapedEmail[0], scrapedEmail[1],pureUrl, urls[1])
+                if datasStructured == True:
                     FileManager.__init__(FileManager)
                     fc = FileManager.readFile(FileManager, pureUrl)
                     emailsToReturn = self.returnTenEmails(self, p, fc)
                     return emailsToReturn
                 else:
-                    print(5)
                     return []
         else:
             # URL is not valid
             return 'YOU ENTERED A BAD URL!! please enter a url like itkamer.com or wwww.itkamer.com or https://themiddlefingerproject.org'
 
+    
+
     def getEmail(self, urls,pureUrl):
         emails = []
         sources = []
-        dataToReturn = []
         Source.__init__(Source)
         with PoolExecutor(max_workers=7) as executor:
             print("Workers")
-            if type(urls[0]) != str:
-                for _ in executor.map(BingSearch.initialSearch, urls[0]):
-                    soup = BeautifulSoup(_, features="html.parser")
-                    lipath = soup.findAll("li", {"class": "b_algo"})
-                    li_number = 0
-                    while True:
-                        try:
-                            litext = lipath[li_number].text
-                            # for line in the drivertextclear
-                            for line in litext.splitlines():
-                                # search all email in each line, return the objet searchNumbers of type list
-
-                                searchEmails = re.findall(r"[a-zA-Z]+[\.\-]?\w*[\.\-]?\w+\.?\w*\@{}".format(pureUrl), line,flags=re.MULTILINE)
-                                # for email in email_1 list
-
-                                if searchEmails:
-                                    src = Source.search(Source, li_number, lipath)
-                                    for email in searchEmails:
-
-                                        # add email in the emails list: return an object oy type NoneType
-                                        emails.append(email)
-                                        sources = Source.appendSource(Source, src)
-
-                            li_number = li_number + 1
-                        except:
-                            break
-
-                datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, emails, sources, pureUrl, urls[1])
-                print(datasStructured)
-                return datasStructured
-
+            if type(urls[0]) == str:
+                urls = urls
             else:
+                urls = urls[0]
 
-                for _ in executor.map(BingSearch.initialSearch, urls):
-                    soup = BeautifulSoup(_, features="html.parser")
-                    lipath = soup.findAll("li", {"class": "b_algo"})
-                    li_number = 0
-                    while True:
-                        try:
-                            litext = lipath[li_number].text
-                            # for line in the drivertextclear
-                            for line in litext.splitlines():
-                                # search all email in each line, return the objet searchNumbers of type list
+            for _ in executor.map(BingSearch.initialSearch, urls):
+                soup = BeautifulSoup(_, features="html.parser")
+                lipath = soup.findAll("li", {"class": "b_algo"})
+                li_number = 0
+                while True:
+                    try:
+                        litext = lipath[li_number].text
+                        # for line in the drivertextclear
+                        for line in litext.splitlines():
+                            # search all email in each line, return the objet searchNumbers of type list
 
-                                searchEmails = re.findall(r"[a-zA-Z]+[\.\-]?\w*[\.\-]?\w+\.?\w*\@{}".format(pureUrl),
-                                                          line, flags=re.MULTILINE)
-                                # for email in email_1 list
+                            searchEmails = re.findall(r"[a-zA-Z]+[\.\-]?\w*[\.\-]?\w+\.?\w*\@{}".format(pureUrl),
+                                                      line, flags=re.MULTILINE)
+                            # for email in email_1 list
 
-                                if searchEmails:
-                                    src = Source.search(Source, li_number, lipath)
-                                    for email in searchEmails:
-                                        # add email in the emails list: return an object oy type NoneType
-                                        emails.append(email)
-                                        #print(emails)
-                                        sources = Source.appendSource(Source, src)
-                            li_number = li_number + 1
+                            if searchEmails:
+                                src = Source.search(Source, li_number, lipath)
+                                for email in searchEmails:
+                                    # add email in the emails list: return an object oy type NoneType
+                                    emails.append(email)
+                                    sources = Source.appendSource(Source, src)
+                        li_number = li_number + 1
 
-                        except:
-                            break
-
-                emailsAndSources =[emails, sources]
-
-                return emailsAndSources
+                    except:
+                        break
+            emailsAndSources = [emails, sources]
+            return emailsAndSources

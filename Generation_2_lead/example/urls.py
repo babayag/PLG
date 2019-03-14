@@ -17,5 +17,5 @@ urlpatterns = [
     path('updateJsonFile', views.UpdateJsonFile.as_view()),
     path('downloadEmails', views.DownloadEmailInCsv.as_view()),
     path('findervalidEmail', views.CreateEmailView.as_view()),
+    path('findLeads', views.FindYourLeads.as_view()),
 ]
-
