@@ -1,0 +1,50 @@
+[
+    {
+        "Results": [
+            {
+                "Domain": "drmaggio.com",
+                "Emails": []
+            },
+            {
+                "Domain": "andsmileyoga.com",
+                "Emails": [
+                    "director@andsmileyoga.com",
+                    "info@andsmileyoga.com",
+                    "smile-yoga-codirector@andsmileyoga.com"
+                ]
+            },
+            {
+                "Domain": "achoice4life.com",
+                "Emails": [
+                    "info@achoice4life.com"
+                ]
+            },
+            {
+                "Domain": "pastlifebetweenlivesvb.com",
+                "Emails": []
+            },
+            {
+                "Domain": "squareup.com",
+                "Emails": []
+            },
+            {
+                "Domain": "lastnightsmistake.com",
+                "Emails": []
+            },
+            {
+                "Domain": "juicealot.com",
+                "Emails": []
+            },
+            {
+                "Domain": "lovegracefoods.com",
+                "Emails": [
+                    "contactinfo@lovegracefoods.com"
+                ]
+            },
+            {
+                "Domain": "forresttherapy.wixsite.com",
+                "Emails": []
+            }
+        ]
+    }
+]
