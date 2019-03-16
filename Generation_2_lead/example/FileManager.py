@@ -6,8 +6,8 @@ import time
 class FileManager():
 
     def __init__(self):
-        self.cacheFolderPath = r'F:\SEMESTER 3\Software Product Design and Ergonomics\App\Project\Profitable LG\PLG\Generation_2_lead\example\cache'
-        self.domainFile = r"F:\SEMESTER 3\Software Product Design and Ergonomics\App\Project\Profitable LG\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
+        self.cacheFolderPath = r'C:\Users\User\Desktop\Web\ReactJS\leadmehome\PLG\Generation_2_lead\example\cache'
+        self.domainFile = r"C:\Users\User\Desktop\Web\ReactJS\leadmehome\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
 
     def WriteInFile(self, data, enterUrl, LastpageNbr, canSearch):
         os.chdir(self.cacheFolderPath)
