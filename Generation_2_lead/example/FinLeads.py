@@ -26,7 +26,7 @@ class FindLeads():
 
     def findLead(self, enterNiche, enterCity):
         FileManager.__init__(FileManager)
-        nicheAndCityFile = enterNiche+'_'+enterCity.split(',')[0];
+        nicheAndCityFile = enterNiche+'_'+enterCity
         files = FileManager.verifyIfFileExist2(FileManager, nicheAndCityFile)
         if files != False:
             f = FileManager.readFile2(FileManager, files)
