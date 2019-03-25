@@ -115,7 +115,7 @@ class BetterFindLead(APIView):
     def post(self, request):
         enteredNiche = request.data.get('niche', None)
         enteredCity = request.data.get('city', None)
-        finalData = FindLeads.findLead(FindLeads, enteredNiche, enteredCity)# p = nomber of email to back
+        finalData = FindLeads.findLead(FindLeads, enteredNiche, enteredCity)
         Jsonfinal = {"data": finalData}
 
         return Response(Jsonfinal)

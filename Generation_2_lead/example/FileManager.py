@@ -6,17 +6,17 @@ import time
 class FileManager():
 
     def __init__(self):
-        self.cacheFolderPath = r'C:\Users\User\Desktop\Web\Itkamer\leadmehome\PLG\Generation_2_lead\example\cache'
-        self.leadFolderPath = r'C:\Users\User\Desktop\Web\Itkamer\leadmehome\PLG\Generation_2_lead\example\leads'
+        self.cacheFolderPath = r'/home/kevin-it/Bureau/Web/Itkamer/leadmehome/PLG/Generation_2_lead/example/cache'
+        self.leadFolderPath = r'/home/kevin-it/Bureau/Web/Itkamer/leadmehome/PLG/Generation_2_lead/example/leads'
 
     def WriteInFile(self, data, enterUrl, LastpageNbr, canSearch):
         os.chdir(self.cacheFolderPath)
-        if self.verifyIfFileExist(self,enterUrl):
+        if self.verifyIfFileExist(self, enterUrl):
             fdata = []
             try:
                 with open("{}.json".format(enterUrl), 'r') as outfile:
                     fdata = json.load(outfile)
-                    #delete the two last element of the list which are LastpageNbr and canSearch
+                    # delete the two last element of the list which are LastpageNbr and canSearch
                     del fdata[-1]
                     del fdata[-1]
 
@@ -66,7 +66,7 @@ class FileManager():
             pass
 
     def readFile(self, enterUrl):
-        #open the folder and return its contents
+        # open the folder and return its contents
         os.chdir(self.cacheFolderPath)
         try:
             with open("{}.json".format(enterUrl), "r") as printer:
@@ -89,30 +89,50 @@ class FileManager():
                 json.dump(fdata, outfile)
         except FileNotFoundError:
             pass
-    
+
 
     """"
     For Lead Search: Using leadFolderPath
     """
-    def verifyIfFileExist2(self,enterUrl):
+    def verifyIfFileExist2(self, enterUrl):
+        # All files that correspond to the search
+        files = []
         os.chdir(self.leadFolderPath)
-        try:
-            if os.path.isfile("{}.json".format(enterUrl)):
-                return True
-            else:
-                return False
-        except FileNotFoundError:
-            pass
+        for fileName in os.listdir(self.leadFolderPath):
+            print(fileName)
+            if enterUrl in fileName:
+                files.append(fileName)
+        if len(files) > 0:
+            return files
+        else:
+            return False
 
-    def readFile2(self, enterUrl):
-        #open the folder and return its contents
+
+    def readFile2(self, files):
+        # open the folder and return its contents
         os.chdir(self.leadFolderPath)
-        try:
-            with open("{}.json".format(enterUrl), "r") as printer:
-                fileContent = json.load(printer)
-                return fileContent
-        except FileNotFoundError:
-            pass
+        if len(files) == 1:
+            try:
+                with open("{}".format(files[0]), "r") as printer:
+                    fileContent = json.load(printer)
+                    return fileContent
+            except FileNotFoundError:
+                pass
+        else:
+            fileContent = ''
+            for file in files:
+                try:
+                    with open("{}".format(file), "r") as printer:
+                        if file == files[0]:
+                            fileContent = json.load(printer)
+                        else:
+                            otherFileContent = json.load(printer)
+                            # Append other data on the Json file
+                            fileContent[0]['Results'].extend(otherFileContent[0]['Results'])
+                except FileNotFoundError:
+                    pass
+            return fileContent
+
 
 
 
