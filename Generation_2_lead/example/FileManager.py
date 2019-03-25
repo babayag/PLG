@@ -99,7 +99,6 @@ class FileManager():
         files = []
         os.chdir(self.leadFolderPath)
         for fileName in os.listdir(self.leadFolderPath):
-            print(enterUrl)
             if enterUrl in fileName.lower():
                 files.append(fileName)
         if len(files) > 0:
