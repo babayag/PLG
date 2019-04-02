@@ -58,7 +58,7 @@ REST_FRAMEWORK = {
 
 #json web token lifetime expire
 SIMPLE_JWT={
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=2),
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=60),
     'AUTH_HEADER_TYPES': ('JWT',),
 }
 
@@ -106,18 +106,18 @@ WSGI_APPLICATION = 'Generation_2_lead.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #'default': {
+    #    'ENGINE': 'django.db.backends.sqlite3',
+    #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #}
+     'default': {
+         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+         'NAME': 'leadmehome',
+         'USER': 'postgres',
+         'PASSWORD': '',
+         'HOST': '127.0.0.1',
+         'PORT': '5432',
     }
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'leadmehome',
-    #     'USER': 'postgres',
-    #     'PASSWORD': 'Bonjour6',
-    #     'HOST': '127.0.0.1',
-    #     'PORT': '5432',
-    # }
 }
 
 SOUTH_TESTS_MIGRATE = False

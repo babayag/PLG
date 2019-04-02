@@ -18,5 +18,7 @@ urlpatterns = [
     path('downloadEmails', views.DownloadEmailInCsv.as_view()),
     path('findervalidEmail', views.CreateEmailView.as_view()),
     path('findLeads', views.FindYourLeads.as_view()),
-    path('betterfindlead', views.BetterFindLead.as_view())
+    path('betterfindlead', views.BetterFindLead.as_view()),
+    path('createPayment', views.PaypalCreatePayment.as_view()),
+    path('executePayment', views.PaypalExecutePayment.as_view()),
 ]

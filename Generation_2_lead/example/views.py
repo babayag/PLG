@@ -10,6 +10,7 @@ from .SearchOnMultipleDomain import SearchOnMultipleDomain
 from .Email import Email
 from .GenerateValidEmail import GenerateValidEmail
 from .FinLeads import FindLeads
+from .Paypal import Paypal
 
 # Create your views here.
 
@@ -119,3 +120,24 @@ class BetterFindLead(APIView):
         Jsonfinal = {"data": finalData}
 
         return Response(Jsonfinal)
+
+
+class PaypalCreatePayment(APIView):
+    def post(self, request):
+        payment = Paypal.createPayment(Paypal)
+
+        return Response(payment)
+
+
+class PaypalExecutePayment(APIView): 
+    def post(self, request):
+        paymentId = request.data.get('paymentId', None)
+        PayerID = request.data.get('PayerID', None)
+        token = request.data.get('token', None)
+        finalData = Paypal.executePayment(Paypal, PayerID, paymentId, token)
+        Jsonfinal = {"data": finalData}
+
+        return Response(Jsonfinal)
+
+
+
