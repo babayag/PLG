@@ -26,7 +26,7 @@ SECRET_KEY = '^&t3gh&dfqr-)3z@eu+s+1+c4thall6rh3(hk&w_n9n)e=z%bz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['41.205.23.64', '41.205.23.64:8000', 'localhost:3000', '47.99.121.32', '127.0.0.1']
+ALLOWED_HOSTS = ['41.205.23.64', '41.205.23.64:8000', 'localhost:3000', '47.99.121.32', '127.0.0.1', 'localhost']
 
 
 
@@ -86,7 +86,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-           os.path.join(BASE_DIR, 'frontend' , 'build'),
+        #    os.path.join(BASE_DIR, 'frontend' , 'build'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -110,13 +110,13 @@ DATABASES = {
     #    'ENGINE': 'django.db.backends.sqlite3',
     #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     #}
-     'default': {
+      'default': {
          'ENGINE': 'django.db.backends.postgresql_psycopg2',
          'NAME': 'leadmehome',
          'USER': 'postgres',
-         'PASSWORD': '',
+         'PASSWORD': '123456',
          'HOST': '127.0.0.1',
-         'PORT': '5432',
+         'PORT': '5000',
     }
 }
 

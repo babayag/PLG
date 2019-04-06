@@ -5,6 +5,7 @@ from .serializers import LeadSerializer
 from rest_framework import generics
 from rest_framework.response import Response
 
+from .Transaction import Transaction
 # from .serializers import CreateUserSerializer, UserSerializer , LoginUserSerializer
 from .SearchOnMultipleDomain import SearchOnMultipleDomain
 from .Email import Email
@@ -139,5 +140,9 @@ class PaypalExecutePayment(APIView):
 
         return Response(Jsonfinal)
 
+class GetAllForfait(APIView):
+    def post(self,request):
+        result = Transaction.getforfait(Transaction,request)
+        return Response(result)
 
 

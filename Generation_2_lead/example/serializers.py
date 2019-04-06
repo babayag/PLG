@@ -1,6 +1,9 @@
 from rest_framework import serializers
 from .models import Lead
 from .models import SpaUser
+from .models import Payment
+from .models import Search
+from .models import Forfait
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 
@@ -43,3 +46,19 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = SpaUser
         fields = ('id', 'username')
+
+class PaymentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Payment
+        fields = '__all__'
+
+class ForfaitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Forfait
+        fields = '__all__'
+
+class SearchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Forfait
+        fields = '__all__'
+

@@ -21,4 +21,5 @@ urlpatterns = [
     path('betterfindlead', views.BetterFindLead.as_view()),
     path('createPayment', views.PaypalCreatePayment.as_view()),
     path('executePayment', views.PaypalExecutePayment.as_view()),
+    path('getAllforfait',views.GetAllForfait.as_view()),
 ]
