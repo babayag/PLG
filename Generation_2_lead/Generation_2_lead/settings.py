@@ -58,7 +58,7 @@ REST_FRAMEWORK = {
 
 #json web token lifetime expire
 SIMPLE_JWT={
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=60),
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=1),
     'AUTH_HEADER_TYPES': ('JWT',),
 }
 
@@ -114,7 +114,7 @@ DATABASES = {
          'ENGINE': 'django.db.backends.postgresql_psycopg2',
          'NAME': 'leadmehome',
          'USER': 'postgres',
-         'PASSWORD': '',
+         'PASSWORD': 'mathematiques2000',
          'HOST': '127.0.0.1',
          'PORT': '5432',
     }
