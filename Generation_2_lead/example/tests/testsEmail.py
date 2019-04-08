@@ -8,7 +8,7 @@ class TestGetEmail(TestCase):
 
   # test getEmail method
 
-    """def testgetEmail(self):
+    def testgetEmail(self):
         pageurlsfirst = [[
             "/search?q=%40itkamer.com&first=1",
             "/search?q=%40itkamer.com&first=11",
@@ -29,49 +29,49 @@ class TestGetEmail(TestCase):
         enterUrl = "footballcom"
         nbrEmail = 0
         Email.__init__(Email)
-        finalData = "YOU ENTERED A BAD URL!! please entered a url like itkamer.com"
+        finalData = "YOU ENTERED A BAD URL!!"
         result = Email.main(Email, enterUrl, nbrEmail)
         self.assertEquals(result, finalData)
     #test went all found
 
-    def testWentAllIsFound(self):
-        testurl = 'itkamer.com'
-        TestAllEmail = []
-        FileManager.__init__(FileManager)
-        result = FileManager.getFiveFirstEmail(FileManager, testurl)
-        for i in range(len(result)-1):
-            TestAllEmail.append(result[i]["email"])
-        self.assertEqual(len(TestAllEmail), 4)
-        print(TestAllEmail)
-        print("Wow all Emails have been found on the URL you entered !!!")
+#     def testWentAllIsFound(self):
+#         testurl = 'itkamer.com'
+#         TestAllEmail = []
+#         FileManager.__init__(FileManager)
+#         result = FileManager.getFiveFirstEmail(FileManager, testurl)
+#         for i in range(len(result)-1):
+#             TestAllEmail.append(result[i]["email"])
+#         self.assertEqual(len(TestAllEmail), 4)
+#         print(TestAllEmail)
+#         print("Wow all Emails have been found on the URL you entered !!!")
 
-#test when there is null email return
+# #test when there is null email return
 
-    def testWhenThereIsNullEmailreturn(self):
-        testurl = 'hunter.io'
-        TestNullEmail = []
-        FileManager.__init__(FileManager)
-        result = FileManager.getFiveFirstEmail(FileManager, testurl)
-        for i in range(len(result)-1):
-            TestNullEmail.append(result[i]["email"])
-        self.assertEqual(len(TestNullEmail), 0)
-        print(TestNullEmail)
-        print(" Emails have not been found on the URL you entered !!")
+#     def testWhenThereIsNullEmailreturn(self):
+#         testurl = 'hunter.io'
+#         TestNullEmail = []
+#         FileManager.__init__(FileManager)
+#         result = FileManager.getFiveFirstEmail(FileManager, testurl)
+#         for i in range(len(result)-1):
+#             TestNullEmail.append(result[i]["email"])
+#         self.assertEqual(len(TestNullEmail), 0)
+#         print(TestNullEmail)
+#         print(" Emails have not been found on the URL you entered !!")
 
 
 #test went has duplicate
 
 
-    def testHasDuplicates(self):
-        bool = False
-        testurl = 'itkamer.com'
-        FileManager.__init__(FileManager)
-        result = FileManager.getFiveFirstEmail(FileManager, testurl)
-        for i in range(len(result) - 1):
-            for x in range(i + 1, len(result)-1):
-                if result[i]["email"] == result[x]["email"]:
-                    bool = True
-        self.assertEqual(bool, True)
+    # def testHasDuplicates(self):
+    #     bool = False
+    #     testurl = 'itkamer.com'
+    #     FileManager.__init__(FileManager)
+    #     result = FileManager.getFiveFirstEmail(FileManager, testurl)
+    #     for i in range(len(result) - 1):
+    #         for x in range(i + 1, len(result)-1):
+    #             if result[i]["email"] == result[x]["email"]:
+    #                 bool = True
+    #     self.assertEqual(bool, True)
 
     #test  method  returnTenEmails
 
@@ -100,15 +100,15 @@ class TestGetEmail(TestCase):
         url = "https://www.itkamer.com"
         Email.__init__(Email)
         result = Email.DownloadEmails(Email,url)
-        self.assertEqual(type(len(result)),int)"""
+        self.assertEqual(type(len(result)),int)
 
 
-    def testFindLeads(self):
+    """def testFindLeads(self):
         enterNiche = "chiropractor"
         enterCity = "newport"
         actualResult = Email.cityAndNiche(Email, enterNiche, enterCity)
         espectResult = False
-        self.assertEqual(actualResult, espectResult)
+        self.assertEqual(actualResult, espectResult)"""
 
 
 

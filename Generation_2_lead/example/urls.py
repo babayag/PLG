@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.LeadListCreate.as_view()),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
+    url(r'^social/login', include('rest_social_auth.urls_token')),
     # path('auth/', include('knox.urls')),
     # path('auth/register/', views.RegistrationAPI.as_view()),
     # path('auth/login/', views.LoginAPI.as_view()),

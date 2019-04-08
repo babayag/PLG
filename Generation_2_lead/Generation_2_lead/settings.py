@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'corsheaders',  # new
     'djoser',
     #'knox',
+    'social_django',
+    'rest_social_auth',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -58,9 +60,16 @@ REST_FRAMEWORK = {
 
 #json web token lifetime expire
 SIMPLE_JWT={
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=60),
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=2),
     'AUTH_HEADER_TYPES': ('JWT',),
 }
+
+#add config for social endpoint
+
+SOCIAL_AUTH_TOKEN_STRATEGY = 'djoser.social.token.jwt.TokenStrategy'
+SOCIAL_AUTH_ALLOWED_REDIRECT_URIS = [
+    'http://127.0.0.1:8000/dashboard'
+]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # new
@@ -72,10 +81,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware'
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
+    '127.0.0.1:8000'
     '41.205.23.64:8080',
     '127.0.0.1:8000',
 )
@@ -95,11 +110,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
-
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True
 WSGI_APPLICATION = 'Generation_2_lead.wsgi.application'
 
 # Database
@@ -114,7 +131,7 @@ DATABASES = {
          'ENGINE': 'django.db.backends.postgresql_psycopg2',
          'NAME': 'leadmehome',
          'USER': 'postgres',
-         'PASSWORD': '',
+         'PASSWORD': 'Bonjour6',
          'HOST': '127.0.0.1',
          'PORT': '5432',
     }

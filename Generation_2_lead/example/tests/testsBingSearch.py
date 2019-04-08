@@ -6,54 +6,52 @@ import re
 
 class TestBingSearch(TestCase):
 
-    '''def testUrlIsValid(self):
-        url = BingSearch.UrlValidation(BingSearch,"itkamer.com")
-        self.assertTrue(url)
-        print("URL is correct!!")
+    def testUrlValidDomain(self):
+        print("test when the url is a vaildate domain")
+        actualResult = BingSearch.UrlValidation(BingSearch,"itkamer.com")
+        expectResult = True
+        self.assertEqual(actualResult,expectResult)
 
-    def testUrlIsNotValid(self):
-        url = BingSearch.UrlValidation(BingSearch,"https://stackoverflow.com/questions/7160737/python-how-to-validate-a-url-in-python-malformed-or-not")
-        self.assertFalse(url)
-        print("THE URL YOU ENTERED IS INCORRECT!!")
+    def testUrlValidWrong(self):
+        print("test when the url is a wrong ")
+        actualResult = BingSearch.UrlValidation(BingSearch,"aaaaaaaa")
+        expectResult = False
+        self.assertEqual(actualResult,expectResult)
 
-    def testWhenTherIsMorePages(self):
-        numberOfPage = BingSearch.nbrPage(BingSearch,"football.com")
-
-        self.assertEqual(len(numberOfPage),25)
-        print('Good Test')
-    def teststoreDomain(self):
-        url = "itkamer.com"
-        domainFile = "E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
-        FileManager.storeDomain(FileManager,url)'''
+    def testUrlValidationSSLDomain(self):
+        print("test when the url is a ssl")
+        actualResult = BingSearch.UrlValidation(BingSearch,"https://forbes.com")
+        expectResult = True
+        self.assertEqual(actualResult,expectResult)
     
-    def testUrlValidation(self):
-        domainUrl1 = "http://www.google.com"
-        domainUrl2 = "https://www.google.com"
-        domainUrl3 = "www.google.com"
-        domainUrl4 = "itkamer.com"        
+    def testUrlValidationNoSSLDomain(self):
+        print("test when the url is a  no ssl")
+        actualResult = BingSearch.UrlValidation(BingSearch,"http://forbes.com")
+        expectResult = True
+        self.assertEqual(actualResult,expectResult)
 
-        expectedResult = True
-        actualResult = BingSearch.UrlValidation(BingSearch, domainUrl1)
-        self.assertEquals(actualResult, expectedResult)
-        print("testUrlValidation")
+    def testextractGoodDomainSSL(self):
+        print("extrat the domain when url is ssl format")
+        actualResult = BingSearch.extractGoodDomain(BingSearch,"https//www.forbes.com")
+        expectResult = "forbes.com"
+        self.assertEqual(actualResult,expectResult)
+    
+    def testextractGoodDomainNoSSL(self):
+        print("extrat the domain when url is no ssl format")
+        actualResult = BingSearch.extractGoodDomain(BingSearch,"http//www.tala.com")
+        expectResult = "tala.com"
+        self.assertEqual(actualResult,expectResult)
 
-    def testExtractGoodDomain(self):
-        domainUrl1 = "http://www.google.com"
-        domainUrl2 = "https://www.google.com"
-        domainUrl3 = "www.google.com"
-        domainUrl4 = "google.com"
+    def testextractGoodDomainWWW(self):
+        print("extrat the domain when url has www.")
+        actualResult = BingSearch.extractGoodDomain(BingSearch,"www.tala.com")
+        expectResult = "tala.com"
+        self.assertEqual(actualResult,expectResult)
 
-        expectedResult = "google.com"
-        actualResult = BingSearch.extractGoodDomain(BingSearch, domainUrl2)
-        self.assertEquals(actualResult, expectedResult)
-        print("testExtractGoodDomain")
 
-    """def testNew(self):
-        domainUrl1 = "com.itkamer"
-        domainUrl2 = "itkamer"
-        domainUrl3 = ""
+    # def testWhenTherIsMorePages(self):
+    #     numberOfPage = BingSearch.nbrPage(BingSearch,"football.com")
 
-        expectedResult = "google.com"
-        actualResult = BingSearch.extractGoodDomain(BingSearch, domainUrl4)
-        self.assertEquals(actualResult, expectedResult)"""
+    #     self.assertEqual(len(numberOfPage),25)
+    #     print('Good Test')
 

@@ -6,10 +6,10 @@ class TestFileManager(TestCase):
 
 #method test getFiveFirstEmail
 
-    def testgetFiveFirstEmail(self):
+    def testGetLastPageNumber(self):
         testurl = 'itkamer.com'
         FileManager.__init__(FileManager)
-        result = FileManager.getFiveFirstEmail(FileManager, testurl)
-        self.assertEqual(len(result), 0)
+        result = FileManager.GetLastPageNumber(FileManager, testurl)
+        self.assertEqual(result, 100)
 
     
