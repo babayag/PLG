@@ -1,5 +1,7 @@
 import paypalrestsdk
 from paypalrestsdk import Payment
+from .models import Payment
+from .Transaction import Transaction
 
 class Paypal():
 
@@ -54,8 +56,8 @@ class Paypal():
       print(payment.error)
       return {"error": payment.error}
 
-
-  def executePayment(self, PayerID, paymentId, token):
+  
+  def executePayment(self, PayerID, paymentId, token,user_email, forfait_id):
 
     self.configure(self)
 
@@ -65,6 +67,9 @@ class Paypal():
     # Execute payment with the payer ID from the create payment call (following redirect)
     if payment.execute({"payer_id": PayerID}):
       print("Payment[%s] executed successfully" % (payment.id))
+
+      Transaction.SavePayment(Transaction, user_email, forfait_id)
+      
       return {"ok" : 1, "id" : payment.id}
     else:
       print(payment.error)
