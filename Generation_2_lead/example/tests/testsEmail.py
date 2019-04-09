@@ -8,20 +8,20 @@ class TestGetEmail(TestCase):
 
   # test getEmail method
 
-    def testgetEmail(self):
-        pageurlsfirst = [[
-            "/search?q=%40itkamer.com&first=1",
-            "/search?q=%40itkamer.com&first=11",
-            "/search?q=%40itkamer.com&first=21",
-            "/search?q=%40itkamer.com&first=31",
-            "/search?q=%40itkamer.com&first=41",
-            "/search?q=%40itkamer.com&first=50"
-        ], 1
-        ]
+    # def testgetEmail(self):
+    #     pageurlsfirst = [[
+    #         "/search?q=%40itkamer.com&first=1",
+    #         "/search?q=%40itkamer.com&first=11",
+    #         "/search?q=%40itkamer.com&first=21",
+    #         "/search?q=%40itkamer.com&first=31",
+    #         "/search?q=%40itkamer.com&first=41",
+    #         "/search?q=%40itkamer.com&first=50"
+    #     ], 1
+    #     ]
 
-        Email.__init__(Email)
-        email = Email.getEmail(Email, pageurlsfirst, "itkamer.com")
-        self.assertEqual(email, False)
+    #     Email.__init__(Email)
+    #     email = Email.getEmail(Email, pageurlsfirst, "itkamer.com")
+    #     self.assertEqual(email, False)
 
     #test  source is valid or invalid
 
@@ -75,32 +75,32 @@ class TestGetEmail(TestCase):
 
     #test  method  returnTenEmails
 
-    def testreturnTenEmails(self):
-        enterUrl = ["kerrycfan@football.com",
-                    "koh@football.com",
-                    "joe@football.com",
-                    "info@football.com",
-                    "ralph@football.com",
-                    "dasilva@football.com",
-                    "joegibbs@football.com",
-                    "texas@football.com",
-                    "pb@football.com",
-                    "association@football.com",
-                    "botchtotebag@football.com",
-                    "tich-tiraline-amour@football.com"]
+    # def testreturnTenEmails(self):
+    #     enterUrl = ["kerrycfan@football.com",
+    #                 "koh@football.com",
+    #                 "joe@football.com",
+    #                 "info@football.com",
+    #                 "ralph@football.com",
+    #                 "dasilva@football.com",
+    #                 "joegibbs@football.com",
+    #                 "texas@football.com",
+    #                 "pb@football.com",
+    #                 "association@football.com",
+    #                 "botchtotebag@football.com",
+    #                 "tich-tiraline-amour@football.com"]
 
-        nbrEmail = 0
-        Email.__init__(Email)
-        result = Email.returnTenEmails(Email, nbrEmail, enterUrl)
-        resulttest = 10
-        print(result[1])
-        self.assertEquals(result[1], resulttest)
+    #     nbrEmail = 0
+    #     Email.__init__(Email)
+    #     result = Email.returnTenEmails(Email, nbrEmail, enterUrl)
+    #     resulttest = 10
+    #     print(result[1])
+    #     self.assertEquals(result[1], resulttest)
 
-    def testDownloadEmails(self):
-        url = "https://www.itkamer.com"
-        Email.__init__(Email)
-        result = Email.DownloadEmails(Email,url)
-        self.assertEqual(type(len(result)),int)
+    # def testDownloadEmails(self):
+    #     url = "https://www.itkamer.com"
+    #     Email.__init__(Email)
+    #     result = Email.DownloadEmails(Email,url)
+    #     self.assertEqual(type(len(result)),int)
 
 
     """def testFindLeads(self):
