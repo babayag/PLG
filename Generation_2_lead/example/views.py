@@ -150,13 +150,14 @@ class GetAllForfait(APIView):
 
 class GetAllPayment(APIView):
     def post(self, request):
-        user_email = request.data.get('user_email', None)
+        user_email = request.data.get('email', None)
+    
         allPayment = Transaction.getAllPayment(Transaction,user_email)
         return Response(allPayment)
 
 class GetRestUserRequest(APIView):
     def post(self, request):
-        user_email = request.data.get('user_email', None)
+        user_email = request.data.get('email', None)
         rest = Transaction.getRestOfRequestOfUser(Transaction,user_email)
         return Response({"Rest of request":rest})
 

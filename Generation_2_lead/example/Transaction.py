@@ -38,10 +38,29 @@ class Transaction():
 
 
     def getAllPayment(self,userEmail):
+        Historic =[]
+        description = []
+        prices = []
+        date = []
+        isvalid =  []
         User = SpaUser.objects.get(email = userEmail)
-        payement = Payment.objects.filter(user_id = User.id).order_by('-created_at')
-        serializer= PaymentSerializer(payement,many=True)
-        return serializer.data
+        payements = Payment.objects.filter(user_id = User.id).order_by('-created_at')
+        for payement in payements:
+            forfait = Forfait.objects.get(id = payement.forfait_id) 
+            description.append(forfait.description)
+            prices.append(forfait.price) 
+            date.append(payement.created_at)
+            isvalid.append(payement.isValid) 
+        serializer= PaymentSerializer(payements,many=True)
+        for i,j,k,m in zip(range(len(description)),range(len(prices)),range(len(date)),range(len(isvalid))):
+            data = {
+                    "description": description[i],
+                    "price" : prices[j],
+                    "date" : date[k],
+                    "Isvalid" : isvalid[m]
+                    }
+            Historic.append(data)
+        return Historic
 
     def getRestOfRequestOfUser(self, userEmail):
         User = SpaUser.objects.get(email = userEmail)
