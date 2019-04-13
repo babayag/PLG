@@ -39,7 +39,7 @@ class Transaction():
 
     def getAllPayment(self,userEmail):
         User = SpaUser.objects.get(email = userEmail)
-        payement = Payment.objects.filter(user_id = User.id).order_by('created_at')
+        payement = Payment.objects.filter(user_id = User.id).order_by('-created_at')
         serializer= PaymentSerializer(payement,many=True)
         return serializer.data
 

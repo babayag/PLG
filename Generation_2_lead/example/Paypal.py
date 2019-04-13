@@ -2,6 +2,7 @@ import paypalrestsdk
 from paypalrestsdk import Payment
 from .models import Payment
 from .Transaction import Transaction
+from .models import Forfait
 
 class Paypal():
 
@@ -12,12 +13,20 @@ class Paypal():
       'client_secret': 'ELzSGWK_sr81DG0hV4mvXVuENWhe8iSBwajtx383IlzrlHMphUT63LbLWXnP3LFkQ-kxV5uIZU7Z0kZK' })
 
 
-  def createPayment(self):
+  def createPayment(self,forfait_id):
 
-    self.configure(self)
+    forfait = Forfait.objects.get(id = forfait_id) 
+    
+    paypalrestsdk.configure({
+      'mode': 'sandbox', #sandbox or live
+      'client_id': 'AZBNmJ7wvdWNJxt4GN9YXT2IVV5ruG-0QGGqpvTS0YilnFbox9f5FPreXgyov2d6ozib-xAOk6ol5xbY',
+      'client_secret': 'ELzSGWK_sr81DG0hV4mvXVuENWhe8iSBwajtx383IlzrlHMphUT63LbLWXnP3LFkQ-kxV5uIZU7Z0kZK'
+       })
+
+
       
     # Create payment object
-    payment = Payment({
+    payment = paypalrestsdk.Payment({
       "intent": "sale",
 
       # Set payment method
@@ -34,13 +43,13 @@ class Paypal():
       # Set transaction object
       "transactions": [{
         "amount": {
-          "total": "10.00",
+          "total": forfait.price,
           "currency": "USD"
         },
-        "description": "Get 10 towns - 100 niches"
+        "description": forfait.description
       }]
     })
-
+    print(payment)
     # Create payment
     if payment.create():
       # Extract redirect url
@@ -59,10 +68,15 @@ class Paypal():
   
   def executePayment(self, PayerID, paymentId, token,user_email, forfait_id):
 
-    self.configure(self)
+    #self.configure(self)
+    paypalrestsdk.configure({
+    'mode': 'sandbox', #sandbox or live
+    'client_id': 'AZBNmJ7wvdWNJxt4GN9YXT2IVV5ruG-0QGGqpvTS0YilnFbox9f5FPreXgyov2d6ozib-xAOk6ol5xbY',
+    'client_secret': 'ELzSGWK_sr81DG0hV4mvXVuENWhe8iSBwajtx383IlzrlHMphUT63LbLWXnP3LFkQ-kxV5uIZU7Z0kZK'
+    })
 
     # Payment ID obtained when creating the payment (following redirect)
-    payment = Payment.find(paymentId)
+    payment = paypalrestsdk.Payment.find(paymentId)
 
     # Execute payment with the payer ID from the create payment call (following redirect)
     if payment.execute({"payer_id": PayerID}):
