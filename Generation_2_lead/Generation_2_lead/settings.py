@@ -60,11 +60,7 @@ REST_FRAMEWORK = {
 
 #json web token lifetime expire
 SIMPLE_JWT={
-<<<<<<< HEAD
     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=2),
-=======
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=30),
->>>>>>> 6c0601b145368b15daf23cbadd787e3f73bccd05
     'AUTH_HEADER_TYPES': ('JWT',),
 }
 
@@ -105,7 +101,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-        #    os.path.join(BASE_DIR, 'frontend' , 'build'),
+            os.path.join(BASE_DIR, 'frontend' , 'build'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -135,13 +131,9 @@ DATABASES = {
          'ENGINE': 'django.db.backends.postgresql_psycopg2',
          'NAME': 'leadmehome',
          'USER': 'postgres',
-<<<<<<< HEAD
          'PASSWORD': 'Bonjour6',
-=======
-         'PASSWORD': '123456',
->>>>>>> 6c0601b145368b15daf23cbadd787e3f73bccd05
          'HOST': '127.0.0.1',
-         'PORT': '5000',
+         'PORT': '5432',
     }
 }
 
