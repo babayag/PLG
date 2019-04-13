@@ -20,6 +20,9 @@ urlpatterns = [
     path('findLeads', views.FindYourLeads.as_view()),
     path('betterfindlead', views.BetterFindLead.as_view()),
     path('createPayment', views.PaypalCreatePayment.as_view()),
+    path('getAllPayement', views.GetAllPayment.as_view()),
     path('executePayment', views.PaypalExecutePayment.as_view()),
-    path('getAllforfait',views.GetAllForfait.as_view()),
+    path('getAllforfait', views.GetAllForfait.as_view()),
+    # path('saveTransaction', views.SaveTransaction.as_view()),
+    path('getRestOfrequest', views.GetRestUserRequest.as_view()),
 ]

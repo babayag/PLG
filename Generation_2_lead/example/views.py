@@ -125,8 +125,8 @@ class BetterFindLead(APIView):
 
 class PaypalCreatePayment(APIView):
     def post(self, request):
-        payment = Paypal.createPayment(Paypal)
-
+        forfait_id = request.data.get('idForfait', None)
+        payment = Paypal.createPayment(Paypal,forfait_id)
         return Response(payment)
 
 # execute payement
@@ -135,14 +135,34 @@ class PaypalExecutePayment(APIView):
         paymentId = request.data.get('paymentId', None)
         PayerID = request.data.get('PayerID', None)
         token = request.data.get('token', None)
-        finalData = Paypal.executePayment(Paypal, PayerID, paymentId, token)
+        user_email = request.data.get('email', None)
+        forfait_id = request.data.get('idForfait', None)  
+        print(user_email,forfait_id)
+        finalData = Paypal.executePayment(Paypal, PayerID, paymentId, token,user_email,forfait_id)
         Jsonfinal = {"data": finalData}
 
         return Response(Jsonfinal)
 
 class GetAllForfait(APIView):
-    def post(self,request):
-        result = Transaction.getforfait(Transaction,request)
-        return Response(result)
+    def post(self, request):
+        allForfait = Transaction.getforfait(Transaction)
+        return Response(allForfait)
 
+class GetAllPayment(APIView):
+    def post(self, request):
+        user_email = request.data.get('user_email', None)
+        allPayment = Transaction.getAllPayment(Transaction,user_email)
+        return Response(allPayment)
 
+class GetRestUserRequest(APIView):
+    def post(self, request):
+        user_email = request.data.get('user_email', None)
+        rest = Transaction.getRestOfRequestOfUser(Transaction,user_email)
+        return Response({"Rest of request":rest})
+
+"""class SaveTransaction(APIView):
+    def post(self, request): 
+        user_email = request.data.get('user_email', None)
+        forfait_id = request.data.get('forfait_id', None)
+        tes = Transaction.SavePayment(Transaction,user_email,forfait_id)
+        return Response(tes)"""
