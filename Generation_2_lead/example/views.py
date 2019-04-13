@@ -129,7 +129,7 @@ class PaypalCreatePayment(APIView):
 
         return Response(payment)
 
-
+# execute payement
 class PaypalExecutePayment(APIView): 
     def post(self, request):
         paymentId = request.data.get('paymentId', None)
