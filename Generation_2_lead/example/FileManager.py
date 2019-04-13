@@ -6,8 +6,13 @@ import time
 class FileManager():
 
     def __init__(self):
+<<<<<<< HEAD
         self.cacheFolderPath = r'D:\project\PLG\PLG\Generation_2_lead\example\cache'
         self.leadFolderPath = r'D:\project\PLG\PLG\Generation_2_lead\example\leads'
+=======
+        self.cacheFolderPath = r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache'
+        self.leadFolderPath = r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\leads'
+>>>>>>> 6c0601b145368b15daf23cbadd787e3f73bccd05
 
     def WriteInFile(self, data, enterUrl, LastpageNbr, canSearch):
         os.chdir(self.cacheFolderPath)

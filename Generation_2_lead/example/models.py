@@ -32,13 +32,40 @@ class SpaUserManager(BaseUserManager):
         user.is_admin = True
         user.save(using=self._db)
         return user
-    
+
+ # create Forfait table
+class Forfait(models.Model):
+    id  = models.AutoField(primary_key=True)
+    price = models.FloatField()
+    niche = models.CharField(max_length=300)
+    description = models.CharField(max_length=300)
+    email = models.EmailField()
+
 class SpaUser(AbstractBaseUser):
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    niche_number = models.IntegerField(default=0)
     objects = SpaUserManager()
     USERNAME_FIELD = 'email'
     def __str__(self):
         return self.email
+
+  #create search table
+"""class Search(models.Model):
+    id = models.AutoField(primary_key=True)
+    domain = models.CharField(max_length=300)
+    user = models.ForeignKey(SpaUser, on_delete=models.CASCADE)"""
+
+
+class Payment(models.Model):
+        id = models.AutoField(primary_key=True)
+        currency = models.CharField(max_length=50)
+        isValid = models.BooleanField(default=False)
+        created_at = models.DateTimeField(auto_now_add=True)
+        user = models.ForeignKey(SpaUser, on_delete=models.CASCADE)
+        forfait = models.ForeignKey(Forfait, on_delete=models.CASCADE)
+
+        
+
 
