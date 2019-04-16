@@ -117,7 +117,9 @@ class BetterFindLead(APIView):
     def post(self, request):
         enteredNiche = request.data.get('niche', None)
         enteredCity = request.data.get('city', None)
+        userEmail = request.data.get('email', None)
         finalData = FindLeads.findLead(FindLeads, enteredNiche, enteredCity)
+        Transaction.SaveUserSearch(Transaction,enteredNiche,enteredCity,userEmail)
         Jsonfinal = {"data": finalData}
 
         return Response(Jsonfinal)
@@ -161,9 +163,18 @@ class GetRestUserRequest(APIView):
         rest = Transaction.getRestOfRequestOfUser(Transaction,user_email)
         return Response({"Rest of request":rest})
 
-"""class SaveTransaction(APIView):
-    def post(self, request): 
-        user_email = request.data.get('user_email', None)
-        forfait_id = request.data.get('forfait_id', None)
-        tes = Transaction.SavePayment(Transaction,user_email,forfait_id)
-        return Response(tes)"""
+class Savesearch(APIView):
+    def post(self, request):
+        userEmail = request.data.get('email', None)
+        enteredNiche = request.data.get('niche', None)
+        enteredCity = request.data.get('city', None)
+        result = Transaction.SaveUserSearch(Transaction,enteredNiche,enteredCity,userEmail)
+        return Response(result)
+
+class GetAllUserSearch(APIView):
+     def post(self, request):
+        userEmail = request.data.get('email', None)
+
+        result = Transaction.getAllSearchOfUser(Transaction,userEmail)
+        return Response(result)
+         
