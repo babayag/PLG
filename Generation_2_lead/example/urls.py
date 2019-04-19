@@ -23,7 +23,6 @@ urlpatterns = [
     path('getAllPayement', views.GetAllPayment.as_view()),
     path('executePayment', views.PaypalExecutePayment.as_view()),
     path('getAllforfait', views.GetAllForfait.as_view()),
-    path('savesearch', views.Savesearch.as_view()),
     path('getRestOfrequest', views.GetRestUserRequest.as_view()),
-     path('getallusersearch', views.GetAllUserSearch.as_view()),
+    path('getallusersearch', views.GetAllUserSearch.as_view()),
 ]

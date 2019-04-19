@@ -58,7 +58,7 @@ REST_FRAMEWORK = {
 
 #json web token lifetime expire
 SIMPLE_JWT={
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=5),
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=15),
     'AUTH_HEADER_TYPES': ('JWT',),
 }
 

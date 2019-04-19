@@ -118,11 +118,19 @@ class BetterFindLead(APIView):
         enteredNiche = request.data.get('niche', None)
         enteredCity = request.data.get('city', None)
         userEmail = request.data.get('email', None)
-        finalData = FindLeads.findLead(FindLeads, enteredNiche, enteredCity)
-        Transaction.SaveUserSearch(Transaction,enteredNiche,enteredCity,userEmail)
-        Jsonfinal = {"data": finalData}
+        if Transaction.getRestOfRequestOfUser(Transaction,userEmail) == 0:
+            response = ["Your are at the end of your subscription, please make a new subcription ! !"]
+            data =[{
+            "data": response
+            }]
+            return Response(data)
 
-        return Response(Jsonfinal)
+        else:
+            finalData = FindLeads.findLead(FindLeads, enteredNiche, enteredCity)
+            Transaction.SaveUserSearch(Transaction,enteredNiche,enteredCity,userEmail)
+            Jsonfinal = {"data": finalData}
+
+            return Response(Jsonfinal)
 
 
 class PaypalCreatePayment(APIView):
@@ -139,7 +147,6 @@ class PaypalExecutePayment(APIView):
         token = request.data.get('token', None)
         user_email = request.data.get('email', None)
         forfait_id = request.data.get('idForfait', None)  
-        print(user_email,forfait_id)
         finalData = Paypal.executePayment(Paypal, PayerID, paymentId, token,user_email,forfait_id)
         Jsonfinal = {"data": finalData}
 
@@ -163,13 +170,7 @@ class GetRestUserRequest(APIView):
         rest = Transaction.getRestOfRequestOfUser(Transaction,user_email)
         return Response({"Rest of request":rest})
 
-class Savesearch(APIView):
-    def post(self, request):
-        userEmail = request.data.get('email', None)
-        enteredNiche = request.data.get('niche', None)
-        enteredCity = request.data.get('city', None)
-        result = Transaction.SaveUserSearch(Transaction,enteredNiche,enteredCity,userEmail)
-        return Response(result)
+
 
 class GetAllUserSearch(APIView):
      def post(self, request):
