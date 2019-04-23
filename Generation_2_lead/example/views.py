@@ -123,6 +123,15 @@ class BetterFindLead(APIView):
 
         return Response(Jsonfinal)
 
+# checks if the provided domain has facebook and google pixel
+class CheckPixels(APIView): 
+    def post(self, request):
+        domain = request.data.get('domain', None)
+        finalData = FindLeads.checkPixel(FindLeads, domain)
+        Jsonfinal = {"data": finalData}
+
+        return Response(Jsonfinal)
+
 
 class PaypalCreatePayment(APIView):
     def post(self, request):
