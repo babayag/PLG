@@ -90,13 +90,11 @@ class Email():
                         datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, scrapedEmail[0], scrapedEmail[1], pureUrl, urls[1])
                         print(datasStructured)
                         if datasStructured == False:
-                            print("test 1")
                             # file has been not updated
                             #print("file has been not updated")
                             emailsToReturn[2] = False # remove the button see more of the view
                             return  emailsToReturn
                         else:
-                            print("test 2")
                             # file has been updated
                             FileManager.__init__(FileManager)
                             fc = FileManager.readFile(FileManager, pureUrl)

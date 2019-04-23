@@ -118,12 +118,9 @@ class BetterFindLead(APIView):
         enteredNiche = request.data.get('niche', None)
         enteredCity = request.data.get('city', None)
         userEmail = request.data.get('email', None)
-        if Transaction.getRestOfRequestOfUser(Transaction,userEmail) == 0:
-            response = ["Your are at the end of your subscription, please make a new subcription ! !"]
-            data =[{
-            "data": response
-            }]
-            return Response(data)
+        if Transaction.getRestOfRequestOfUser(Transaction,userEmail) == 0: 
+            
+            return Response("Your are at the end of your subscription, please make a new subcription ! !")
 
         else:
             finalData = FindLeads.findLead(FindLeads, enteredNiche, enteredCity)
@@ -168,14 +165,13 @@ class GetRestUserRequest(APIView):
     def post(self, request):
         user_email = request.data.get('email', None)
         rest = Transaction.getRestOfRequestOfUser(Transaction,user_email)
-        return Response({"Rest of request":rest})
+        return Response(rest)
 
 
 
 class GetAllUserSearch(APIView):
      def post(self, request):
         userEmail = request.data.get('email', None)
-
         result = Transaction.getAllSearchOfUser(Transaction,userEmail)
         return Response(result)
          
