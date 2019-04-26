@@ -157,5 +157,6 @@ class Email():
 
                     except:
                         break
+            print(emails)
             emailsAndSources = [emails, sources]
             return emailsAndSources

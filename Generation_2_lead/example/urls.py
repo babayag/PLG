@@ -20,6 +20,7 @@ urlpatterns = [
     path('findervalidEmail', views.CreateEmailView.as_view()),
     path('findLeads', views.FindYourLeads.as_view()),
     path('betterfindlead', views.BetterFindLead.as_view()),
+    path('checkpixel', views.CheckPixels.as_view()),
     path('createPayment', views.PaypalCreatePayment.as_view()),
     path('getAllPayement', views.GetAllPayment.as_view()),
     path('executePayment', views.PaypalExecutePayment.as_view()),

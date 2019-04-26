@@ -26,30 +26,80 @@ class FindLeads():
         else:
             return False
 
-    def findLead(self, enterNiche, enterCity):
+    def findLead(self, enterNiche, enterCity, p):
         response = {}
         FileManager.__init__(FileManager)
         nicheAndCityFile = enterNiche+'_'+enterCity
         files = FileManager.verifyIfFileExist2(FileManager, nicheAndCityFile)
         print(files)
-        # PixelsVerifiers.VerifyFacebookPixel(PixelsVerifiers, "leadmehome.io")
+    
         if files != False:
             filesContent = FileManager.readFile2(FileManager, files)
             allDomains = []
             i = 0
-            for item in filesContent[0]["Results"]:
-                #I create a new object that will look like {Domain:domain, hasFacebookPixel:Boolean, hasGooglePixel:Boolean, Emails:[]}
-                newItem = {"Domain":"", "hasFacebookPixel":False, "hasGooglePixel":False, "Emails":[]}   
-                newItem["Domain"] = item["Domain"]
-                newItem["Emails"] = item["Emails"]
-                hasFaceBookPixel = PixelsVerifiers.VerifyFacebookPixel(PixelsVerifiers, item["Domain"])
-                hasGooglePixel = PixelsVerifiers.VerifyGooglePixel(PixelsVerifiers, item["Domain"])
-                newItem["hasFacebookPixel"] = hasFaceBookPixel
-                newItem["hasGooglePixel"] = hasGooglePixel
-                allDomains.append(newItem)
-                i=i+1 
-            response["Results"] = allDomains
-            print(response)
-            return response
+            
+            if len(filesContent[0]["Results"]) < 10:
+                print(len(filesContent[0]["Results"]))
+                for item in filesContent[0]["Results"]:
+                    #I create a new object that will look like {Domain:domain, hasFacebookPixel:Boolean, hasGooglePixel:Boolean, Emails:[]}
+                    newItem = {}   
+                    newItem["Domain"] = item["Domain"]
+                    newItem["Emails"] = item["Emails"]
+                    #hasFaceBookPixel = PixelsVerifiers.VerifyFacebookPixel(PixelsVerifiers, item["Domain"])
+                    #hasGooglePixel = PixelsVerifiers.VerifyGooglePixel(PixelsVerifiers, item["Domain"])
+                    newItem["hasFacebookPixel"] = "pending"
+                    newItem["hasGooglePixel"] = "pending"
+                    allDomains.append(newItem)
+                    i=i+1 
+                response["Results"] = allDomains
+                print(response)
+                return response
+            else:
+                if len(filesContent[0]["Results"]) - p >= 10:
+                    for p in range(p, p+10): 
+                        #I create a new object that will look like {Domain:domain, hasFacebookPixel:Boolean, hasGooglePixel:Boolean, Emails:[]}
+                        newItem = {}   
+                        item = filesContent[0]["Results"][p]
+                        newItem["Domain"] = item["Domain"]
+                        newItem["Emails"] = item["Emails"]
+                        #hasFaceBookPixel = PixelsVerifiers.VerifyFacebookPixel(PixelsVerifiers, item["Domain"])
+                        #hasGooglePixel = PixelsVerifiers.VerifyGooglePixel(PixelsVerifiers, item["Domain"])
+                        newItem["hasFacebookPixel"] = "pending"
+                        newItem["hasGooglePixel"] = "pending"
+                        allDomains.append(newItem)
+                        
+                    response["Results"] = allDomains
+                    print(response)
+                    return response
+                else:
+                    for p in range(p, len(filesContent[0]["Results"])): 
+                        #I create a new object that will look like {Domain:domain, hasFacebookPixel:Boolean, hasGooglePixel:Boolean, Emails:[]}
+                        newItem = {}   
+                        item = filesContent[0]["Results"][p]
+                        newItem["Domain"] = item["Domain"]
+                        newItem["Emails"] = item["Emails"]
+                        #hasFaceBookPixel = PixelsVerifiers.VerifyFacebookPixel(PixelsVerifiers, item["Domain"])
+                        #hasGooglePixel = PixelsVerifiers.VerifyGooglePixel(PixelsVerifiers, item["Domain"])
+                        newItem["hasFacebookPixel"] = "pending"
+                        newItem["hasGooglePixel"] = "pending"
+                        allDomains.append(newItem)
+                        
+                    response["Results"] = allDomains
+                    print(response)
+                    return response
         else:
             return []
+
+    def checkPixel(self, domain):
+        # I create a new item that will look like {hasFacebookPixel:Boolean, hasGooglePixel:Boolean}
+        newItem = {} 
+        hasFaceBookPixel = PixelsVerifiers.VerifyFacebookPixel(PixelsVerifiers, domain)
+        hasGooglePixel = PixelsVerifiers.VerifyGooglePixel(PixelsVerifiers, domain)
+        newItem["hasFacebookPixel"] = hasFaceBookPixel
+        newItem["hasGooglePixel"] = hasGooglePixel
+
+        return newItem
+
+
+                        
+
