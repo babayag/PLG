@@ -52,10 +52,13 @@ class SpaUser(AbstractBaseUser):
         return self.email
 
   #create search table
-"""class Search(models.Model):
+class Search(models.Model):
     id = models.AutoField(primary_key=True)
-    domain = models.CharField(max_length=300)
-    user = models.ForeignKey(SpaUser, on_delete=models.CASCADE)"""
+    niche = models.CharField(max_length=300)
+    location = models.CharField(max_length=300)
+    created_at = models.DateTimeField(auto_now_add=True)
+    counter = models.IntegerField(default=0)
+    user = models.ForeignKey(SpaUser, on_delete=models.CASCADE)
 
 
 class Payment(models.Model):

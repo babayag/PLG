@@ -12,7 +12,7 @@ class SearchOnMultipleDomain():
             if BingSearch.UrlValidation(BingSearch,domaineName) == True:
                 #extract good domaine from the enterUrl
                 goodUrl = BingSearch.extractGoodDomain(BingSearch,domaineName)
-                #Browse 200 results and return searchUrl and NbrOfLastPage as here we done use last page we put None
+                #Browse 200 results and return searchUrl and NbrOfLastPage as here we don't use last page we put None
                 url = BingSearch.nbrPage(BingSearch,goodUrl,None,200)
                 #url = [listeOfUrl , LastPageNbr] so we need only listeOfUrl it is why we write url[0]
                 emailSource = Email.getEmail(Email, url[0], goodUrl)

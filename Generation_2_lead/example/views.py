@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 # from knox.models import AuthToken
-from .models import Lead
+from .models import Lead, Search, SpaUser
 from .serializers import LeadSerializer
 from rest_framework import generics
 from rest_framework.response import Response
@@ -117,11 +117,27 @@ class BetterFindLead(APIView):
     def post(self, request):
         enteredNiche = request.data.get('niche', None)
         enteredCity = request.data.get('city', None)
+        userEmail = request.data.get('email', None)
         p = request.data.get('p', None) #this is the value we will use to search new emails
-        finalData = FindLeads.findLead(FindLeads, enteredNiche, enteredCity, p)
-        Jsonfinal = {"data": finalData}
+        # if user request is finished (== 0)
+        if Transaction.getRestOfRequestOfUser(Transaction,userEmail) == 0: 
+            # if the curent search already exist in search table return result to the user
+            try:
+                User = SpaUser.objects.get(email = userEmail)
+                eventualNewSearch = Search.objects.get(user_id = User.id, niche = enteredNiche, location = enteredCity)
+                finalData = FindLeads.findLead(FindLeads, enteredNiche, enteredCity , p)
+                Jsonfinal = {"data": finalData} 
+                return Response(Jsonfinal)
+            # if not, display this message
+            except:
+                return Response("Your are at the end of your subscription, please make a new subcription ! !")
+        # if user request is not finished (not  null) always return result
+        else:
+            finalData = FindLeads.findLead(FindLeads, enteredNiche, enteredCity , p)
+            Transaction.SaveUserSearch(Transaction,enteredNiche,enteredCity,userEmail)
+            Jsonfinal = {"data": finalData}
 
-        return Response(Jsonfinal)
+            return Response(Jsonfinal)
 
 # checks if the provided domain has facebook and google pixel
 class CheckPixels(APIView): 
@@ -129,8 +145,9 @@ class CheckPixels(APIView):
         domain = request.data.get('domain', None)
         finalData = FindLeads.checkPixel(FindLeads, domain)
         Jsonfinal = {"data": finalData}
-
         return Response(Jsonfinal)
+        
+        
 
 
 class PaypalCreatePayment(APIView):
@@ -139,7 +156,7 @@ class PaypalCreatePayment(APIView):
         payment = Paypal.createPayment(Paypal,forfait_id)
         return Response(payment)
 
-
+# execute payement
 class PaypalExecutePayment(APIView): 
     def post(self, request):
         paymentId = request.data.get('paymentId', None)
@@ -147,7 +164,6 @@ class PaypalExecutePayment(APIView):
         token = request.data.get('token', None)
         user_email = request.data.get('email', None)
         forfait_id = request.data.get('idForfait', None)  
-        print(user_email,forfait_id)
         finalData = Paypal.executePayment(Paypal, PayerID, paymentId, token,user_email,forfait_id)
         Jsonfinal = {"data": finalData}
 
@@ -160,19 +176,22 @@ class GetAllForfait(APIView):
 
 class GetAllPayment(APIView):
     def post(self, request):
-        user_email = request.data.get('user_email', None)
+        user_email = request.data.get('email', None)
+    
         allPayment = Transaction.getAllPayment(Transaction,user_email)
         return Response(allPayment)
 
 class GetRestUserRequest(APIView):
     def post(self, request):
-        user_email = request.data.get('user_email', None)
+        user_email = request.data.get('email', None)
         rest = Transaction.getRestOfRequestOfUser(Transaction,user_email)
-        return Response({"Rest of request":rest})
+        return Response(rest)
 
-"""class SaveTransaction(APIView):
-    def post(self, request): 
-        user_email = request.data.get('user_email', None)
-        forfait_id = request.data.get('forfait_id', None)
-        tes = Transaction.SavePayment(Transaction,user_email,forfait_id)
-        return Response(tes)"""
+
+
+class GetAllUserSearch(APIView):
+     def post(self, request):
+        userEmail = request.data.get('email', None)
+        result = Transaction.getAllSearchOfUser(Transaction,userEmail)
+        return Response(result)
+         

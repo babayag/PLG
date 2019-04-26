@@ -17,14 +17,8 @@ class Paypal():
 
     forfait = Forfait.objects.get(id = forfait_id) 
     
-    paypalrestsdk.configure({
-      'mode': 'sandbox', #sandbox or live
-      'client_id': 'AZBNmJ7wvdWNJxt4GN9YXT2IVV5ruG-0QGGqpvTS0YilnFbox9f5FPreXgyov2d6ozib-xAOk6ol5xbY',
-      'client_secret': 'ELzSGWK_sr81DG0hV4mvXVuENWhe8iSBwajtx383IlzrlHMphUT63LbLWXnP3LFkQ-kxV5uIZU7Z0kZK'
-       })
+    self.configure(self)
 
-
-      
     # Create payment object
     payment = paypalrestsdk.Payment({
       "intent": "sale",
@@ -68,12 +62,8 @@ class Paypal():
   
   def executePayment(self, PayerID, paymentId, token,user_email, forfait_id):
 
-    #self.configure(self)
-    paypalrestsdk.configure({
-    'mode': 'sandbox', #sandbox or live
-    'client_id': 'AZBNmJ7wvdWNJxt4GN9YXT2IVV5ruG-0QGGqpvTS0YilnFbox9f5FPreXgyov2d6ozib-xAOk6ol5xbY',
-    'client_secret': 'ELzSGWK_sr81DG0hV4mvXVuENWhe8iSBwajtx383IlzrlHMphUT63LbLWXnP3LFkQ-kxV5uIZU7Z0kZK'
-    })
+    self.configure(self)
+   
 
     # Payment ID obtained when creating the payment (following redirect)
     payment = paypalrestsdk.Payment.find(paymentId)
