@@ -19,7 +19,10 @@ urlpatterns = [
     path('downloadEmails', views.DownloadEmailInCsv.as_view()),
     path('findervalidEmail', views.CreateEmailView.as_view()),
     path('findLeads', views.FindYourLeads.as_view()),
+    #find leads from dashboard
     path('betterfindlead', views.BetterFindLead.as_view()),
+    #find leads when not connected
+    path('normalFindLeads', views.NormalFindLead.as_view()), 
     path('checkpixel', views.CheckPixels.as_view()),
     path('createPayment', views.PaypalCreatePayment.as_view()),
     path('getAllPayement', views.GetAllPayment.as_view()),
