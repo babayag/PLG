@@ -6,8 +6,13 @@ import time
 class FileManager():
 
     def __init__(self):
+<<<<<<< HEAD
         self.cacheFolderPath = r'D:\project\PLG\PLG\Generation_2_lead\example\cache'
         self.leadFolderPath = r'D:\project\PLG\PLG\Generation_2_lead\example\leads'
+=======
+        self.cacheFolderPath =  r'C:\Users\nteguem roland\PLG/Generation_2_lead/example/cache'
+        self.domainFile = r"C:\Users\nteguem roland\PLG/Generation_2_lead/example/DomainsName/Domain.txt"
+>>>>>>> ba19c19e6f356306e5ff576ddc65773213dbcf69
 
     def WriteInFile(self, data, enterUrl, LastpageNbr, canSearch):
         os.chdir(self.cacheFolderPath)
@@ -75,6 +80,29 @@ class FileManager():
         except FileNotFoundError:
             pass
 
+<<<<<<< HEAD
+=======
+
+    def clearDirectory(self,timeOfLifeOfFile):
+
+        timeOfEachFile = []
+        currentTime = time.mktime(datetime.now().timetuple())
+
+        #for each file in the folder
+        for file in os.listdir(self.cacheFolderPath):
+
+            timeOfCreation = os.path.getmtime(file)  # get file creation/modification time
+
+            #if the currentTime - time of file creation is grather than 30 days delete the file
+            if currentTime - timeOfCreation > timeOfLifeOfFile:
+                os.remove(file)  # delete outdated file
+            else:
+                timeOfEachFile.append(timeOfCreation)  # add time info to list
+    # after check all files, choose the oldest file creation time from list
+        _sleep_time = (currentTime - min(
+            timeOfEachFile)) if timeOfEachFile else 120  # if _time_list is empty, set sleep time as 120 seconds, else calculate it based on the oldest file creation time
+        time.sleep(_sleep_time)
+>>>>>>> ba19c19e6f356306e5ff576ddc65773213dbcf69
 
 
     def updateCanSearch(self,enterUrl):
@@ -91,6 +119,7 @@ class FileManager():
             pass
 
 
+<<<<<<< HEAD
     """"
     For Lead Search: Using leadFolderPath
     """
@@ -136,3 +165,5 @@ class FileManager():
 
 
 
+=======
+>>>>>>> ba19c19e6f356306e5ff576ddc65773213dbcf69

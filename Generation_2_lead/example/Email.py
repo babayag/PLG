@@ -127,6 +127,7 @@ class Email():
         Source.__init__(Source)
         with PoolExecutor(max_workers=7) as executor:
             print("Workers")
+<<<<<<< HEAD
             if type(urls[0]) == str:
                 urls = urls
             else:
@@ -159,3 +160,68 @@ class Email():
                         break
             emailsAndSources = [emails, sources]
             return emailsAndSources
+=======
+            if type(urls[0]) != str:
+                for _ in executor.map(BingSearch.initialSearch, urls[0]):
+                    soup = BeautifulSoup(_, features="html.parser")
+                    lipath = soup.findAll("li", {"class": "b_algo"})
+                    li_number = 0
+                    while True:
+                        try:
+                            litext = lipath[li_number].text
+                            # for line in the drivertextclear
+                            for line in litext.splitlines():
+                                # search all email in each line, return the objet searchNumbers of type list
+
+                                searchEmails = re.findall(r"[a-zA-Z]+[\.\-]?\w*[\.\-]?\w+\.?\w*\@{}".format(pureUrl), line,flags=re.MULTILINE)
+                                # for email in email_1 list
+
+                                if searchEmails:
+                                    src = Source.search(Source, li_number, lipath)
+                                    for email in searchEmails:
+
+                                        # add email in the emails list: return an object oy type NoneType
+                                        emails.append(email)
+                                        sources = Source.appendSource(Source, src)
+
+                            li_number = li_number + 1
+                        except:
+                            break
+
+                datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, emails, sources, pureUrl, urls[1])
+                print(datasStructured)
+                return datasStructured
+
+            else:
+
+                for _ in executor.map(BingSearch.initialSearch, urls):
+                    soup = BeautifulSoup(_, features="html.parser")
+                    lipath = soup.findAll("li", {"class": "b_algo"})
+                    li_number = 0
+                    while True:
+                        try:
+                            litext = lipath[li_number].text
+                            # for line in the drivertextclear
+                            for line in litext.splitlines():
+                                # search all email in each line, return the objet searchNumbers of type list
+
+                                searchEmails = re.findall(r"[a-zA-Z]+[\.\-]?\w*[\.\-]?\w+\.?\w*\@{}".format(pureUrl),
+                                                          line, flags=re.MULTILINE)
+                                # for email in email_1 list
+
+                                if searchEmails:
+                                    src = Source.search(Source, li_number, lipath)
+                                    for email in searchEmails:
+                                        # add email in the emails list: return an object oy type NoneType
+                                        emails.append(email)
+                                        #print(emails)
+                                        sources = Source.appendSource(Source, src)
+                            li_number = li_number + 1
+
+                        except:
+                            break
+
+                emailsAndSources =[emails, sources]
+
+                return emailsAndSources
+>>>>>>> ba19c19e6f356306e5ff576ddc65773213dbcf69

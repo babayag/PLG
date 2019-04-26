@@ -20,23 +20,32 @@ class BingSearch():
            return False
 
     def extractGoodDomain(self, enterUrl):
+        goodDomain = enterUrl
+        if "://" in enterUrl:
+           splitenterUrl = enterUrl.split("://")
+           splitpoint = splitenterUrl[1].split(".")
+           if len(splitpoint) > 2:
+              splitextension = splitpoint[2].split('/')
+              goodDomain = splitpoint[1]+'.'+splitextension[0]
+              return goodDomain
+           else:
+              splitextension = splitpoint[1].split('/')
+              goodDomain = splitpoint[0]+'.'+splitextension[0]
+              return goodDomain
 
-        if "http://" in enterUrl:
-            url = enterUrl[len("http://"):len(enterUrl)]
-            if "www." in url:
-                return  url[len("www."):len(url)]
-            else:
-                return url
-        elif "https://" in enterUrl:
-            url = enterUrl[len("https://"):len(enterUrl)]
-            if "www." in url:
-                return  url[len("www."):len(url)]
-            else:
-                return url
-        elif "www." in enterUrl:
-            return enterUrl[len("www."):len(enterUrl)]
+        elif enterUrl.count('.') > 1:
+            
+            splitpoint = enterUrl.split(".")
+            splitextension = splitpoint[2].split('/')
+            goodDomain = splitpoint[1]+'.'+splitextension[0]
+            return goodDomain
+        elif enterUrl.count('.') == 1:
+             splitpoint = enterUrl.split(".")
+             splitextension = splitpoint[1].split('/')
+             goodDomain = splitpoint[0]+'.'+splitextension[0]
+             return goodDomain
         else:
-            return enterUrl
+            return goodDomain
 
     def initialSearch(myUrl):
 

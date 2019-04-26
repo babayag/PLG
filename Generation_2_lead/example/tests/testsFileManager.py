@@ -98,4 +98,12 @@ class TestFileManager(TestCase):
         print(result)
 
     
+<<<<<<< HEAD
         
+=======
+   def testsreadFile(self):
+        url = "itkamer.com"
+        #domainFile = r"E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
+        fileContent = FileManager.readFile(FileManager,url)
+        print(fileContent)
+>>>>>>> ba19c19e6f356306e5ff576ddc65773213dbcf69

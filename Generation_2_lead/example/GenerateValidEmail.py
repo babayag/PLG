@@ -69,6 +69,7 @@ class GenerateValidEmail():
         email14 =  lastname[0]+firstname+"@"+domainName
         listOfEmails.append(email14)
         
+        return listOfEmails
     def generatePossibleMailWithOneEntry(self,name,domainName, listOfEmails):
             
         email1 =  name[0]+"@"+domainName

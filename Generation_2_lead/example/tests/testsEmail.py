@@ -75,6 +75,7 @@ class TestGetEmail(TestCase):
 
     #test  method  returnTenEmails
 
+<<<<<<< HEAD
     # def testreturnTenEmails(self):
     #     enterUrl = ["kerrycfan@football.com",
     #                 "koh@football.com",
@@ -109,6 +110,34 @@ class TestGetEmail(TestCase):
         actualResult = Email.cityAndNiche(Email, enterNiche, enterCity)
         espectResult = False
         self.assertEqual(actualResult, espectResult)"""
+=======
+    def testreturnTenEmails(self):
+        enterUrl = ["kerrycfan@football.com",
+                    "koh@football.com",
+                    "joe@football.com",
+                    "info@football.com",
+                    "ralph@football.com",
+                    "dasilva@football.com",
+                    "joegibbs@football.com",
+                    "texas@football.com",
+                    "pb@football.com",
+                    "association@football.com",
+                    "botchtotebag@football.com",
+                    "tich-tiraline-amour@football.com"]
+
+        nbrEmail = 0
+        Email.__init__(Email)
+        result = Email.returnTenEmails(Email, nbrEmail, enterUrl)
+        resulttest = 10
+        print(result[1])
+        self.assertEquals(result[1], resulttest)
+
+    def  testDownloadEmails(self):
+         url = "https://www.itkamer.com"
+         Email.__init__(Email)
+         result = Email.DownloadEmails(Email,url)
+         self.assertEqual(type(len(result)),int)
+>>>>>>> ba19c19e6f356306e5ff576ddc65773213dbcf69
 
 
 
