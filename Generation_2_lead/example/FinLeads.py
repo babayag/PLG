@@ -2,6 +2,8 @@ from .BingSearch import BingSearch
 from .JsonStructure import JsonStructure
 from .FileManager import FileManager
 from .Email import Email
+from .PixelsVerifiers import PixelsVerifiers
+import json
 
 class FindLeads():
 
@@ -25,11 +27,29 @@ class FindLeads():
             return False
 
     def findLead(self, enterNiche, enterCity):
+        response = {}
         FileManager.__init__(FileManager)
         nicheAndCityFile = enterNiche+'_'+enterCity
         files = FileManager.verifyIfFileExist2(FileManager, nicheAndCityFile)
+        print(files)
+        # PixelsVerifiers.VerifyFacebookPixel(PixelsVerifiers, "leadmehome.io")
         if files != False:
-            f = FileManager.readFile2(FileManager, files)
-            return f
+            filesContent = FileManager.readFile2(FileManager, files)
+            allDomains = []
+            i = 0
+            for item in filesContent[0]["Results"]:
+                #I create a new object that will look like {Domain:domain, hasFacebookPixel:Boolean, hasGooglePixel:Boolean, Emails:[]}
+                newItem = {"Domain":"", "hasFacebookPixel":False, "hasGooglePixel":False, "Emails":[]}   
+                newItem["Domain"] = item["Domain"]
+                newItem["Emails"] = item["Emails"]
+                hasFaceBookPixel = PixelsVerifiers.VerifyFacebookPixel(PixelsVerifiers, item["Domain"])
+                hasGooglePixel = PixelsVerifiers.VerifyGooglePixel(PixelsVerifiers, item["Domain"])
+                newItem["hasFacebookPixel"] = hasFaceBookPixel
+                newItem["hasGooglePixel"] = hasGooglePixel
+                allDomains.append(newItem)
+                i=i+1 
+            response["Results"] = allDomains
+            print(response)
+            return response
         else:
             return []
