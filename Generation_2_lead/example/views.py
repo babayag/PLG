@@ -1,6 +1,8 @@
 from rest_framework.views import APIView
 # from knox.models import AuthToken
 from .models import Lead
+from .models import Search
+from .models import SpaUser
 from .serializers import LeadSerializer
 from rest_framework import generics
 from rest_framework.response import Response
@@ -71,7 +73,6 @@ class UpdateJsonFile(APIView):
         response = False
         enterUrl = request.data.get('url', None)
         finalData = Email.main(Email, enterUrl)
-        print(finalData)
         Jsonfinal = {"data": finalData}
         if len(Jsonfinal) != 0:
             response = True
@@ -118,10 +119,20 @@ class BetterFindLead(APIView):
         enteredNiche = request.data.get('niche', None)
         enteredCity = request.data.get('city', None)
         userEmail = request.data.get('email', None)
-        if Transaction.getRestOfRequestOfUser(Transaction,userEmail) == 0: 
-            
-            return Response("Your are at the end of your subscription, please make a new subcription ! !")
 
+        # if user request is finished (== 0)
+        if Transaction.getRestOfRequestOfUser(Transaction,userEmail) == 0: 
+            # if the curent search already exist in search table return result to the user
+            try:
+                User = SpaUser.objects.get(email = userEmail)
+                eventualNewSearch = Search.objects.get(user_id = User.id, niche = enteredNiche, location = enteredCity)
+                finalData = FindLeads.findLead(FindLeads, enteredNiche, enteredCity)
+                Jsonfinal = {"data": finalData} 
+                return Response(Jsonfinal)
+            # if not, display this message
+            except:
+                return Response("Your are at the end of your subscription, please make a new subcription ! !")
+        # if user request is not finished (not  null) always return result
         else:
             finalData = FindLeads.findLead(FindLeads, enteredNiche, enteredCity)
             Transaction.SaveUserSearch(Transaction,enteredNiche,enteredCity,userEmail)
