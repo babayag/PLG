@@ -112,7 +112,19 @@ class FindYourLeads(APIView):
         datasToReturn = {'data': emailsAndSourceToParse}
         return Response(datasToReturn)
 
+#this is called when the user send the request while he is not connected
+class NormalFindLead(APIView): 
+    def post(self, request):
+        enteredNiche = request.data.get('niche', None)
+        enteredCity = request.data.get('city', None)
+        p = request.data.get('p', None) #this is the value we will use to search new emails
+        
+        finalData = FindLeads.findLead(FindLeads, enteredNiche, enteredCity , p)
+        Jsonfinal = {"data": finalData}
 
+        return Response(Jsonfinal)
+
+#this is called when the user sends the request from the dashboard (when he is connected)
 class BetterFindLead(APIView): 
     def post(self, request):
         enteredNiche = request.data.get('niche', None)
@@ -138,6 +150,7 @@ class BetterFindLead(APIView):
             Jsonfinal = {"data": finalData}
 
             return Response(Jsonfinal)
+
 
 # checks if the provided domain has facebook and google pixel
 class CheckPixels(APIView): 
