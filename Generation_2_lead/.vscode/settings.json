@@ -1,4 +1,8 @@
 {
     "python.linting.pylintEnabled": true,
+<<<<<<< HEAD
     "python.pythonPath": "C:\\Users\\Ranyl\\AppData\\Local\\Programs\\Python\\Python36-32\\python3.exe"
+=======
+    "python.pythonPath": "C:\\Users\\Dell\\AppData\\Local\\Programs\\Python\\Python36\\python.exe"
+>>>>>>> 1f04568f77a3e2673e865d32f0f98f00638ba32d
 }

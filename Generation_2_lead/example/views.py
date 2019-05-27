@@ -1,8 +1,6 @@
 from rest_framework.views import APIView
 # from knox.models import AuthToken
-from .models import Lead
-from .models import Search
-from .models import SpaUser
+from .models import Lead, Search, SpaUser
 from .serializers import LeadSerializer
 from rest_framework import generics
 from rest_framework.response import Response
@@ -113,32 +111,56 @@ class FindYourLeads(APIView):
         datasToReturn = {'data': emailsAndSourceToParse}
         return Response(datasToReturn)
 
+#this is called when the user send the request while he is not connected
+class NormalFindLead(APIView): 
+    def post(self, request):
+        enteredNiche = request.data.get('niche', None)
+        enteredCity = request.data.get('city', None)
+        p = request.data.get('p', None) #this is the value we will use to search new emails
+        
+        finalData = FindLeads.findLead(FindLeads, enteredNiche, enteredCity , p)
+        Jsonfinal = {"data": finalData}
 
+        return Response(Jsonfinal)
+
+#this is called when the user sends the request from the dashboard (when he is connected)
 class BetterFindLead(APIView): 
     def post(self, request):
         enteredNiche = request.data.get('niche', None)
         enteredCity = request.data.get('city', None)
         userEmail = request.data.get('email', None)
-
+        p = request.data.get('p', None) #this is the value we will use to search new emails
+       
         # if user request is finished (== 0)
         if Transaction.getRestOfRequestOfUser(Transaction,userEmail) == 0: 
             # if the curent search already exist in search table return result to the user
             try:
                 User = SpaUser.objects.get(email = userEmail)
                 eventualNewSearch = Search.objects.get(user_id = User.id, niche = enteredNiche, location = enteredCity)
-                finalData = FindLeads.findLead(FindLeads, enteredNiche, enteredCity)
+                finalData = FindLeads.findLead(FindLeads, enteredNiche, enteredCity , p)
                 Jsonfinal = {"data": finalData} 
                 return Response(Jsonfinal)
             # if not, display this message
             except:
-                return Response("Your are at the end of your subscription, please make a new subcription ! !")
+                return Response("Your are at the end of your subscription, please make a new subscription ! !")
         # if user request is not finished (not  null) always return result
         else:
-            finalData = FindLeads.findLead(FindLeads, enteredNiche, enteredCity)
+            finalData = FindLeads.findLead(FindLeads, enteredNiche, enteredCity , p)
             Transaction.SaveUserSearch(Transaction,enteredNiche,enteredCity,userEmail)
             Jsonfinal = {"data": finalData}
 
             return Response(Jsonfinal)
+
+
+# checks if the provided domain has facebook and google pixel
+class CheckPixels(APIView): 
+    def post(self, request):
+        domain = request.data.get('domain', None)
+        finalData = FindLeads.checkPixel(FindLeads, domain)
+        Jsonfinal = {"data": finalData}
+        return Response(Jsonfinal)
+        
+        
 
 
 class PaypalCreatePayment(APIView):

@@ -115,7 +115,7 @@ class Email():
                     return []
         else:
             # URL is not valid
-            return 'YOU ENTERED A BAD URL!! please enter a url like itkamer.com or wwww.itkamer.com or https://themiddlefingerproject.org'
+            return 'YOU ENTERED A BAD URL!!'
 
     
 
@@ -155,5 +155,6 @@ class Email():
 
                     except:
                         break
+            print(emails)
             emailsAndSources = [emails, sources]
             return emailsAndSources

@@ -1,5 +1,3 @@
-
-
 from bs4 import BeautifulSoup
 
 class Source():
@@ -15,8 +13,8 @@ class Source():
 
     def appendSource(self, source):
        if type(source) != type('git example'):
-           emppty = 'Not'
-           return emppty
+           empty = 'Not'
+           return empty
        else:
            self.sources.append(source)
            return self.sources
