@@ -19,8 +19,9 @@ class Paypal():
   """
     author : Domngang Eric Faycal and Junior Nouboussi
     params : forfait_id
-    description : create the url for the payment process 
+    description : create the url for the payments process 
     return: an error or payment url 
+
   """
   def createPayment(self,forfait_id):
 
