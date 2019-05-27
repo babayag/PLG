@@ -1,4 +1,5 @@
 {
     "python.linting.pylintEnabled": true,
-    "python.pythonPath": "C:\\Users\\Dell\\AppData\\Local\\Programs\\Python\\Python36\\python.exe"
+    "python.pythonPath": "/media/byebyeman/_home/project/back/bin/python",
+    "python.linting.enabled": true
 }

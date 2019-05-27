@@ -6,13 +6,18 @@ from ..BingSearch import BingSearch
 # Create your tests here.
 class TestGetEmail(TestCase):
 
-  # test getEmail method
-
+  # test GetEmail method
+  """
+    author : ??????????????
+    params : urls, PureURL
+    description : ??????
+    return:Emails And Sources
+    """
     def testgetEmail(self):
-        pageurlsfirst = ['/search?q=%40forbes.com&first=1', '/search?q=%40forbes.com&first=11', '/search?q=%40forbes.com&first=21', '/search?q=%40forbes.com&first=31', '/search?q=%40forbes.com&first=41', '/search?q=%40forbes.com&first=50']
+        PageUrlsFirst = ['/search?q=%40forbes.com&first=1', '/search?q=%40forbes.com&first=11', '/search?q=%40forbes.com&first=21', '/search?q=%40forbes.com&first=31', '/search?q=%40forbes.com&first=41', '/search?q=%40forbes.com&first=50']
         expectedResult = ['akonrad@forbes.com', 'corrections@forbes.com', 'readers@forbes.com', 'ideas@forbes.com', 'feedback@forbes.com', 'opinion@forbes.com', 'jtorres@forbes.com', 'unaum@forbes.com', 'corrections@forbes.com', 'opinion@forbes.com', 'opinion@forbes.com', 'mwells@forbes.com', 'opinion@forbes.com', 'Lopenzina@forbes.com', 'atracy@forbes.com', 'opinion@forbes.com', 'research@forbes.com']
         Email.__init__(Email)
-        email = Email.getEmail(Email, pageurlsfirst, "forbes.com")
+        email = Email.GetEmail(Email, PageUrlsFirst, "forbes.com")
         self.assertEqual(len(email[0]), len(expectedResult))
 
     #test  source is valid or invalid
