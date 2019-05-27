@@ -5,8 +5,8 @@ class Source():
         self.sources = []
 
 
-     """
-    author : ??????
+    """
+    author : Essongo Joel Stephane
     params :  li_number, lipath
     description : search a source for the particular email
     return:an object source
@@ -16,8 +16,8 @@ class Source():
         source = apath["href"]
         return source
 
-"""
-    author : ??????
+    """
+    author : Essongo Joel Stephane
     params :  source
     description : add a source to the same email
     return: an object empty or an object source

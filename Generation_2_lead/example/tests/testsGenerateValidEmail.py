@@ -6,7 +6,7 @@ class TestGenerateValidEmail(TestCase):
     """
     author : Sonfack Cindy
     params : name ,domainName,listOfEmails  
-    description :test the generatePossibleMailWithOneEntry method (thos method generate possible random email when we have one entry)  
+    description :test the GeneratePossibleMailWithOneEntry method (thos method generate possible random email when we have one entry)  
     return:listOfEmails
     """
     def test_generatePossibleMailWithOneEntry(self):
@@ -16,12 +16,12 @@ class TestGenerateValidEmail(TestCase):
         listOfEmails = []
         finalData = ['c@cindy.com', 'cindy@cindy.com', '_cindy@cindy.com']
 
-        result = GenerateValidEmail.generatePossibleMailWithOneEntry(GenerateValidEmail,name,domainName,listOfEmails)
+        result = GenerateValidEmail.GeneratePossibleMailWithOneEntry(GenerateValidEmail,name,domainName,listOfEmails)
         self.assertEquals(result, finalData) 
     """
     author : Sonfack Cindy
     params : firstname,lastname,domainName 
-    description :test the generatePossibleMailWithOneEntry method (thos method generate possible random email)  
+    description :test the GeneratePossibleMailWithOneEntry method (thos method generate possible random email)  
     return:listOfEmails
     """
     def test_generatePossibleMail(self):
@@ -31,13 +31,13 @@ class TestGenerateValidEmail(TestCase):
         domainName = "cindy.com"
         finalData = ['c@cindy.com', 'cindy@cindy.com', '_cindy@cindy.com']
 
-        result = GenerateValidEmail.generatePossibleMail(GenerateValidEmail,firstname,lastname,domainName)
+        result = GenerateValidEmail.GeneratePossibleMail(GenerateValidEmail,firstname,lastname,domainName)
         self.assertEquals(result, finalData) 
 
-     """
+    """
     author : Sonfack Cindy
     params : email
-    description :test the verifyEmail method (this method  verify if email exist)  
+    description :test the VerifyEmail method (this method  verify if email exist)  
     return: a boolean wich tell if email is exist or no 
     """
     def test_verifyEmail(self):
@@ -45,13 +45,13 @@ class TestGenerateValidEmail(TestCase):
         email = "sonfackjoyce6@gmail.com"
         finalData = True
 
-        result = GenerateValidEmail.verifyEmail(GenerateValidEmail,email)
+        result = GenerateValidEmail.VerifyEmail(GenerateValidEmail,email)
         self.assertEquals(result, finalData) 
 
     """
     author : Sonfack Cindy
     params : firstname,lastname,domainName
-    description :test the returnValidEmail method (this method  Return valid email)  
+    description :test the ReturnValidEmail method (this method  Return valid email)  
     return:ValidEmails
     """
     def test_returnValidEmail(self):
@@ -61,5 +61,5 @@ class TestGenerateValidEmail(TestCase):
         domainName = "cindy.com"
         finalData = []
 
-        result = GenerateValidEmail.returnValidEmail(GenerateValidEmail,firstname,lastname,domainName)
+        result = GenerateValidEmail.ReturnValidEmail(GenerateValidEmail,firstname,lastname,domainName)
         self.assertEquals(result, finalData) 

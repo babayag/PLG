@@ -3,13 +3,13 @@ from ..FileManager import FileManager
 import re
 
 
-"""
+    """ 
     author : Sonfack Cindy, Nouboussi junior
     params : data, enterUrl, LastpageNbr, canSearch
     description : test the WriteInFile method (this method  write in a json file (email found, url entered ,the LastpageNbr, and the boolean canSearch))
     return data, enterUrl, LastpageNbr, canSearch and a msg which tell that there's no error in the files
     """
-   #----------------------- method test WriteInFile() ------------------------
+    #----------------------- method test WriteInFile() ------------------------
     def testWriteInFileVoidData(self):
         print("----------Test of the method WriteInFile() -------------------")
         print("~~~~~~~~+ Case when data to write are void ~~~~~~~~~~~~~~")
@@ -41,7 +41,7 @@ import re
         FileManager.WriteInFile(FileManager, data, testUrl, lastNbrPage, canSearch)
         print("SUCCESS, No Error in File writing")
 
-"""
+    """
     author : Sonfack Cindy, Nouboussi junior
     params :EnterUrl
     description : test the GetLastPageNumber method (this method get the last page when we search email on an Enterurl to continue where we stop )
@@ -73,7 +73,7 @@ import re
 
     #----------------------- method test VerifyIfFileExist() ----------------------
     
-"""
+    """
     author : Sonfack Cindy, Nouboussi junior
     params :EnterUrl
     description : test the VerifyIfFileExist method (this method  verify if the file exist for a domain search )
@@ -96,7 +96,7 @@ import re
         if result == True:
             print("File for url " + file + " Exists")
 
- """
+    """
     author : Sonfack Cindy, Nouboussi junior
     params : EnterUrl
     description : test a ReadFile method (this method ReadFile for a domain search )

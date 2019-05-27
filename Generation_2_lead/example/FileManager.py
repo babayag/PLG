@@ -10,18 +10,18 @@ class FileManager():
     description : initialize path for managing files on different location 
     """
     def __init__(self):
-        self.cacheFolderPath = r'E:\paness IIHT\M2\project\Nouveau dossier\PLG\Generation_2_lead\example\cache'
-        self.domainFile = r"E:\paness IIHT\M2\project\Nouveau dossier\PLG\Generation_2_lead\example\DomainsName\Domain.txt"
+        self.CacheFolderPath = r'/media/byebyeman/_home/project/LeadMeHome/Generation_2_lead/example/cache'
+        self.LeadFolderPath = r'/media/byebyeman/_home/project/LeadMeHome/Generation_2_lead/example/leads'    
  
- """
+    """
     author : Essongo Joel Stepahne
     params : data, enterUrl, LastpageNbr, canSearch
     description : write in a json file (email found, url entered ,the LastpageNbr, and the boolean canSearch)
     return an object which contain (data, enterUrl, LastpageNbr, canSearch )  
     """
     def WriteInFile(self, data, enterUrl, LastpageNbr, canSearch):
-        os.chdir(self.cacheFolderPath)
-        if self.verifyIfFileExist(self, enterUrl):
+        os.chdir(self.CacheFolderPath)
+        if self.VerifyIfFileExist(self, enterUrl):
             fdata = []
             try:
                 with open("{}.json".format(EnterUrl), 'r') as outfile:

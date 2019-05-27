@@ -7,7 +7,7 @@ from ..BingSearch import BingSearch
 class TestGetEmail(TestCase):
 
   # test GetEmail method
-  """
+    """
     author : ??????????????
     params : urls, PureURL
     description : ??????

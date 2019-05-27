@@ -27,7 +27,7 @@ class BingSearch():
         else:
            return False
 
-     """
+    """
     author : ????????
     params : EnterUrl
     description :  extract a good domain when we enter an url)
@@ -53,7 +53,7 @@ class BingSearch():
         else:
             return EnterUrl
 
- """
+    """
     author : ????????
     params : MyUrl
     description :  show a initial url search 

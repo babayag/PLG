@@ -21,7 +21,7 @@ class TestBingSearch(TestCase):
         expectResult = True
         self.assertEqual(actualResult,expectResult)
 
- """
+    """
     author : ????????
     params : MyUrl
     description : test the urlvalidation method (this method tell if url is good or no good and validate)
@@ -34,7 +34,7 @@ class TestBingSearch(TestCase):
         expectResult = False
         self.assertEqual(actualResult,expectResult)
 
-         """
+    """
     author : ????????
     params : MyUrl
     description : test the urlvalidation method (this method tell if url is good or no good and validate)
@@ -47,7 +47,8 @@ class TestBingSearch(TestCase):
         expectResult = True
         self.assertEqual(actualResult,expectResult)
 
-    """  author : ????????
+    """  
+    author : ????????
     params : MyUrl
     description : test the urlvalidation method (this method tell if url is good or no good and validate)
     but here we test only if the url is not a ssl

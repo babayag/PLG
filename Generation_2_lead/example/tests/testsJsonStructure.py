@@ -20,7 +20,7 @@ class TestJsonStructure(TestCase):
     
     #------------------- Method JsonStructureReturn() ------------------------------
 
-     """
+    """
     author : Sonfack Cindy, Nouboussi junior
     params : Nemails,Nsources,Enterurl,LastpageNbr
     description :test the JsonStructureReturn method (this method  tranform a data to a json form) 
@@ -58,4 +58,4 @@ class TestJsonStructure(TestCase):
         print(fileContent)  
 
 
-        """ These two work but we will see better what is the entry for multiple sources  """
+    """ These two work but we will see better what is the entry for multiple sources  """
