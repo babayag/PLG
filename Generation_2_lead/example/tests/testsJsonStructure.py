@@ -1,85 +1,47 @@
-import re
-
 from django.test import TestCase
-
+from ..FileManager import FileManager
 from ..JsonStructure import JsonStructure
 
+class TestJsonStructure(TestCase):
+    #------------------- Method getFiveFirstEmail() ------------------------------
+    def testCanSearch(self):
+        print("----------Tester la methode getFiveFirstEmail()---------")
+        enterUrl = "football.com"
+        data1 = [{"email": "Isidore@itkamer.com", "url": ["https://sfe3be30db12270da.jimcontent.com/download/version/1418461265/module/10869433089/name/Wanda%20POS%20User%20Guide.pdf"]}, {"email": "sales@itkamer.com", "url": ["https://malingojunction.com/register-fr/", "https://www.milesbeckler.com/products-products-product-secret-successful-marketing-answer/"]}]
+        data = [{"email": "fc-makuhari@football-com", "url": ["https://sosal.me/prefectures/12/cities/103/store_infos/200"]}, {"email": "fc-nagoya@football-com", "url": ["https://sosal.me/prefectures/23/cities/202/store_infos/482"]}, {"email": "filerhodgson@football.com", "url": ["https://d3recruitinghub.files.wordpress.com/2011/12/clint-dempsey-mock-resume1.pdf"]}, {"email": "fsf@football.com", "url": ["https://fotboltssamband-foroya.myshopify.com/pages/about-us"]}]
+        FileManager.__init__(FileManager)
+        fc = FileManager.readFile(FileManager, enterUrl)
+        actualResult = JsonStructure.getFiveFirstEmail(JsonStructure, fc, data)
+        expectedResult = 4
+        self.assertEqual(actualResult, expectedResult)
+        if expectedResult == 4:
+            print("getFiveFirstEmail Working")
 
-# Create your tests here.
+    
+    #------------------- Method JsonStructureReturn() ------------------------------
+    def testJsonStructureReturn(self):
+        #JsonStructureReturn(self, Nemails, Nsources, enterUrl, LastpageNbr)
+        print("----Test of the method JsonStructureReturn()-----")
+        Nemails = ["first@email.com", "second@email.com", "third@email.com"]
+        Nsources = ["https://firstsource.com", "https://secondsource.com", ["https://thirdSource1.com", "https://thirdSource2.com"]]
+        enterUrl = "email.com"
+        LastpageNbr = 10
+        JsonStructure.__init__(JsonStructure)
+        fileContent = JsonStructure.JsonStructureReturn(JsonStructure, Nemails, Nsources, enterUrl, LastpageNbr)
+        print("file content")
+        print(fileContent)
 
-
-class Test(TestCase):
-
-
-   def test_JsonStructure(self):
-       email1 = ["contact@paness-iiht.com"]
-       source1 = ["https://docs.google.com"]
-       enterUrl1 = "paness-iiht.com"
-       lastPageNumber1 = 50 
-       #finalData1 = [{'email': 'contact@paness-iiht.com', 'url': ['https://docs.google.com']}]
-       finalData1 = False
-
-       result = JsonStructure.JsonStructureReturn(JsonStructure, email1, source1, enterUrl1, lastPageNumber1)
-       self.assertEquals(result, finalData1)
-       
-
-       """
-       #one email one source
-       email1 = ["contact@paness-iiht.com"]
-       source1 = ["https://docs.google.com"]
-       enterUrl1 = "paness-iiht.com"
-       lastPageNumber1 = 6
-       finalData1 = [{'email': 'contact@paness-iiht.com', 'url': ['https://docs.google.com']}]
-       #finalData1 = True
-
-       result = JsonStructure.JsonStructureReturn(JsonStructure, email1, source1,enterUrl1,lastPageNumber1)
-       self.assertEquals(result, finalData1)
-       print("test1")
-
-       # no email no source
-       email2 = []
-       source2 = []
-       finalData2 = []
-       enterUrl2 = "paness-iiht.com"
-       lastPageNumber2 = 6
-       
-       result = JsonStructure.JsonStructureReturn(JsonStructure, email2, source2,enterUrl2,lastPageNumber2)
-       self.assertEquals(result, finalData2)
-       print("test2")
+     #------------------- Method JsonStructureReturn() ------------------------------
+    def testStructureMultipleDomains(self):
+        #StructureMultipleDomains(self,Nemails, Nsources, goodUrl)
+        print("----Test of the method StructureMultipleDomains()-----")
+        Nemails = ["first@email.com", "second@email.com", "third@email.com"]
+        Nsources = ["https://firstsource.com", "https://secondsource.com", "https://thirdSource1.com", "https://thirdSource2.com"]
+        enterUrl = "email.com" 
+        JsonStructure.__init__(JsonStructure)
+        fileContent = JsonStructure.StructureMultipleDomains(JsonStructure, Nemails, Nsources, enterUrl)
+        print("Structured")
+        print(fileContent)  
 
 
-       # many differents emails and sources
-
-       email3 = ["Isidore@itkamer.com", "isidore@itkamer.com", "sales@itkamer.com", "tatiotir@itkamer.com"]
-       source3 = ["https://docs.google.com", "https://stackoverflow.com", "https://github.com",
-                  "https://realpython.com"]
-
-       finalData3 = [
-           {'email': 'Isidore@itkamer.com', 'url': ['https://docs.google.com']},
-           {'email': 'isidore@itkamer.com', 'url': ['https://stackoverflow.com']},
-           {'email': 'sales@itkamer.com', 'url': ['https://github.com']},
-           {'email': 'tatiotir@itkamer.com', 'url': ['https://realpython.com']},
-       ]
-
-       result = JsonStructure.JsonStructureReturn(JsonStructure, email3, source3)
-       self.assertEquals(result, finalData3)
-       print("test3--------------------------------------------------------------------------------------------")
-
-       # sames emails
-
-       email4 = ["Isidore@itkamer.com", "Isidore@itkamer.com", "Isidore@itkamer.com", "Isidore@itkamer.com", ]
-       source4 = ["https://docs.google.com", "https://docs.google.com", "", ""]
-
-       finalData4 = [
-           {'email': 'Isidore@itkamer.com', 'url': ['https://docs.google.com']}
-       ]
-
-       result = JsonStructure.JsonStructureReturn(JsonStructure, email4, source4)
-       self.assertEquals(result, finalData4)
-       print("test4--------------------------------------------------------------------------------------------")
-       
-       source1 = ["https://cameroun.minajobs.net/emplois-stage-recrutement/4635", "https://cameroun.minajobs.net/emplois-stage-recrutement/4635/avis-de-recrutement-dun-agent-dentretien-%e2%80%93-coursier-paness-%e2%80%93-iiht-centre-d%e2%80%99excellence-numerique-at-paness-cabinet-de-conseil-formation-cameroun"]
-
-       """
-
-    def test_getFiveFirstEmail(self):
+        """ These two work but we will see better what is the entry for multiple sources  """

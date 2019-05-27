@@ -56,24 +56,25 @@ class BingSearch():
             # socket goes into timeout
             pass
 
-    def nbrPage(self, enterUrl,nbrOfLastPage):
+
+    def nbrPage(self, enterUrl,nbrOfLastPage,NbrResultToBrowse):
         liste = []
         lastN = 0
 
         myUrl = "/search?q=%40{}&first=11".format(enterUrl)
         result = self.initialSearch(myUrl)
         if nbrOfLastPage != None:
-            for nbrOfPage in range(1+nbrOfLastPage, (nbrOfLastPage + 50), 10):
+            for nbrOfPage in range(1+nbrOfLastPage, (nbrOfLastPage + NbrResultToBrowse), 10):
                 liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage))
 
-                dif = int(nbrOfLastPage + 50) - nbrOfPage
+                dif = int(nbrOfLastPage + NbrResultToBrowse) - nbrOfPage
                 if dif <= 10:
                     liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage + dif))
                     lastN = nbrOfPage + dif
         else:
-            for nbrOfPage in range(1, 50, 10):
+            for nbrOfPage in range(1, NbrResultToBrowse, 10):
                 liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage))
-                dif = 50 - nbrOfPage
+                dif = NbrResultToBrowse - nbrOfPage
                 if dif <= 10:
                     liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage + dif))
                     lastN = nbrOfPage + dif
@@ -82,13 +83,4 @@ class BingSearch():
         return data
 
 
-    def browse500Pages(self,enterUrl):
-        liste = []
-        NbrOfPageToBrowse = 200
-        # browse 500 pages
-        for nbrOfPage in range(1, NbrOfPageToBrowse, 10):
-            liste.append("/search?q=%40{}&first={}".format(enterUrl, nbrOfPage))
-            dif = NbrOfPageToBrowse - nbrOfPage
-            if dif <= 10:
-                liste.append("/search?q=%40{}&first={}".format(enterUrl, NbrOfPageToBrowse))
-        return liste
+
