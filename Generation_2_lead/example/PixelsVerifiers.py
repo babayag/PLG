@@ -2,6 +2,11 @@ import requests
 from bs4 import BeautifulSoup
 
 class PixelsVerifiers():
+    """
+    author : Junior Nouboussi
+    params : website
+    description : return true if the website has a pixel facebook and false if not
+    """
     def VerifyFacebookPixel(self, website):
 
         req = requests.get("http://"+website)
@@ -16,6 +21,11 @@ class PixelsVerifiers():
             return True
 
 #Complete the elements for google analytics search
+    """
+    author : Junior Nouboussi
+    params : website
+    description : return true if the website has a google analytics and false if not
+    """
     def VerifyGooglePixel(self, website):
 
         req = requests.get("http://"+website)

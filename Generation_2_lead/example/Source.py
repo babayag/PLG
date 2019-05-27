@@ -11,7 +11,7 @@ class Source():
         return source
 
 
-    def appendSource(self, source):
+    def AppendSource(self, source):
        if type(source) != type('git example'):
            empty = 'Not'
            return empty

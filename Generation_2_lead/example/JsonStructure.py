@@ -2,26 +2,32 @@ from .FileManager import FileManager
 
 
 class JsonStructure():
-    def getFiveFirstEmail(self, fc, data):
+
+    """
+    author : Essongo Joel Stephane
+    params : fc, data
+    description : ?????????????????
+    """
+    def GetFiveFirstEmail(self, fc, data):
         result = 0
-        newData = []
-        allEmails = fc[0:len(fc) - 2]
+        NewData = []
+        AllEmails = fc[0:len(fc) - 2]
         index = None
         idx = []
-        if len(allEmails) >= 5:
+        if len(AllEmails) >= 5:
             for idOfNewDatas in range(len(data)):
                 # index = data.index(newDatas)
-                for idOfEmail in range(len(allEmails)):
-                    if data[idOfNewDatas]['email'] == allEmails[idOfEmail]['email']:
+                for idOfEmail in range(len(AllEmails)):
+                    if data[idOfNewDatas]['email'] == AllEmails[idOfEmail]['email']:
                         if index not in idx:
                             idx.append(index)
-                        if data[idOfNewDatas]['url'][0] in allEmails[idOfEmail]['url'] or data[idOfNewDatas]['url'][
-                            0] == allEmails[idOfEmail]['url']:
+                        if data[idOfNewDatas]['url'][0] in AllEmails[idOfEmail]['url'] or data[idOfNewDatas]['url'][
+                            0] == AllEmails[idOfEmail]['url']:
 
                             result = result + 1
-                            newData.append(data[idOfNewDatas])
+                            NewData.append(data[idOfNewDatas])
                         else:
-                            allEmails[idOfEmail]['url'].append(data[idOfNewDatas]['url'])
+                            AllEmails[idOfEmail]['url'].append(data[idOfNewDatas]['url'])
            
           
             if result == len(data):
@@ -32,11 +38,11 @@ class JsonStructure():
         else:
             for idOfNewDatas in range(len(data)):
                 # index = data.index(newDatas)
-                for idOfEmail in range(len(allEmails)):
-                    if data[idOfNewDatas]['email'] == allEmails[idOfEmail]['email']:
+                for idOfEmail in range(len(AllEmails)):
+                    if data[idOfNewDatas]['email'] == AllEmails[idOfEmail]['email']:
                         #   elm = data.pop(index)
-                        if data[idOfNewDatas]['url'] in allEmails[idOfEmail]['url'] or data[idOfNewDatas]['url'] == \
-                                allEmails[idOfEmail]['url']:
+                        if data[idOfNewDatas]['url'] in AllEmails[idOfEmail]['url'] or data[idOfNewDatas]['url'] == \
+                                AllEmails[idOfEmail]['url']:
                             result = result + 1
             if result == len(data):
                 return result
@@ -59,91 +65,102 @@ class JsonStructure():
                 print("cas 2")
                 print(len(data))"""
     
-    def JsonStructureReturn(self, Nemails, Nsources, enterUrl, LastpageNbr):
+    
+    """
+    author : ?????????????????????
+    params : Nemails,Nsources,Enterurl,LastpageNbr
+    description : ??????
+    """
+    def JsonStructureReturn(self, Nemails, Nsources, EnterUrl, LastpageNbr):
         self.LastpageNbr = LastpageNbr
         emails = []
-        allData = []
+        AllData = []
         data = []
-        emailSources = []
-        newEmails = []
-        newEmailSources = []
+        EmailSources = []
+        NewEmails = []
+        NewEmailSources = []
         for email, source in zip(Nemails, Nsources):
-            allData.append("{} {}".format(email, source))
+            AllData.append("{} {}".format(email, source))
 
-        output = sorted(allData)
+        output = sorted(AllData)
 
         for items in output:
             emails.append(items.split(" ")[0])
-            emailSources.append(items.split(" ")[1])
+            EmailSources.append(items.split(" ")[1])
 
         index = 0
         for mail in emails:
             count = emails.count(mail)
-            if mail not in newEmails:
-                newEmails.append(mail)
+            if mail not in NewEmails:
+                NewEmails.append(mail)
 
                 sourceWithoutDbl = []
-                for counter in emailSources[index:index + count]:
+                for counter in EmailSources[index:index + count]:
                     if counter not in sourceWithoutDbl: sourceWithoutDbl.append(counter)
-                newEmailSources.append(sourceWithoutDbl)
+                NewEmailSources.append(sourceWithoutDbl)
                 index += count
 
-        for emailsCounter in range(len(newEmails)):
+        for emailsCounter in range(len(NewEmails)):
             jsonReturn = {
-                "email": newEmails[emailsCounter],
-                "url": newEmailSources[emailsCounter]
+                "email": NewEmails[emailsCounter],
+                "url": NewEmailSources[emailsCounter]
             }
             data.append(jsonReturn)
 
         FileManager.__init__(FileManager)
         counter = 0
-        if FileManager.verifyIfFileExist(FileManager, enterUrl):
-            fc = FileManager.readFile(FileManager, enterUrl)
-            counter = self.getFiveFirstEmail(self, fc, data)
+        if FileManager.VerifyIfFileExist(FileManager, EnterUrl):
+            fc = FileManager.ReadFile(FileManager, EnterUrl)
+            counter = self.GetFiveFirstEmail(self, fc, data)
         dataReturn = False
         if counter != 0:
             FileManager.__init__(FileManager)
-            # FileManager.updateCanSearch(FileManager, enterUrl)
-            FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr, False)
+            # FileManager.updateCanSearch(FileManager, EnterUrl)
+            FileManager.WriteInFile(FileManager, data, EnterUrl, self.LastpageNbr, False)
             dataReturn = False
         else:
             FileManager.__init__(FileManager)
-            FileManager.WriteInFile(FileManager, data, enterUrl, self.LastpageNbr, True)
+            FileManager.WriteInFile(FileManager, data, EnterUrl, self.LastpageNbr, True)
             dataReturn = True
 
         return dataReturn
 
 
+    """
+    author : Ranyl Foumbi
+    params : Nemails, Nsources, goodUrl
+    description : structure result for bulk search before send it to frontend app
+    """
     def StructureMultipleDomains(self,Nemails, Nsources, goodUrl):
 
         emails = []
-        allData = []
+        AllData = []
         data = []
-        emailSources = []
-        newEmails = []
-        newEmailSources = []
-        datafinal = []
+        EmailSources = []
+        NewEmails = []
+        NewEmailSources = []
+        Datafinal = []
 
         for email, source in zip(Nemails, Nsources):
-            allData.append("{} {}".format(email, source))
+            AllData.append("{} {}".format(email, source))
 
-        output = sorted(allData)
+        output = sorted(AllData)
 
         for items in output:
             emails.append(items.split(" ")[0])
-            emailSources.append(items.split(" ")[1])
+            EmailSources.append(items.split(" ")[1])
 
         index = 0
         for mail in emails:
             count = emails.count(mail)
-            if mail not in newEmails:
-                newEmails.append(mail)
+            if mail not in NewEmails:
+                NewEmails.append(mail)
 
                 sourceWithoutDbl = []
-                for counter in emailSources[index:index + count]:
+                for counter in EmailSources[index:index + count]:
                     if counter not in sourceWithoutDbl:
                         sourceWithoutDbl.append(counter)
-                newEmailSources.append(sourceWithoutDbl)
+                NewEmailSources.append(sourceWithoutDbl)
                 index += count
 
         # we initialise DomainEmailAndUrl with content Domain and list of email and url
@@ -153,14 +170,14 @@ class JsonStructure():
             "concern": []
         }
 
-        # for emails index in range len(newEmails)
+        # for emails index in range len(NewEmails)
         
         DomainEmailAndUrl = {}
-        for emailsCounter in range(len(newEmails)):
+        for emailsCounter in range(len(NewEmails)):
 
             EmailAndUrl ={
-                "email": newEmails[emailsCounter],
-                "url": newEmailSources[emailsCounter]
+                "email": NewEmails[emailsCounter],
+                "url": NewEmailSources[emailsCounter]
             }
             #append email and Url in the data list
             data.append(EmailAndUrl)

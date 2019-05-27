@@ -32,19 +32,19 @@ class TestBingSearch(TestCase):
 
     # def testextractGoodDomainSSL(self):
     #     print("extrat the domain when url is ssl format")
-    #     actualResult = BingSearch.extractGoodDomain(BingSearch,"https//www.forbes.com")
+    #     actualResult = BingSearch.ExtractGoodDomain(BingSearch,"https//www.forbes.com")
     #     expectResult = "forbes.com"
     #     self.assertEqual(actualResult,expectResult)
     
     # def testextractGoodDomainNoSSL(self):
     #     print("extrat the domain when url is no ssl format")
-    #     actualResult = BingSearch.extractGoodDomain(BingSearch,"http//www.tala.com")
+    #     actualResult = BingSearch.ExtractGoodDomain(BingSearch,"http//www.tala.com")
     #     expectResult = "tala.com"
     #     self.assertEqual(actualResult,expectResult)
 
     def testextractGoodDomainWWW(self):
         print("extrat the domain when url has www.")
-        actualResult = BingSearch.extractGoodDomain(BingSearch,"www.tala.com")
+        actualResult = BingSearch.ExtractGoodDomain(BingSearch,"www.tala.com")
         expectResult = "tala.com"
         self.assertEqual(actualResult,expectResult)
 

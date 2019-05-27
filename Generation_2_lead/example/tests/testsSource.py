@@ -18,18 +18,18 @@ class SourceTest(TestCase):
     #     print(result)
 
 
-    #------------------ method test appendSource ----------------------------------
+    #------------------ method test AppendSource ----------------------------------
     def testAppendSourceWhenNotCorrect(self):
-        print("---- Test of the method Source.appendSource() -----")
+        print("---- Test of the method Source.AppendSource() -----")
         print("~~~~~~~ case when a non-str object is entered as Source ~~~~~~~~~")
         source = 45495
         Source.__init__(Source)
-        result = Source.appendSource(Source, source)
+        result = Source.AppendSource(Source, source)
         print(result)
 
     def testAppendSourceWhenCorrect(self):
         print("~~~~~~~~~ case when an str object is entered as Source ~~~~~~~~~~~")
         source = "I am a correct str object"
         Source.__init__(Source)
-        result = Source.appendSource(Source, source)
+        result = Source.AppendSource(Source, source)
         print(result)

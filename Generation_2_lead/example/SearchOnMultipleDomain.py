@@ -4,27 +4,31 @@ from .JsonStructure import JsonStructure
 
 class SearchOnMultipleDomain():
 
-
-    def verifyUrlAndSearchEmail(self,domains):
-        datasStructured = []
-        for domaineName in domains:
+    """
+    author : Ranyl Foumbi
+    params : domains
+    description : verify and search emails on multiple domain (bulk search) and return list of emails for each domain 
+    """
+    def VerifyUrlAndSearchEmail(self,domains):
+        DatasStructured = []
+        for DomaineName in domains:
             #if Url respect Url Patern
-            if BingSearch.UrlValidation(BingSearch,domaineName) == True:
+            if BingSearch.UrlValidation(BingSearch,DomaineName) == True:
                 #extract good domaine from the enterUrl
-                goodUrl = BingSearch.extractGoodDomain(BingSearch,domaineName)
+                GoodUrl = BingSearch.ExtractGoodDomain(BingSearch,DomaineName)
                 #Browse 200 results and return searchUrl and NbrOfLastPage as here we don't use last page we put None
-                url = BingSearch.nbrPage(BingSearch,goodUrl,None,200)
+                url = BingSearch.NbrPage(BingSearch,GoodUrl,None,200)
                 #url = [listeOfUrl , LastPageNbr] so we need only listeOfUrl it is why we write url[0]
-                emailSource = Email.getEmail(Email, url[0], goodUrl)
-                # emailSource is an array of Array of Emails and Array of Sources
+                EmailSource = Email.getEmail(Email, url[0], GoodUrl)
+                # EmailSource is an array of Array of Emails and Array of Sources
                 #we call JsonStructure to stucture data as we want
-                datasStructured.append(JsonStructure.StructureMultipleDomains(JsonStructure, emailSource[0], emailSource[1], goodUrl))
+                DatasStructured.append(JsonStructure.StructureMultipleDomains(JsonStructure, EmailSource[0], EmailSource[1], GoodUrl))
             else:
                 #if url is not valid  return empty table
                 DomainEmailAndUrl = {
-                    "Domain": domaineName,
+                    "Domain": DomaineName,
                     # set data list content to concern attribut
                     "concern": []
                 }
-                datasStructured.append(DomainEmailAndUrl)
-        return datasStructured
+                DatasStructured.append(DomainEmailAndUrl)
+        return DatasStructured
