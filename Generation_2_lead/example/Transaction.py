@@ -11,19 +11,23 @@ from dateutil.parser import parse
 
 class Transaction():
    
-   # Read all forfait in forfait models
-    def getforfait(self):
+    """
+    author : Ranyl Foumbi
+    params : 
+    description:get the all forfait
+    return: the list of all forfait in the db 
+    """
+    def GetForfait(self):
         forfait = Forfait.objects.all()
         serializer= ForfaitSerializer(forfait,many=True)
         return serializer.data
 
-    # # return list of all payements of the user who has user_id
-    # def getPayementinfo(self,user_id):
-    #     payement = Payment.objects.get(user_id = user_id)
-    #     serializer= PaymentSerializer(payement)
-    #     return serializer.data
-
-    # get save  payement of current user
+    """
+    author : Ranyl Foumbi
+    params : userEmail and forfait_id he choose
+    description :   save the payment 
+    return: the payment which is create
+    """
     def SavePayment(self, userEmail, forfait_id):
         User = SpaUser.objects.get(email = userEmail)
         #return the forfait that match with forfait_id
@@ -42,8 +46,13 @@ class Transaction():
            
         return PaymentSerializer(payment).data
 
-    # this method get all payement of current user
-    def getAllPayment(self,userEmail):
+    """
+    author: Ranyl Foumbi
+    params : userEmail
+    description : get all payments
+    return: the list of payment according to the userEmail
+    """
+    def GetAllPayment(self,userEmail):
         Historic = []
         User = SpaUser.objects.get(email = userEmail)
         # get all payement of current user order by created_at desc innerjoin forfait table
@@ -58,37 +67,53 @@ class Transaction():
             Historic.append(data)
         return Historic
 
-    # get the rest of request of the current user
-    def getRestOfRequestOfUser(self, userEmail):
+    """
+    author : Ranyl Foumbi
+    params : userEmail
+    description: get the list of the Rest Of the user Request
+    return: the number of Rest Of the user request that a user can make to search niche and location
+
+    """
+    def GetRestOfRequestOfUser(self, userEmail):
         User = SpaUser.objects.get(email = userEmail)
         return User.niche_number
     
-
+    """
+    author : Ranyl Foumbi
+    params : userEmail, newLocation , newNiche
+    description: save search made by user 
+    return:list of the search made by user
+    """
     def SaveUserSearch(self,newNiche,newLocation,userEmail):
         # load the user whose email is userEmail
         User = SpaUser.objects.get(email = userEmail)
 
         # Check if the new search exists already
         try:
-                eventualNewSearch = Search.objects.get(user_id = User.id, niche = newNiche, location = newLocation)
-                eventualNewSearch.counter = (eventualNewSearch.counter) + 1
-                eventualNewSearch.created_at = datetime.datetime.now()
-                eventualNewSearch.save()
+                EventualNewSearch = Search.objects.get(user_id = User.id, niche = newNiche, location = newLocation)
+                EventualNewSearch.counter = (EventualNewSearch.counter) + 1
+                EventualNewSearch.created_at = datetime.datetime.now()
+                EventualNewSearch.save()
         # if not decrement niche number of user and create new search record
         except:
                 User.niche_number = int(User.niche_number) - 1
                 User.save()
 
                 # create a new record in search table and set value to each field
-                newSearch = Search()
-                newSearch.niche = newNiche
-                newSearch.location = newLocation
-                newSearch.counter = 1
-                newSearch.user_id = User.id
-                newSearch.save()
+                NewSearch = Search()
+                NewSearch.niche = newNiche
+                NewSearch.location = newLocation
+                NewSearch.counter = 1
+                NewSearch.user_id = User.id
+                NewSearch.save()
 
-
-    def getAllSearchOfUser(self,userEmail):
+    """
+    author : Ranyl Foumbi
+    params : userEmail
+    description : get all searches of user
+    return: the list of search according to the user email
+    """
+    def GetAllSearchOfUser(self,userEmail):
         User = SpaUser.objects.get(email = userEmail)
         # get all search of current user order by created_at 
         searchList = Search.objects.filter(user_id = User.id).order_by('-created_at')
