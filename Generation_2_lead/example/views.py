@@ -1,6 +1,8 @@
 from rest_framework.views import APIView
 # from knox.models import AuthToken
-from .models import Lead, Search, SpaUser
+from .models import Lead
+from .models import Search
+from .models import SpaUser
 from .serializers import LeadSerializer
 from rest_framework import generics
 from rest_framework.response import Response
@@ -71,7 +73,6 @@ class UpdateJsonFile(APIView):
         response = False
         enterUrl = request.data.get('url', None)
         finalData = Email.main(Email, enterUrl)
-        print(finalData)
         Jsonfinal = {"data": finalData}
         if len(Jsonfinal) != 0:
             response = True
