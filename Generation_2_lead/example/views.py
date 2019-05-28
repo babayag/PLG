@@ -62,7 +62,7 @@ class TestSharingView(APIView):
         p = request.data.get('p', None)
         FinalData = Email.main(Email, EnterUrl, p)# p = nomber of email to back
         Jsonfinal = {"data": FinalData}
-
+        print(Jsonfinal)
         return Response(Jsonfinal)
 
 

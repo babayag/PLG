@@ -15,13 +15,13 @@ class FileManager():
  
     """
     author : Essongo Joel Stepahne
-    params : data, enterUrl, LastpageNbr, canSearch
+    params : Data, EnterUrl, LastpageNbr, canSearch
     description : write in a json file (email found, url entered ,the LastpageNbr, and the boolean canSearch)
-    return an object which contain (data, enterUrl, LastpageNbr, canSearch )  
+    return an object which contain (Data, EnterUrl, LastpageNbr, canSearch )  
     """
-    def WriteInFile(self, data, enterUrl, LastpageNbr, canSearch):
+    def WriteInFile(self, Data, EnterUrl, LastpageNbr, CanSearch):
         os.chdir(self.CacheFolderPath)
-        if self.VerifyIfFileExist(self, enterUrl):
+        if self.VerifyIfFileExist(self, EnterUrl):
             fdata = []
             try:
                 with open("{}.json".format(EnterUrl), 'r') as outfile:
@@ -35,7 +35,7 @@ class FileManager():
                         if item not in fdata:
                            fdata.append(item)"""
                     fdata.append({"LastpageNbr": LastpageNbr})
-                    fdata.append({"CanSearch": CanSearch})
+                    fdata.append({"canSearch": CanSearch})
                     json.dump(fdata, outfile)
             except FileNotFoundError:
                 pass
@@ -45,7 +45,7 @@ class FileManager():
             try:
                 with open("{}.json".format(EnterUrl), 'w') as outfile:
                     Data.append({"LastpageNbr": LastpageNbr})
-                    Data.append({"CanSearch": CanSearch})
+                    Data.append({"canSearch": CanSearch})
                     json.dump(Data, outfile)
 
             except FileNotFoundError:

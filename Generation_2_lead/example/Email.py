@@ -101,7 +101,7 @@ class Email():
                 if len(EmailsToReturn[0]) == 10:
                     return EmailsToReturn
                 else:
-                    if fc[-1]['CanSearch'] == False:
+                    if fc[-1]['canSearch'] == False:
                         print("test 0")
                         #impossible to find new emails on bing
                         EmailsToReturn[2] = False # remove the button see more of the view
@@ -112,7 +112,6 @@ class Email():
                         urls = BingSearch.NbrPage(BingSearch, PureUrl, NbrPage,50)
                         ScrapedEmail = Email.GetEmail(Email, urls,PureUrl)
                         DatasStructured = JsonStructure.JsonStructureReturn(JsonStructure, ScrapedEmail[0], ScrapedEmail[1], PureUrl, urls[1])
-                        print(DatasStructured)
                         if DatasStructured == False:
                             # file has been not updated
                             #print("file has been not updated")
@@ -123,6 +122,7 @@ class Email():
                             FileManager.__init__(FileManager)
                             fc = FileManager.ReadFile(FileManager, PureUrl)
                             EmailsToReturn = self.ReturnTenEmails(self, p, fc)
+                            print(EmailsToReturn)
                             return EmailsToReturn
             else: 
                 # File does not exist
@@ -134,6 +134,7 @@ class Email():
                     FileManager.__init__(FileManager)
                     fc = FileManager.ReadFile(FileManager, PureUrl)
                     EmailsToReturn = self.ReturnTenEmails(self, p, fc)
+                    print(EmailsToReturn)
                     return EmailsToReturn
                 else:
                     return []
