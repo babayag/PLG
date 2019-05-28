@@ -24,18 +24,18 @@ class FileManager():
         if self.VerifyIfFileExist(self, enterUrl):
             fdata = []
             try:
-                with open("{}.json".format(EnterUrl), 'r') as outfile:
+                with open("{}.json".format(enterUrl), 'r') as outfile:
                     fdata = json.load(outfile)
-                    # delete the two last element of the list which are LastpageNbr and CanSearch
+                    # delete the two last element of the list which are LastpageNbr and canSearch
                     del fdata[-1]
                     del fdata[-1]
 
-                with open("{}.json".format(EnterUrl), 'w') as outfile:
-                    """for item in Data:
+                with open("{}.json".format(enterUrl), 'w') as outfile:
+                    """for item in data:
                         if item not in fdata:
                            fdata.append(item)"""
                     fdata.append({"LastpageNbr": LastpageNbr})
-                    fdata.append({"CanSearch": CanSearch})
+                    fdata.append({"canSearch": canSearch})
                     json.dump(fdata, outfile)
             except FileNotFoundError:
                 pass
@@ -43,10 +43,10 @@ class FileManager():
 
         else:
             try:
-                with open("{}.json".format(EnterUrl), 'w') as outfile:
-                    Data.append({"LastpageNbr": LastpageNbr})
-                    Data.append({"CanSearch": CanSearch})
-                    json.dump(Data, outfile)
+                with open("{}.json".format(enterUrl), 'w') as outfile:
+                    data.append({"LastpageNbr": LastpageNbr})
+                    data.append({"canSearch": canSearch})
+                    json.dump(data, outfile)
 
             except FileNotFoundError:
                 pass
@@ -54,16 +54,16 @@ class FileManager():
 
     """
     author : Essongo Joel Stephane
-    params : EnterUrl 
+    params : enterUrl 
     description : get the last page when we search email on an Enterurl to continue where we stop 
     return : a number lastNumberPage
     """
-    def GetLastPageNumber(self, EnterUrl):
+    def GetLastPageNumber(self, enterUrl):
 
         os.chdir(self.CacheFolderPath)
         try:
 
-            with open("{}.json".format(EnterUrl), "r") as printer:
+            with open("{}.json".format(enterUrl), "r") as printer:
                 fdata = json.load(printer)
                 lastNumber = fdata[-2]['LastpageNbr']
         except FileNotFoundError:
@@ -73,14 +73,14 @@ class FileManager():
 
     """
     author : Essongo Joel Stephane
-    params : EnterUrl
+    params : enterUrl
     description : verify if the file exist for a domain search 
     return a boolean which tell if file exist or no
     """
-    def VerifyIfFileExist(self,EnterUrl):
+    def VerifyIfFileExist(self,enterUrl):
         os.chdir(self.CacheFolderPath)
         try:
-            if os.path.isfile("{}.json".format(EnterUrl)):
+            if os.path.isfile("{}.json".format(enterUrl)):
                 return True
             else:
                 return False
@@ -89,15 +89,15 @@ class FileManager():
     
     """
     author : Essongo Joel Stephane
-    params : EnterUrl
+    params : enterUrl
     description : ReadFile for a domain search 
     return an object FileContent
     """
-    def ReadFile(self, EnterUrl):
+    def ReadFile(self, enterUrl):
         # open the folder and return its contents
         os.chdir(self.CacheFolderPath)
         try:
-            with open("{}.json".format(EnterUrl), "r") as printer:
+            with open("{}.json".format(enterUrl), "r") as printer:
                 FileContent = json.load(printer)
                 return FileContent
         except FileNotFoundError:
@@ -106,19 +106,19 @@ class FileManager():
 
     """
     author : Essongo Joel Stephane
-    params : EnterUrl
+    params : enterUrl
     description : update the value canSearch to true or false.
     return: return a boolean wich tell if we can search email again or no
     """
-    def UpdateCanSearch(self,EnterUrl):
+    def UpdateCanSearch(self,enterUrl):
         os.chdir(self.CacheFolderPath)
         fdata = []
         try:
-            with open("{}.json".format(EnterUrl), 'r') as outfile:
+            with open("{}.json".format(enterUrl), 'r') as outfile:
                 fdata = json.load(outfile)
                 del fdata[-1]
-            with open("{}.json".format(EnterUrl), 'w') as outfile:
-                fdata.append({"CanSearch": False})
+            with open("{}.json".format(enterUrl), 'w') as outfile:
+                fdata.append({"canSearch": False})
                 json.dump(fdata, outfile)
         except FileNotFoundError:
             pass
@@ -126,16 +126,16 @@ class FileManager():
 
     """
     author : Kevin Ngaleu
-    params : EnterUrl
+    params : enterUrl
     description : verify if the file exist for a domain search. in this case we use it for lead folder 
     return: a boolean wich tell if file exist or no
     """
-    def VerifyIfFileExist2(self, EnterUrl):
+    def VerifyIfFileExist2(self, enterUrl):
         # All Files that correspond to the search
         Files = []
         os.chdir(self.LeadFolderPath)
         for fileName in os.listdir(self.LeadFolderPath):
-            if EnterUrl in fileName.lower():
+            if enterUrl in fileName.lower():
                 Files.append(fileName)
         if len(Files) > 0:
             return Files
@@ -167,7 +167,7 @@ class FileManager():
                             FileContent = json.load(printer)
                         else:
                             OtherFileContent = json.load(printer)
-                            # Append other Data on the Json file
+                            # Append other data on the Json file
                             FileContent[0]['Results'].extend(OtherFileContent[0]['Results'])
                 except FileNotFoundError:
                     pass

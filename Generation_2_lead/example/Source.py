@@ -23,9 +23,11 @@ class Source():
     return: an object empty or an object source
     """
     def AppendSource(self, source):
-       if type(source) != type('git example'):
+        print('dans l object source')
+        print(source)
+        if type(source) != type('git example'):
            empty = 'Not'
            return empty
-       else:
+        else:
            self.sources.append(source)
            return self.sources

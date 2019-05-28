@@ -40,8 +40,8 @@ class Paypal():
 
       # Set redirect URLs
       "redirect_urls": {
-        "return_url": "http://127.0.0.1:8000/dashboard/payment",
-        "cancel_url": "http://127.0.0.1:8000/dashboard/payment"
+        "return_url": "http://localhost:3000/dashboard/payment",
+        "cancel_url": "http://localhost:3000/dashboard/payment"
       },
 
       # Set transaction object

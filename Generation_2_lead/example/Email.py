@@ -101,7 +101,7 @@ class Email():
                 if len(EmailsToReturn[0]) == 10:
                     return EmailsToReturn
                 else:
-                    if fc[-1]['CanSearch'] == False:
+                    if fc[-1]['canSearch'] == False:
                         print("test 0")
                         #impossible to find new emails on bing
                         EmailsToReturn[2] = False # remove the button see more of the view
@@ -176,14 +176,21 @@ class Email():
 
                             if SearchEmails:
                                 src = Source.search(Source, li_number, lipath)
+                                print('src')
+                                print(src)
                                 for email in SearchEmails:
                                     # add email in the emails list: return an object oy type NoneType
                                     emails.append(email)
-                                    sources = Source.appendSource(Source, src)
+                                    sources = Source.AppendSource(Source, src)
+                                    print('source 1')
+                                    print(sources)
                         li_number = li_number + 1
 
                     except:
                         break
             print(emails)
+            print('les sources')
+            print(sources)
             EmailsAndSources = [emails, sources]
+            print(EmailsAndSources)
             return EmailsAndSources

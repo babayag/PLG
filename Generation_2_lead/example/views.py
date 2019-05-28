@@ -73,10 +73,9 @@ description : endpoints for updating cache file for search on a domain
 class UpdateJsonFile(APIView):
     def post(self, request):
         response = False
-        EnterUrl = request.data.get('url', None)
-        FinalData = Email.main(Email, EnterUrl)
-        print(FinalData)
-        Jsonfinal = {"data": FinalData}
+        enterUrl = request.data.get('url', None)
+        finalData = Email.main(Email, enterUrl)
+        Jsonfinal = {"data": finalData}
         if len(Jsonfinal) != 0:
             response = True
         else:
@@ -156,6 +155,7 @@ class BetterFindLead(APIView):
         EnteredCity = request.data.get('city', None)
         UserEmail = request.data.get('email', None)
         p = request.data.get('p', None) #this is the value we will use to search new emails
+       
         # if user request is finished (== 0)
         if Transaction.GetRestOfRequestOfUser(Transaction,UserEmail) == 0: 
             # if the curent search already exist in search table return result to the user
@@ -167,7 +167,7 @@ class BetterFindLead(APIView):
                 return Response(Jsonfinal)
             # if not, display this message
             except:
-                return Response("Your are at the end of your subscription, please make a new subcription ! !")
+                return Response("Your are at the end of your subscription, please make a new subscription ! !")
         # if user request is not finished (not  null) always return result
         else:
             FinalData = FindLeads.FindLead(FindLeads, EnteredNiche, EnteredCity , p)
