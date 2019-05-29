@@ -6,111 +6,135 @@ from .Source import Source
 from .JsonStructure import JsonStructure
 from .FileManager import FileManager
 
-class Email():
 
-    def returnTenEmails(self, p, fileContent):
+class Email():
+    """
+    author : Essongo Joel Stephane
+    params : FileContent
+    description : give the 10 first emails
+    return : 10 emails starting at the p position in the file content
+    """
+    def ReturnTenEmails(self, p, FileContent):
         result = []
-        allEmails = fileContent[0:len(fileContent)-2]
+        allEmails = FileContent[0:len(FileContent)-2]
         p = int(p)
         if len(allEmails[p:]) >= 10:
-            emailsToReturn = allEmails[p:(p+10)]
-            result.append(emailsToReturn)
-            p += len(emailsToReturn)
+            EmailsToReturn = allEmails[p:(p+10)]
+            result.append(EmailsToReturn)
+            p += len(EmailsToReturn)
             result.append(p)
             result.append(True)
             return result
         else:
-            emailsToReturn = allEmails[p:]
-            result.append(emailsToReturn)
-            p += len(emailsToReturn)
+            EmailsToReturn = allEmails[p:]
+            result.append(EmailsToReturn)
+            p += len(EmailsToReturn)
             result.append(p)
             result.append(True)
             return result
 
-    def DownloadEmails(self, enterUrl):
-        if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
+    """
+    author : Essongo Joel Stephane
+    params : EnterUrl
+    description : get the list of emails for when the file for that domain exist
+    return:a string msg 
+    """
+    def DownloadEmails(self, EnterUrl):
+        if BingSearch.UrlValidation(BingSearch,EnterUrl) == True:
             # URL is valid
-            pureUrl = BingSearch.extractGoodDomain(BingSearch, enterUrl)
+            PureUrl = BingSearch.ExtractGoodDomain(BingSearch, EnterUrl)
             FileManager.__init__(FileManager)
-            if FileManager.verifyIfFileExist(FileManager,pureUrl) == True:
+            if FileManager.VerifyIfFileExist(FileManager,PureUrl) == True:
                 # File exist in the directory
                 FileManager.__init__(FileManager)
-                fc = FileManager.readFile(FileManager, pureUrl)
-                emailsToReturn = fc[0:len(fc)-2]
-                return emailsToReturn
+                fc = FileManager.ReadFile(FileManager, PureUrl)
+                EmailsToReturn = fc[0:len(fc)-2]
+                return EmailsToReturn
             else:
                 return " FILE IS NOT EXIST !!!"
         else:
             return 'YOU ENTERED A BAD URL !!!'
 
-    def cityAndNiche(self, enterNiche, enterCity):
+    """
+    author : Essongo Joel Stephane
+    params : EnterNiche, EnterCity  
+    description : get emails for a nich and a particular location
+    return:a json object EmailToReturn (domains,emails) or false
+    """
+    def CityAndNiche(self, EnterNiche, EnterCity):
         FileManager.__init__(FileManager)
-        enterNicheEnterCity = enterNiche+'_'+enterCity
-        if FileManager.verifyIfFileExist(FileManager, enterNicheEnterCity) == True:
+        EnterNicheEnterCity = EnterNiche+'_'+EnterCity
+        if FileManager.VerifyIfFileExist(FileManager, EnterNicheEnterCity) == True:
             # File exist
-            fc = FileManager.readFile(FileManager, enterNicheEnterCity)
-            emailToReturn = []
+            fc = FileManager.ReadFile(FileManager, EnterNicheEnterCity)
+            EmailToReturn = []
             for domain in fc[-1]['Domain']:
                 if BingSearch.UrlValidation(BingSearch,domain):
-                    goodDomain = BingSearch.extractGoodDomain(BingSearch,domain)
-                    urls = BingSearch.nbrPage(BingSearch, goodDomain, None, 50)
-                    emailsAndSources = self.getEmail(self, urls, goodDomain)
-                    e = JsonStructure.StructureMultipleDomains(JsonStructure, emailsAndSources[0], emailsAndSources[1], goodDomain)
-                    emailToReturn.append(e)
+                    GoodDomain = BingSearch.ExtractGoodDomain(BingSearch,domain)
+                    urls = BingSearch.NbrPage(BingSearch, GoodDomain, None, 50)
+                    EmailsAndSources = self.GetEmail(self, urls, GoodDomain)
+                    e = JsonStructure.StructureMultipleDomains(JsonStructure, EmailsAndSources[0], EmailsAndSources[1], GoodDomain)
+                    EmailToReturn.append(e)
             print(e)
-            return emailToReturn
+            return EmailToReturn
         else:
             return False
 
-    def main(self, enterUrl, p):
-        if BingSearch.UrlValidation(BingSearch,enterUrl) == True:
+    """
+    author : Essongo Joel Stephane
+    params : EnterUrl, p
+    description : ask to Essongo 
+    return:
+    """
+    def main(self, EnterUrl, p):
+        if BingSearch.UrlValidation(BingSearch,EnterUrl) == True:
             # URL is valid
-            pureUrl = BingSearch.extractGoodDomain(BingSearch, enterUrl)
+            PureUrl = BingSearch.ExtractGoodDomain(BingSearch, EnterUrl)
             FileManager.__init__(FileManager)
-            if FileManager.verifyIfFileExist(FileManager, pureUrl) == True:
+            if FileManager.VerifyIfFileExist(FileManager, PureUrl) == True:
                 # File exist in the directory
                 print("File exist in the directory")
                 FileManager.__init__(FileManager)
-                fc = FileManager.readFile(FileManager, pureUrl)
-                nbrPage = FileManager.GetLastPageNumber(FileManager, pureUrl)
-                emailsToReturn = self.returnTenEmails(self, p, fc)
-                if len(emailsToReturn[0]) == 10:
-                    return emailsToReturn
+                fc = FileManager.ReadFile(FileManager, PureUrl)
+                NbrPage = FileManager.GetLastPageNumber(FileManager, PureUrl)
+                EmailsToReturn = self.ReturnTenEmails(self, p, fc)
+                if len(EmailsToReturn[0]) == 10:
+                    return EmailsToReturn
                 else:
                     if fc[-1]['canSearch'] == False:
                         print("test 0")
                         #impossible to find new emails on bing
-                        emailsToReturn[2] = False # remove the button see more of the view
+                        EmailsToReturn[2] = False # remove the button see more of the view
 
-                        return emailsToReturn
+                        return EmailsToReturn
                     else:
                         #possible to find new emails on bing
-                        urls = BingSearch.nbrPage(BingSearch, pureUrl, nbrPage,50)
-                        scrapedEmail = Email.getEmail(Email, urls,pureUrl)
-                        datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, scrapedEmail[0], scrapedEmail[1], pureUrl, urls[1])
-                        print(datasStructured)
-                        if datasStructured == False:
+                        urls = BingSearch.NbrPage(BingSearch, PureUrl, NbrPage,50)
+                        ScrapedEmail = Email.GetEmail(Email, urls,PureUrl)
+                        DatasStructured = JsonStructure.JsonStructureReturn(JsonStructure, ScrapedEmail[0], ScrapedEmail[1], PureUrl, urls[1])
+                        print(DatasStructured)
+                        if DatasStructured == False:
                             # file has been not updated
                             #print("file has been not updated")
-                            emailsToReturn[2] = False # remove the button see more of the view
-                            return  emailsToReturn
+                            EmailsToReturn[2] = False # remove the button see more of the view
+                            return  EmailsToReturn
                         else:
                             # file has been updated
                             FileManager.__init__(FileManager)
-                            fc = FileManager.readFile(FileManager, pureUrl)
-                            emailsToReturn = self.returnTenEmails(self, p, fc)
-                            return emailsToReturn
+                            fc = FileManager.ReadFile(FileManager, PureUrl)
+                            EmailsToReturn = self.ReturnTenEmails(self, p, fc)
+                            return EmailsToReturn
             else: 
                 # File does not exist
                 
-                urls = BingSearch.nbrPage(BingSearch, pureUrl, None,50)
-                scrapedEmail = Email.getEmail(Email, urls,pureUrl)
-                datasStructured = JsonStructure.JsonStructureReturn(JsonStructure, scrapedEmail[0], scrapedEmail[1],pureUrl, urls[1])
-                if datasStructured == True:
+                urls = BingSearch.NbrPage(BingSearch, PureUrl, None,50)
+                ScrapedEmail = Email.GetEmail(Email, urls,PureUrl)
+                DatasStructured = JsonStructure.JsonStructureReturn(JsonStructure, ScrapedEmail[0], ScrapedEmail[1],PureUrl, urls[1])
+                if DatasStructured == True:
                     FileManager.__init__(FileManager)
-                    fc = FileManager.readFile(FileManager, pureUrl)
-                    emailsToReturn = self.returnTenEmails(self, p, fc)
-                    return emailsToReturn
+                    fc = FileManager.ReadFile(FileManager, PureUrl)
+                    EmailsToReturn = self.ReturnTenEmails(self, p, fc)
+                    return EmailsToReturn
                 else:
                     return []
         else:
@@ -118,8 +142,13 @@ class Email():
             return 'YOU ENTERED A BAD URL!!'
 
     
-
-    def getEmail(self, urls,pureUrl):
+    """
+    author : ??????????????
+    params : urls, PureURL
+    description : ??????
+    return:Emails And Sources
+    """
+    def GetEmail(self, urls,PureUrl):
         emails = []
         sources = []
         Source.__init__(Source)
@@ -130,7 +159,7 @@ class Email():
             else:
                 urls = urls[0]
 
-            for _ in executor.map(BingSearch.initialSearch, urls):
+            for _ in executor.map(BingSearch.InitialSearch, urls):
                 soup = BeautifulSoup(_, features="html.parser")
                 lipath = soup.findAll("li", {"class": "b_algo"})
                 li_number = 0
@@ -141,20 +170,27 @@ class Email():
                         for line in litext.splitlines():
                             # search all email in each line, return the objet searchNumbers of type list
 
-                            searchEmails = re.findall(r"[a-zA-Z]+[\.\-]?\w*[\.\-]?\w+\.?\w*\@{}".format(pureUrl),
+                            SearchEmails = re.findall(r"[a-zA-Z]+[\.\-]?\w*[\.\-]?\w+\.?\w*\@{}".format(PureUrl),
                                                       line, flags=re.MULTILINE)
                             # for email in email_1 list
 
-                            if searchEmails:
+                            if SearchEmails:
                                 src = Source.search(Source, li_number, lipath)
-                                for email in searchEmails:
+                                print('src')
+                                print(src)
+                                for email in SearchEmails:
                                     # add email in the emails list: return an object oy type NoneType
                                     emails.append(email)
-                                    sources = Source.appendSource(Source, src)
+                                    sources = Source.AppendSource(Source, src)
+                                    print('source 1')
+                                    print(sources)
                         li_number = li_number + 1
 
                     except:
                         break
             print(emails)
-            emailsAndSources = [emails, sources]
-            return emailsAndSources
+            print('les sources')
+            print(sources)
+            EmailsAndSources = [emails, sources]
+            print(EmailsAndSources)
+            return EmailsAndSources

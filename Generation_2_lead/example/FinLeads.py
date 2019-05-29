@@ -6,13 +6,17 @@ from .PixelsVerifiers import PixelsVerifiers
 import json
 
 class FindLeads():
-
+    """
+    author : Essongo Joel Stephane
+    params : EnterNiche , EnterCity 
+    description : verify if the file exist for a domain Search     
+    """
     def finder(self, enterNiche, enterCity):
         FileManager.__init__(FileManager)
         enterNicheEnterCity = enterNiche+'_'+enterCity
-        if FileManager.verifyIfFileExist(FileManager, enterNicheEnterCity) == True:
+        if FileManager.VerifyIfFileExist(FileManager, enterNicheEnterCity) == True:
             # File exist
-            fc = FileManager.readFile(FileManager, enterNicheEnterCity)
+            fc = FileManager.ReadFile(FileManager, enterNicheEnterCity)
             emailToReturn = []
             for domain in fc[-1]['Domain']:
                 if BingSearch.UrlValidation(BingSearch,domain):
@@ -26,15 +30,20 @@ class FindLeads():
         else:
             return False
 
+    """
+    author : Essongo Joel Stephane, kevin Ngaleu , junior Nouboussi
+    params : EnterNiche, EnterCity , p
+    description : return list of emails according to a niche and city 
+    """
     def findLead(self, enterNiche, enterCity, p):
         response = {}
         FileManager.__init__(FileManager)
         nicheAndCityFile = enterNiche+'_'+enterCity
-        files = FileManager.verifyIfFileExist2(FileManager, nicheAndCityFile)
+        files = FileManager.VerifyIfFileExist2(FileManager, nicheAndCityFile)
         print(files)
     
         if files != False:
-            filesContent = FileManager.readFile2(FileManager, files)
+            filesContent = FileManager.ReadFile2(FileManager, files)
             allDomains = []
             i = 0
             
@@ -90,6 +99,12 @@ class FindLeads():
         else:
             return []
 
+
+    """
+    author : Junioir Nouboussi, Essongo Joel Stephane
+    params : domain
+    description : verify on a domain if we have pixel or google analytics 
+    """
     def checkPixel(self, domain):
         # I create a new item that will look like {hasFacebookPixel:Boolean, hasGooglePixel:Boolean}
         newItem = {} 

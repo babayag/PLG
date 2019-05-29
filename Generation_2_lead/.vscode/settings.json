@@ -1,8 +1,13 @@
 {
     "python.linting.pylintEnabled": true,
 <<<<<<< HEAD
+    "python.pythonPath": "/media/byebyeman/_home/project/back/bin/python",
+    "python.linting.enabled": true
+=======
+<<<<<<< HEAD
     "python.pythonPath": "C:\\Users\\Ranyl\\AppData\\Local\\Programs\\Python\\Python36-32\\python3.exe"
 =======
     "python.pythonPath": "C:\\Users\\Dell\\AppData\\Local\\Programs\\Python\\Python36\\python.exe"
 >>>>>>> 1f04568f77a3e2673e865d32f0f98f00638ba32d
+>>>>>>> 1ee113f8f0c6b4d4e903fcd64a973f8cf13a91a8
 }

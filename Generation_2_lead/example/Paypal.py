@@ -5,14 +5,24 @@ from .Transaction import Transaction
 from .models import Forfait
 
 class Paypal():
-
+  """
+    author : Domngang Eric Faycal and junior Nouboussi
+    params : 
+    description : configure the api key of paypal account
+  """
   def configure(self):
     paypalrestsdk.configure({
       'mode': 'sandbox', #sandbox or live
       'client_id': 'AZBNmJ7wvdWNJxt4GN9YXT2IVV5ruG-0QGGqpvTS0YilnFbox9f5FPreXgyov2d6ozib-xAOk6ol5xbY',
       'client_secret': 'ELzSGWK_sr81DG0hV4mvXVuENWhe8iSBwajtx383IlzrlHMphUT63LbLWXnP3LFkQ-kxV5uIZU7Z0kZK' })
 
+  """
+    author : Domngang Eric Faycal and Junior Nouboussi
+    params : forfait_id
+    description : create the url for the payments process 
+    return: an error or payment url 
 
+  """
   def createPayment(self,forfait_id):
 
     forfait = Forfait.objects.get(id = forfait_id) 
@@ -59,7 +69,12 @@ class Paypal():
       print(payment.error)
       return {"error": payment.error}
 
-  
+  """
+    author : Domngang Eric Faycal and junior Nouboussi and Ranyl Foumbi
+    params : paymentId, PayerId, token, user_email, forfait_id
+    description : verify if the payement is valid before store it in our database
+    return:object payment which contain the response status
+  """
   def executePayment(self, PayerID, paymentId, token,user_email, forfait_id):
 
     self.configure(self)

@@ -4,14 +4,24 @@ from datetime import datetime
 import time
 
 class FileManager():
-
+    """
+    author : Essongo Joel Stepahne
+    params : 
+    description : initialize path for managing files on different location 
+    """
     def __init__(self):
-        self.cacheFolderPath = r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache'
-        self.leadFolderPath = r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\leads'
+        self.CacheFolderPath = r'/media/byebyeman/_home/project/LeadMeHome/Generation_2_lead/example/cache'
+        self.LeadFolderPath = r'/media/byebyeman/_home/project/LeadMeHome/Generation_2_lead/example/leads'
 
+    """
+    author : Essongo Joel Stepahne
+    params : data, enterUrl, LastpageNbr, canSearch
+    description : write in a json file (email found, url entered ,the LastpageNbr, and the boolean canSearch)
+    return an object which contain (data, enterUrl, LastpageNbr, canSearch )  
+    """
     def WriteInFile(self, data, enterUrl, LastpageNbr, canSearch):
-        os.chdir(self.cacheFolderPath)
-        if self.verifyIfFileExist(self, enterUrl):
+        os.chdir(self.CacheFolderPath)
+        if self.VerifyIfFileExist(self, enterUrl):
             fdata = []
             try:
                 with open("{}.json".format(enterUrl), 'r') as outfile:
@@ -29,6 +39,7 @@ class FileManager():
                     json.dump(fdata, outfile)
             except FileNotFoundError:
                 pass
+            return True
 
         else:
             try:
@@ -39,11 +50,17 @@ class FileManager():
 
             except FileNotFoundError:
                 pass
+            return False
 
-
+    """
+    author : Essongo Joel Stephane
+    params : enterUrl 
+    description : get the last page when we search email on an Enterurl to continue where we stop 
+    return : a number lastNumberPage
+    """
     def GetLastPageNumber(self, enterUrl):
 
-        os.chdir(self.cacheFolderPath)
+        os.chdir(self.CacheFolderPath)
         try:
 
             with open("{}.json".format(enterUrl), "r") as printer:
@@ -54,9 +71,14 @@ class FileManager():
         return lastNumber
 
 
-
-    def verifyIfFileExist(self,enterUrl):
-        os.chdir(self.cacheFolderPath)
+    """
+    author : Essongo Joel Stephane
+    params : enterUrl
+    description : verify if the file exist for a domain search 
+    return a boolean which tell if file exist or no
+    """
+    def VerifyIfFileExist(self,enterUrl):
+        os.chdir(self.CacheFolderPath)
         try:
             if os.path.isfile("{}.json".format(enterUrl)):
                 return True
@@ -64,21 +86,32 @@ class FileManager():
                 return False
         except FileNotFoundError:
             pass
-
-    def readFile(self, enterUrl):
+    
+    """
+    author : Essongo Joel Stephane
+    params : enterUrl
+    description : ReadFile for a domain search 
+    return an object FileContent
+    """
+    def ReadFile(self, enterUrl):
         # open the folder and return its contents
-        os.chdir(self.cacheFolderPath)
+        os.chdir(self.CacheFolderPath)
         try:
             with open("{}.json".format(enterUrl), "r") as printer:
-                fileContent = json.load(printer)
-                return fileContent
+                FileContent = json.load(printer)
+                return FileContent
         except FileNotFoundError:
             pass
 
 
-
-    def updateCanSearch(self,enterUrl):
-        os.chdir(self.cacheFolderPath)
+    """
+    author : Essongo Joel Stephane
+    params : enterUrl
+    description : update the value canSearch to true or false.
+    return: return a boolean wich tell if we can search email again or no
+    """
+    def UpdateCanSearch(self,enterUrl):
+        os.chdir(self.CacheFolderPath)
         fdata = []
         try:
             with open("{}.json".format(enterUrl), 'r') as outfile:
@@ -91,46 +124,54 @@ class FileManager():
             pass
 
 
-    """"
-    For Lead Search: Using leadFolderPath
     """
-    def verifyIfFileExist2(self, enterUrl):
-        # All files that correspond to the search
-        files = []
-        os.chdir(self.leadFolderPath)
-        for fileName in os.listdir(self.leadFolderPath):
+    author : Kevin Ngaleu
+    params : enterUrl
+    description : verify if the file exist for a domain search. in this case we use it for lead folder 
+    return: a boolean wich tell if file exist or no
+    """
+    def VerifyIfFileExist2(self, enterUrl):
+        # All Files that correspond to the search
+        Files = []
+        os.chdir(self.LeadFolderPath)
+        for fileName in os.listdir(self.LeadFolderPath):
             if enterUrl in fileName.lower():
-                files.append(fileName)
-        if len(files) > 0:
-            return files
+                Files.append(fileName)
+        if len(Files) > 0:
+            return Files
         else:
             return False
 
-
-    def readFile2(self, files):
+    """
+    author : kevin Ngaleu
+    params : Files
+    description : read files in the lead folder 
+    return an object FileContent
+    """
+    def ReadFile2(self, Files):
         # open the folder and return its contents
-        os.chdir(self.leadFolderPath)
-        if len(files) == 1:
+        os.chdir(self.LeadFolderPath)
+        if len(Files) == 1:
             try:
-                with open("{}".format(files[0]), "r") as printer:
-                    fileContent = json.load(printer)
-                    return fileContent
+                with open("{}".format(Files[0]), "r") as printer:
+                    FileContent = json.load(printer)
+                    return FileContent
             except FileNotFoundError:
                 pass
         else:
-            fileContent = ''
-            for file in files:
+            FileContent = ''
+            for file in Files:
                 try:
                     with open("{}".format(file), "r") as printer:
-                        if file == files[0]:
-                            fileContent = json.load(printer)
+                        if file == Files[0]:
+                            FileContent = json.load(printer)
                         else:
-                            otherFileContent = json.load(printer)
+                            OtherFileContent = json.load(printer)
                             # Append other data on the Json file
-                            fileContent[0]['Results'].extend(otherFileContent[0]['Results'])
+                            FileContent[0]['Results'].extend(OtherFileContent[0]['Results'])
                 except FileNotFoundError:
                     pass
-            return fileContent
+            return FileContent
 
 
 
