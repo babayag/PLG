@@ -140,7 +140,6 @@ class NormalFindLead(APIView):
         EnteredNiche = request.data.get('niche', None)
         EnteredCity = request.data.get('city', None)
         p = request.data.get('p', None) #this is the value we will use to search new emails
-        
         FinalData = FindLeads.findLead(FindLeads, EnteredNiche, EnteredCity , p)
         Jsonfinal = {"data": FinalData}
 
@@ -158,6 +157,7 @@ class BetterFindLead(APIView):
        
         # if user request is finished (== 0)
         if Transaction.GetRestOfRequestOfUser(Transaction,UserEmail) == 0: 
+            
             # if the curent search already exist in search table return result to the user
             try:
                 User = SpaUser.objects.get(email = UserEmail)
@@ -170,6 +170,7 @@ class BetterFindLead(APIView):
                 return Response("Your are at the end of your subscription, please make a new subscription ! !")
         # if user request is not finished (not  null) always return result
         else:
+            
             FinalData = FindLeads.findLead(FindLeads, EnteredNiche, EnteredCity , p)
             Transaction.SaveUserSearch(Transaction,EnteredNiche,EnteredCity,UserEmail)
             Jsonfinal = {"data": FinalData}
@@ -223,8 +224,8 @@ author : Ranyl Foumbi
 description : endpoints for getting email when we enter niche and location (user is not connected)
 """
 class GetAllForfait(APIView):
-    def post(self, request):
-        AllForfait = Transaction.Getforfait(Transaction)
+    def get(self, request):
+        AllForfait = Transaction.GetForfait(Transaction)
         return Response(AllForfait)
 """
 author : Ranyl Foumbi

@@ -9,7 +9,7 @@ class PixelsVerifiers():
     return: a boolean wich tell if there's a facebook pixel on a website
     """
     def VerifyFacebookPixel(self, website):
-
+        # print(website)
         req = requests.get("http://"+website)
 
         soup = BeautifulSoup(req.content, "lxml")

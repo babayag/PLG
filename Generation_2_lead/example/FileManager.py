@@ -10,8 +10,8 @@ class FileManager():
     description : initialize path for managing files on different location 
     """
     def __init__(self):
-        self.CacheFolderPath = r'/media/byebyeman/_home/project/LeadMeHome/Generation_2_lead/example/cache'
-        self.LeadFolderPath = r'/media/byebyeman/_home/project/LeadMeHome/Generation_2_lead/example/leads'
+        self.CacheFolderPath = r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\cache'
+        self.LeadFolderPath = r'E:\SEMESTRE III\programmation projet\LeadmeHome\PLG\Generation_2_lead\example\leads'
 
     """
     author : Essongo Joel Stepahne

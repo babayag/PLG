@@ -40,7 +40,6 @@ class FindLeads():
         FileManager.__init__(FileManager)
         nicheAndCityFile = enterNiche+'_'+enterCity
         files = FileManager.VerifyIfFileExist2(FileManager, nicheAndCityFile)
-        print(files)
     
         if files != False:
             filesContent = FileManager.ReadFile2(FileManager, files)
@@ -110,6 +109,7 @@ class FindLeads():
         newItem = {} 
         hasFaceBookPixel = PixelsVerifiers.VerifyFacebookPixel(PixelsVerifiers, domain)
         hasGooglePixel = PixelsVerifiers.VerifyGooglePixel(PixelsVerifiers, domain)
+        newItem["domain"] = domain
         newItem["hasFacebookPixel"] = hasFaceBookPixel
         newItem["hasGooglePixel"] = hasGooglePixel
 
