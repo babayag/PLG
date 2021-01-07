@@ -17,7 +17,7 @@ fbchat==1.1.2
 idna==2.8
 jwt==0.6.1
 kiwisolver==1.0.1
-lxml==4.1.1
+lxml==4.6.2
 matplotlib==3.0.2
 numpy==1.16.0
 objectpath==0.6.1
